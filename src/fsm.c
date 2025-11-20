@@ -29,92 +29,92 @@ void FUNCAO_FSM()
 		if
 		(
 			(
-				(P[PR].state>=101 && P[PR].state<=106) || 
-				(P[PR].state>=151 && P[PR].state<=156) || 
-				(P[PR].state>=201 && P[PR].state<=206) || 
-				(P[PR].state>=301 && P[PR].state<=306) || 
-				(P[PR].state>=311 && P[PR].state<=316) || 
-				(P[PR].state>=321 && P[PR].state<=326) || 
-				(P[PR].state>=700 && P[PR].state<=790) || 
+				(P[PR].state >= STATE_SOCO_FRACO_LONGE && P[PR].state <= STATE_CHUTE_FORTE_LONGE) || 
+				(P[PR].state >= STATE_SOCO_FRACO_PERTO && P[PR].state <= STATE_CHUTE_FORTE_PERTO) || 
+				(P[PR].state >= STATE_SOCO_FRACO_ABAIXADO && P[PR].state <= STATE_CHUTE_FORTE_ABAIXADO) || 
+				(P[PR].state >= STATE_SOCO_FRACO_AEREO_NEUTRO && P[PR].state <= STATE_CHUTE_FORTE_AEREO_NEUTRO) || 
+				(P[PR].state >= STATE_SOCO_FRACO_AEREO_TRAS && P[PR].state <= STATE_CHUTE_FORTE_AEREO_TRAS) || 
+				(P[PR].state >= STATE_SOCO_FRACO_AEREO_FRENTE && P[PR].state <= STATE_CHUTE_FORTE_AEREO_FRENTE) || 
+				(P[PR].state >= STATE_ESPECIAL_700 && P[PR].state <= STATE_ESPECIAL_790) || 
 				(distancia_Player_X_Magia<=70)
 			) && 
 			(
 			  (
 			    (P[PA].direcao== 1 && P[PA].key_JOY_LEFT_status ==2) || 
 			    (P[PA].direcao==-1 && P[PA].key_JOY_RIGHT_status==2)
-			  ) && (P[PA].state==100 || P[PA].state==200 || P[PA].state==410 || P[PA].state==420)
+			  ) && (P[PA].state == STATE_PARADO || P[PA].state == STATE_ABAIXADO || P[PA].state == STATE_ANDANDO_TRAS || P[PA].state == STATE_ANDANDO_FRENTE)
 			) 
 		){
-			if(P[i].key_JOY_DOWN_status==2){ PLAYER_STATE(i,207); }else{ PLAYER_STATE(i,107); } //defesa (107 = em pe ; 207 = abaixado)
+			if(P[i].key_JOY_DOWN_status==2){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_INICIO); }else{ PLAYER_STATE(i, STATE_DEFESA_PE_INICIO); } //defesa (107 = em pe ; 207 = abaixado)
 		}
 		
 		//soltou a defesa - EM PE
-		if( (P[i].state==107 || P[i].state==108) && 
+		if( (P[i].state == STATE_DEFESA_PE_INICIO || P[i].state == STATE_DEFESA_PE_DEFENDENDO) && 
 		(
 		    (P[PA].direcao==1 && P[PA].key_JOY_LEFT_status==0) || 
 		    (P[PA].direcao==-1 && P[PA].key_JOY_RIGHT_status==0)
 		)
-		){ PLAYER_STATE(i,109); } 
+		){ PLAYER_STATE(i, STATE_DEFESA_PE_FINAL); } 
 		
 		//defesa se encerrou com o final do ataque - EM PE
-		if(P[i].state==108 && 
-			(P[PR].state==100 || P[PR].state==200 || P[PR].state==410 || P[PR].state==420)
-		){ PLAYER_STATE(i,109); } 
+		if(P[i].state == STATE_DEFESA_PE_DEFENDENDO && 
+			(P[PR].state == STATE_PARADO || P[PR].state == STATE_ABAIXADO || P[PR].state == STATE_ANDANDO_TRAS || P[PR].state == STATE_ANDANDO_FRENTE)
+		){ PLAYER_STATE(i, STATE_DEFESA_PE_FINAL); } 
 		
 		//soltou a defesa - ABAIXADO
-		if( (P[i].state==207 || P[i].state==208) && 
+		if( (P[i].state == STATE_DEFESA_ABAIXADO_INICIO || P[i].state == STATE_DEFESA_ABAIXADO_DEFENDENDO) && 
 		(
 		    (P[PA].direcao==1 && P[PA].key_JOY_LEFT_status==0) || 
 		    (P[PA].direcao==-1 && P[PA].key_JOY_RIGHT_status==0)
 		)
-		){ PLAYER_STATE(i,209); } 
+		){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_FINAL); } 
 		
 		//defesa se encerrou com o final do ataque - ABAIXADO
-		if(P[i].state==208 && 
-			(P[PR].state==100 || P[PR].state==200 || P[PR].state==410 || P[PR].state==420)
-		){ PLAYER_STATE(i,209); } 
+		if(P[i].state == STATE_DEFESA_ABAIXADO_DEFENDENDO && 
+			(P[PR].state == STATE_PARADO || P[PR].state == STATE_ABAIXADO || P[PR].state == STATE_ANDANDO_TRAS || P[PR].state == STATE_ANDANDO_FRENTE)
+		){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_FINAL); } 
 		
 		//variacao de defesa em pe e abaixado
-		if(P[i].state==108 && P[i].key_JOY_DOWN_status==2){ PLAYER_STATE(i,208); }
-		if(P[i].state==208 && P[i].key_JOY_DOWN_status==0){ PLAYER_STATE(i,108); }
+		if(P[i].state == STATE_DEFESA_PE_DEFENDENDO && P[i].key_JOY_DOWN_status==2){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_DEFENDENDO); }
+		if(P[i].state == STATE_DEFESA_ABAIXADO_DEFENDENDO && P[i].key_JOY_DOWN_status==0){ PLAYER_STATE(i, STATE_DEFESA_PE_DEFENDENDO); }
 		
 		//golpes normais!
 		if(gDistancia>64)
 		{
 			//golpes em pe de longe
-			if(P[i].key_JOY_X_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,101); }
-			if(P[i].key_JOY_Y_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,102); }
-			if(P[i].key_JOY_Z_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,103); }
-			if(P[i].key_JOY_A_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,104); }
-			if(P[i].key_JOY_B_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,105); }
-			if(P[i].key_JOY_C_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,106); }
+			if(P[i].key_JOY_X_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_SOCO_FRACO_LONGE); }
+			if(P[i].key_JOY_Y_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_SOCO_MEDIO_LONGE); }
+			if(P[i].key_JOY_Z_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_SOCO_FORTE_LONGE); }
+			if(P[i].key_JOY_A_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_CHUTE_FRACO_LONGE); }
+			if(P[i].key_JOY_B_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_CHUTE_MEDIO_LONGE); }
+			if(P[i].key_JOY_C_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_CHUTE_FORTE_LONGE); }
 		}else{
 			//golpes em pe de perto
-			if(P[i].key_JOY_X_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,151); }
-			if(P[i].key_JOY_Y_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,152); }
-			if(P[i].key_JOY_Z_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,153); }
-			if(P[i].key_JOY_A_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,154); }
-			if(P[i].key_JOY_B_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,155); }
-			if(P[i].key_JOY_C_status==1 && (P[i].state==100 || P[i].state==481 || P[i].state==410 || P[i].state==420)){ PLAYER_STATE(i,156); }
+			if(P[i].key_JOY_X_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_SOCO_FRACO_PERTO); }
+			if(P[i].key_JOY_Y_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_SOCO_MEDIO_PERTO); }
+			if(P[i].key_JOY_Z_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_SOCO_FORTE_PERTO); }
+			if(P[i].key_JOY_A_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_CHUTE_FRACO_PERTO); }
+			if(P[i].key_JOY_B_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_CHUTE_MEDIO_PERTO); }
+			if(P[i].key_JOY_C_status==1 && (P[i].state == STATE_PARADO || P[i].state == STATE_CORRENDO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)){ PLAYER_STATE(i, STATE_CHUTE_FORTE_PERTO); }
 		}
 		
 		//golpes abaixados
-		if(P[i].key_JOY_X_status==1 && P[i].state==200){ PLAYER_STATE(i,201); }
-		if(P[i].key_JOY_Y_status==1 && P[i].state==200){ PLAYER_STATE(i,202); }
-		if(P[i].key_JOY_Z_status==1 && P[i].state==200){ PLAYER_STATE(i,203); }
-		if(P[i].key_JOY_A_status==1 && P[i].state==200){ PLAYER_STATE(i,204); }
-		if(P[i].key_JOY_B_status==1 && P[i].state==200){ PLAYER_STATE(i,205); }
-		if(P[i].key_JOY_C_status==1 && P[i].state==200){ PLAYER_STATE(i,206); }
+		if(P[i].key_JOY_X_status==1 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_SOCO_FRACO_ABAIXADO); }
+		if(P[i].key_JOY_Y_status==1 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_SOCO_MEDIO_ABAIXADO); }
+		if(P[i].key_JOY_Z_status==1 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_SOCO_FORTE_ABAIXADO); }
+		if(P[i].key_JOY_A_status==1 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_CHUTE_FRACO_ABAIXADO); }
+		if(P[i].key_JOY_B_status==1 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_CHUTE_MEDIO_ABAIXADO); }
+		if(P[i].key_JOY_C_status==1 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_CHUTE_FORTE_ABAIXADO); }
 		
 		//abaixando ; esquivando; levantando
-		if((P[i].key_JOY_DOWN_status==1 || P[i].key_JOY_DOWN_status==2) && (P[i].state==100 || P[i].state==410 || P[i].state==420))
+		if((P[i].key_JOY_DOWN_status==1 || P[i].key_JOY_DOWN_status==2) && (P[i].state == STATE_PARADO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE))
 		{ 
-			if(P[i].key_JOY_countdown[2]==0){ PLAYER_STATE(i,601); }else{ PLAYER_STATE(i,470); } //abaixar ou esquivar
+			if(P[i].key_JOY_countdown[2]==0){ PLAYER_STATE(i, STATE_ABAIXANDO); }else{ PLAYER_STATE(i, STATE_ESQUIVA_BAIXO); } //abaixar ou esquivar
 		}
-		if(P[i].key_JOY_DOWN_status==0 && P[i].state==200){ PLAYER_STATE(i,602); } //levantar
+		if(P[i].key_JOY_DOWN_status==0 && P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_LEVANTANDO_TRANSICAO); } //levantar
 		
 		//interrupcao da esquiva abaixada
-		if(P[i].state==470 && P[i].animFrame==2 && P[i].key_JOY_DOWN_status==0)
+		if(P[i].state == STATE_ESQUIVA_BAIXO && P[i].animFrame==2 && P[i].key_JOY_DOWN_status==0)
 		{ 
 			P[i].animFrame=3; 
 			P[i].frameTimeAtual=1; 
@@ -122,63 +122,63 @@ void FUNCAO_FSM()
 		}
 		
 		//virando de lado (mudanca de estado)
-		if(P[PA].direcao== 1 && P[PR].x<P[PA].x && P[PA].state==100){ PLAYER_STATE(i,607); P[PA].direcao=-1; }
-		if(P[PA].direcao==-1 && P[PA].x<P[PR].x && P[PA].state==100){ PLAYER_STATE(i,607); P[PA].direcao= 1; }
-		if(P[PA].direcao== 1 && P[PR].x<P[PA].x && P[PA].state==200){ PLAYER_STATE(i,608); P[PA].direcao=-1; }
-		if(P[PA].direcao==-1 && P[PA].x<P[PR].x && P[PA].state==200){ PLAYER_STATE(i,608); P[PA].direcao= 1; }
+		if(P[PA].direcao== 1 && P[PR].x<P[PA].x && P[PA].state == STATE_PARADO){ PLAYER_STATE(i, STATE_VIRANDO_PE); P[PA].direcao=-1; }
+		if(P[PA].direcao==-1 && P[PA].x<P[PR].x && P[PA].state == STATE_PARADO){ PLAYER_STATE(i, STATE_VIRANDO_PE); P[PA].direcao= 1; }
+		if(P[PA].direcao== 1 && P[PR].x<P[PA].x && P[PA].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_VIRANDO_ABAIXADO); P[PA].direcao=-1; }
+		if(P[PA].direcao==-1 && P[PA].x<P[PR].x && P[PA].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_VIRANDO_ABAIXADO); P[PA].direcao= 1; }
 		
 		//ini pulos
-		if((P[i].key_JOY_UP_status==1 || P[i].key_JOY_UP_status==2) && (P[i].state==100 || P[i].state==410 || P[i].state==420 || P[i].state==602))
+		if((P[i].key_JOY_UP_status==1 || P[i].key_JOY_UP_status==2) && (P[i].state == STATE_PARADO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE || P[i].state == STATE_LEVANTANDO_TRANSICAO))
 		{ 
-			if(P[i].key_JOY_RIGHT_status==2){ if(P[i].direcao==1){PLAYER_STATE(i,605);}else{PLAYER_STATE(i,603);} }
-			if(P[i].key_JOY_RIGHT_status==0 && P[i].key_JOY_LEFT_status==0)PLAYER_STATE(i,604); 
-			if(P[i].key_JOY_LEFT_status ==2){ if(P[i].direcao==1){PLAYER_STATE(i,603);}else{PLAYER_STATE(i,605);} }
+			if(P[i].key_JOY_RIGHT_status==2){ if(P[i].direcao==1){PLAYER_STATE(i, STATE_INICIO_PULO_FRENTE);}else{PLAYER_STATE(i, STATE_INICIO_PULO_TRAS);} }
+			if(P[i].key_JOY_RIGHT_status==0 && P[i].key_JOY_LEFT_status==0)PLAYER_STATE(i, STATE_INICIO_PULO_NEUTRO); 
+			if(P[i].key_JOY_LEFT_status ==2){ if(P[i].direcao==1){PLAYER_STATE(i, STATE_INICIO_PULO_TRAS);}else{PLAYER_STATE(i, STATE_INICIO_PULO_FRENTE);} }
 		}
 		
 		//end pulos
-		if((P[i].state==300 || P[i].state==310 || P[i].state==320) && P[i].y>=gAlturaPiso){ P[i].y=gAlturaPiso; P[i].puloTimer=0; P[i].hSpeed=0; PLAYER_STATE(i,606); }
-		if((P[i].state>=301 && P[i].state<=326) && P[i].y>=gAlturaPiso){ P[i].y=gAlturaPiso; P[i].hSpeed=0; PLAYER_STATE(i,606); } 
+		if((P[i].state == STATE_PULO_NEUTRO || P[i].state == STATE_PULO_TRAS || P[i].state == STATE_PULO_FRENTE) && P[i].y>=gAlturaPiso){ P[i].y=gAlturaPiso; P[i].puloTimer=0; P[i].hSpeed=0; PLAYER_STATE(i, STATE_FINAL_PULO); }
+		if((P[i].state >= STATE_SOCO_FRACO_AEREO_NEUTRO && P[i].state <= STATE_CHUTE_FORTE_AEREO_FRENTE) && P[i].y>=gAlturaPiso){ P[i].y=gAlturaPiso; P[i].hSpeed=0; PLAYER_STATE(i, STATE_FINAL_PULO); } 
 		
 		//golpes aereos
-		if(P[i].key_JOY_X_status==1 && P[i].state==300){ PLAYER_STATE(i,301); }
-		if(P[i].key_JOY_Y_status==1 && P[i].state==300){ PLAYER_STATE(i,302); }
-		if(P[i].key_JOY_Z_status==1 && P[i].state==300){ PLAYER_STATE(i,303); }
-		if(P[i].key_JOY_A_status==1 && P[i].state==300){ PLAYER_STATE(i,304); }
-		if(P[i].key_JOY_B_status==1 && P[i].state==300){ PLAYER_STATE(i,305); }
-		if(P[i].key_JOY_C_status==1 && P[i].state==300){ PLAYER_STATE(i,306); }
+		if(P[i].key_JOY_X_status==1 && P[i].state == STATE_PULO_NEUTRO){ PLAYER_STATE(i, STATE_SOCO_FRACO_AEREO_NEUTRO); }
+		if(P[i].key_JOY_Y_status==1 && P[i].state == STATE_PULO_NEUTRO){ PLAYER_STATE(i, STATE_SOCO_MEDIO_AEREO_NEUTRO); }
+		if(P[i].key_JOY_Z_status==1 && P[i].state == STATE_PULO_NEUTRO){ PLAYER_STATE(i, STATE_SOCO_FORTE_AEREO_NEUTRO); }
+		if(P[i].key_JOY_A_status==1 && P[i].state == STATE_PULO_NEUTRO){ PLAYER_STATE(i, STATE_CHUTE_FRACO_AEREO_NEUTRO); }
+		if(P[i].key_JOY_B_status==1 && P[i].state == STATE_PULO_NEUTRO){ PLAYER_STATE(i, STATE_CHUTE_MEDIO_AEREO_NEUTRO); }
+		if(P[i].key_JOY_C_status==1 && P[i].state == STATE_PULO_NEUTRO){ PLAYER_STATE(i, STATE_CHUTE_FORTE_AEREO_NEUTRO); }
 		
-		if(P[i].key_JOY_X_status==1 && P[i].state==310){ PLAYER_STATE(i,311); }
-		if(P[i].key_JOY_Y_status==1 && P[i].state==310){ PLAYER_STATE(i,312); }
-		if(P[i].key_JOY_Z_status==1 && P[i].state==310){ PLAYER_STATE(i,313); }
-		if(P[i].key_JOY_A_status==1 && P[i].state==310){ PLAYER_STATE(i,314); }
-		if(P[i].key_JOY_B_status==1 && P[i].state==310){ PLAYER_STATE(i,315); }
-		if(P[i].key_JOY_C_status==1 && P[i].state==310){ PLAYER_STATE(i,316); }
+		if(P[i].key_JOY_X_status==1 && P[i].state == STATE_PULO_TRAS){ PLAYER_STATE(i, STATE_SOCO_FRACO_AEREO_TRAS); }
+		if(P[i].key_JOY_Y_status==1 && P[i].state == STATE_PULO_TRAS){ PLAYER_STATE(i, STATE_SOCO_MEDIO_AEREO_TRAS); }
+		if(P[i].key_JOY_Z_status==1 && P[i].state == STATE_PULO_TRAS){ PLAYER_STATE(i, STATE_SOCO_FORTE_AEREO_TRAS); }
+		if(P[i].key_JOY_A_status==1 && P[i].state == STATE_PULO_TRAS){ PLAYER_STATE(i, STATE_CHUTE_FRACO_AEREO_TRAS); }
+		if(P[i].key_JOY_B_status==1 && P[i].state == STATE_PULO_TRAS){ PLAYER_STATE(i, STATE_CHUTE_MEDIO_AEREO_TRAS); }
+		if(P[i].key_JOY_C_status==1 && P[i].state == STATE_PULO_TRAS){ PLAYER_STATE(i, STATE_CHUTE_FORTE_AEREO_TRAS); }
 		
-		if(P[i].key_JOY_X_status==1 && P[i].state==320){ PLAYER_STATE(i,321); }
-		if(P[i].key_JOY_Y_status==1 && P[i].state==320){ PLAYER_STATE(i,322); }
-		if(P[i].key_JOY_Z_status==1 && P[i].state==320){ PLAYER_STATE(i,323); }
-		if(P[i].key_JOY_A_status==1 && P[i].state==320){ PLAYER_STATE(i,324); }
-		if(P[i].key_JOY_B_status==1 && P[i].state==320){ PLAYER_STATE(i,325); }
-		if(P[i].key_JOY_C_status==1 && P[i].state==320){ PLAYER_STATE(i,326); }
+		if(P[i].key_JOY_X_status==1 && P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_SOCO_FRACO_AEREO_FRENTE); }
+		if(P[i].key_JOY_Y_status==1 && P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_SOCO_MEDIO_AEREO_FRENTE); }
+		if(P[i].key_JOY_Z_status==1 && P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_SOCO_FORTE_AEREO_FRENTE); }
+		if(P[i].key_JOY_A_status==1 && P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_CHUTE_FRACO_AEREO_FRENTE); }
+		if(P[i].key_JOY_B_status==1 && P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_CHUTE_MEDIO_AEREO_FRENTE); }
+		if(P[i].key_JOY_C_status==1 && P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_CHUTE_FORTE_AEREO_FRENTE); }
 		
 		//andando
 		if(P[i].direcao==1)
 		{
-			if(P[i].key_JOY_LEFT_status>0 && P[i].state==100){ 
-				if(P[i].key_JOY_countdown[4]==0){ PLAYER_STATE(i,410); }else{ PLAYER_STATE(i,471); }}
-			if(P[i].key_JOY_RIGHT_status>0 && P[i].state==100){ 
-				if(P[i].key_JOY_countdown[6]==0){ PLAYER_STATE(i,420); }else{ PLAYER_STATE(i,472); }}
+			if(P[i].key_JOY_LEFT_status>0 && P[i].state == STATE_PARADO){ 
+				if(P[i].key_JOY_countdown[4]==0){ PLAYER_STATE(i, STATE_ANDANDO_TRAS); }else{ PLAYER_STATE(i, STATE_ROLAMENTO_TRAS); }}
+			if(P[i].key_JOY_RIGHT_status>0 && P[i].state == STATE_PARADO){ 
+				if(P[i].key_JOY_countdown[6]==0){ PLAYER_STATE(i, STATE_ANDANDO_FRENTE); }else{ PLAYER_STATE(i, STATE_ROLAMENTO_FRENTE); }}
 			
-			if(P[i].key_JOY_LEFT_status==0 && P[i].state==410){ PLAYER_STATE(i,100); } //end walk
-			if(P[i].key_JOY_RIGHT_status==0 && P[i].state==420){ PLAYER_STATE(i,100); }
+			if(P[i].key_JOY_LEFT_status==0 && P[i].state == STATE_ANDANDO_TRAS){ PLAYER_STATE(i, STATE_PARADO); } //end walk
+			if(P[i].key_JOY_RIGHT_status==0 && P[i].state == STATE_ANDANDO_FRENTE){ PLAYER_STATE(i, STATE_PARADO); }
 		}else{
-			if(P[i].key_JOY_LEFT_status>0 && P[i].state==100){ 
-				if(P[i].key_JOY_countdown[4]==0){ PLAYER_STATE(i,420); }else{ PLAYER_STATE(i,472);}}
-			if(P[i].key_JOY_RIGHT_status>0 && P[i].state==100){ 
-				if(P[i].key_JOY_countdown[6]==0){ PLAYER_STATE(i,410); }else{ PLAYER_STATE(i,471);}}
+			if(P[i].key_JOY_LEFT_status>0 && P[i].state == STATE_PARADO){ 
+				if(P[i].key_JOY_countdown[4]==0){ PLAYER_STATE(i, STATE_ANDANDO_FRENTE); }else{ PLAYER_STATE(i, STATE_ROLAMENTO_FRENTE);}}
+			if(P[i].key_JOY_RIGHT_status>0 && P[i].state == STATE_PARADO){ 
+				if(P[i].key_JOY_countdown[6]==0){ PLAYER_STATE(i, STATE_ANDANDO_TRAS); }else{ PLAYER_STATE(i, STATE_ROLAMENTO_TRAS);}}
 			
-			if(P[i].key_JOY_LEFT_status ==0 && P[i].state==420){ P[i].hSpeed=0; PLAYER_STATE(i,100); } //end walk
-			if(P[i].key_JOY_RIGHT_status==0 && P[i].state==410){ P[i].hSpeed=0; PLAYER_STATE(i,100); }
+			if(P[i].key_JOY_LEFT_status ==0 && P[i].state == STATE_ANDANDO_FRENTE){ P[i].hSpeed=0; PLAYER_STATE(i, STATE_PARADO); } //end walk
+			if(P[i].key_JOY_RIGHT_status==0 && P[i].state == STATE_ANDANDO_TRAS){ P[i].hSpeed=0; PLAYER_STATE(i, STATE_PARADO); }
 		}
 		
 		//key_JOY_countdown é um timer regressivo, ativado quando se aperta algum botao direcional, usado para Corrida e Esquiva, entre outros...
@@ -188,7 +188,7 @@ void FUNCAO_FSM()
 		if(P[i].key_JOY_countdown[6]>0){ P[i].key_JOY_countdown[6]--; }
 		
 		//ativacao de 'key_JOY_countdown'...
-		if(P[i].state==410 || P[i].state==420 || P[i].state==601 || P[i].state==603 || P[i].state==604 || P[i].state==605)
+		if(P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE || P[i].state == STATE_ABAIXANDO || P[i].state == STATE_INICIO_PULO_TRAS || P[i].state == STATE_INICIO_PULO_NEUTRO || P[i].state == STATE_INICIO_PULO_FRENTE)
 		{
 			if(P[i].key_JOY_UP_status   ==1){ P[i].key_JOY_countdown[8]=12; P[i].key_JOY_countdown[2]=0; }
 			if(P[i].key_JOY_LEFT_status ==1){ P[i].key_JOY_countdown[4]=12; P[i].key_JOY_countdown[6]=0; }
@@ -197,12 +197,12 @@ void FUNCAO_FSM()
 		}
 		
 		//time over decision; timeover
-		if((gClockLTimer==0 && gClockRTimer==0) && P[1].state!=611 && P[1].state!=615)
+		if((gClockLTimer==0 && gClockRTimer==0) && P[1].state != STATE_WIN1 && P[1].state != STATE_PERDENDO_TIME_OVER)
 		{
 			bool updateWinsFlag=0;
-			if(P[1].energiaBase> P[2].energiaBase){ PLAYER_STATE(1,611); P[1].wins++; updateWinsFlag=1; PLAYER_STATE(2,615); }
-			if(P[1].energiaBase< P[2].energiaBase){ PLAYER_STATE(2,611); P[2].wins++; updateWinsFlag=2; PLAYER_STATE(1,615); }
-			if(P[1].energiaBase==P[2].energiaBase){ PLAYER_STATE(1,615); PLAYER_STATE(2,615); }
+			if(P[1].energiaBase> P[2].energiaBase){ PLAYER_STATE(1, STATE_WIN1); P[1].wins++; updateWinsFlag=1; PLAYER_STATE(2, STATE_PERDENDO_TIME_OVER); }
+			if(P[1].energiaBase< P[2].energiaBase){ PLAYER_STATE(2, STATE_WIN1); P[2].wins++; updateWinsFlag=2; PLAYER_STATE(1, STATE_PERDENDO_TIME_OVER); }
+			if(P[1].energiaBase==P[2].energiaBase){ PLAYER_STATE(1, STATE_PERDENDO_TIME_OVER); PLAYER_STATE(2, STATE_PERDENDO_TIME_OVER); }
 			if(updateWinsFlag!=0){
 				if(updateWinsFlag==1) //P1
 				{
@@ -226,12 +226,12 @@ void FUNCAO_FSM()
 		 P[PR].x+P[PR].dataBBox[0], P[PR].y+P[PR].dataBBox[1], P[PR].x+P[PR].dataBBox[2], P[PR].y+P[PR].dataBBox[3]
 		)==1 )
 		{
-			if(P[PR].state==107 || P[PR].state==108 || P[PR].state==109 || P[PR].state==110 ||
-			   P[PR].state==207 || P[PR].state==208 || P[PR].state==209 || P[PR].state==210) 
+			if(P[PR].state == STATE_DEFESA_PE_INICIO || P[PR].state == STATE_DEFESA_PE_DEFENDENDO || P[PR].state == STATE_DEFESA_PE_FINAL || P[PR].state == STATE_DEFESA_PE_APLICADA ||
+			   P[PR].state == STATE_DEFESA_ABAIXADO_INICIO || P[PR].state == STATE_DEFESA_ABAIXADO_DEFENDENDO || P[PR].state == STATE_DEFESA_ABAIXADO_FINAL || P[PR].state == STATE_DEFESA_ABAIXADO_APLICADA) 
 			{
 				//DEFENDEU!
-				if(P[PR].state>=107 && P[PR].state<=109){ PLAYER_STATE(PR,110); P[PR].hitPause=12; }
-				if(P[PR].state>=207 && P[PR].state<=209){ PLAYER_STATE(PR,210); P[PR].hitPause=12; }
+				if(P[PR].state >= STATE_DEFESA_PE_INICIO && P[PR].state <= STATE_DEFESA_PE_FINAL){ PLAYER_STATE(PR, STATE_DEFESA_PE_APLICADA); P[PR].hitPause=12; }
+				if(P[PR].state >= STATE_DEFESA_ABAIXADO_INICIO && P[PR].state <= STATE_DEFESA_ABAIXADO_FINAL){ PLAYER_STATE(PR, STATE_DEFESA_ABAIXADO_APLICADA); P[PR].hitPause=12; }
 				
 				u8 AlturaDoHit = P[PA].y+P[PA].dataHBox[3];
 				P[PA].dataHBox[0]=0; P[PA].dataHBox[1]=0; P[PA].dataHBox[2]=0; P[PA].dataHBox[3]=0; //desativa a hitbox
@@ -240,12 +240,12 @@ void FUNCAO_FSM()
 				if(Spark2_countDown>0){ SPR_releaseSprite(Spark[2]); }
 				
 				if(
-					P[PA].state==104 || P[PA].state==105 || P[PA].state==106 ||
-					P[PA].state==154 || P[PA].state==155 || P[PA].state==156 || 
-					P[PA].state==204 || P[PA].state==205 || P[PA].state==206 || 
-					P[PA].state==304 || P[PA].state==305 || P[PA].state==306 || 
-					P[PA].state==314 || P[PA].state==315 || P[PA].state==316 || 
-					P[PA].state==324 || P[PA].state==325 || P[PA].state==326
+					P[PA].state == STATE_CHUTE_FRACO_LONGE || P[PA].state == STATE_CHUTE_MEDIO_LONGE || P[PA].state == STATE_CHUTE_FORTE_LONGE ||
+					P[PA].state == STATE_CHUTE_FRACO_PERTO || P[PA].state == STATE_CHUTE_MEDIO_PERTO || P[PA].state == STATE_CHUTE_FORTE_PERTO || 
+					P[PA].state == STATE_CHUTE_FRACO_ABAIXADO || P[PA].state == STATE_CHUTE_MEDIO_ABAIXADO || P[PA].state == STATE_CHUTE_FORTE_ABAIXADO || 
+					P[PA].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[PA].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[PA].state == STATE_CHUTE_FORTE_AEREO_NEUTRO || 
+					P[PA].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[PA].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[PA].state == STATE_CHUTE_FORTE_AEREO_TRAS || 
+					P[PA].state == STATE_CHUTE_FRACO_AEREO_FRENTE || P[PA].state == STATE_CHUTE_MEDIO_AEREO_FRENTE || P[PA].state == STATE_CHUTE_FORTE_AEREO_FRENTE
 				){
 					//spark de defesa contra chutes
 					if(PR==1){Spark1_countDown=12;}
@@ -268,95 +268,95 @@ void FUNCAO_FSM()
 				u8 SparkType = 0;
 				
 				//golpes de longe
-				if(P[PA].state==101){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,506);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
-				if(P[PA].state==102){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,507);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 5; }
-				if(P[PA].state==103)
+				if(P[PA].state == STATE_SOCO_FRACO_LONGE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
+				if(P[PA].state == STATE_SOCO_MEDIO_LONGE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 5; }
+				if(P[PA].state == STATE_SOCO_FORTE_LONGE)
 				{ 
 					if(P[1].fBallActive==1 || P[2].fBallActive==1)
 					{
-						if(P[PR].y!=gAlturaPiso){ PLAYER_STATE(PR,550);
-						}else{PLAYER_STATE(PR,503);} SparkType= 0; 
+						if(P[PR].y!=gAlturaPiso){ PLAYER_STATE(PR, STATE_CAINDO);
+						}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} SparkType= 0; 
 					}else{
-						if(P[PR].y!=gAlturaPiso){ PLAYER_STATE(PR,550);
-						}else{PLAYER_STATE(PR,508);} SparkType= 3; 
+						if(P[PR].y!=gAlturaPiso){ PLAYER_STATE(PR, STATE_CAINDO);
+						}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FORTE);} SparkType= 3; 
 					} 
 					FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11);
 				}
-				if(P[PA].state==104){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,501);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType=10; }
-				if(P[PA].state==105){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,507);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType=11; }
-				if(P[PA].state==106){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,503);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType=12; }
+				if(P[PA].state == STATE_CHUTE_FRACO_LONGE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType=10; }
+				if(P[PA].state == STATE_CHUTE_MEDIO_LONGE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType=11; }
+				if(P[PA].state == STATE_CHUTE_FORTE_LONGE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType=12; }
 				
 				//golpes de perto
-				if(P[PA].state==151){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,506);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
-				if(P[PA].state==152){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,507);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 1; }
-				if(P[PA].state==153 && P[PA].animFrame<12){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,503);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 2; }
-				if(P[PA].state==153 && P[PA].animFrame>12)
+				if(P[PA].state == STATE_SOCO_FRACO_PERTO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
+				if(P[PA].state == STATE_SOCO_MEDIO_PERTO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 1; }
+				if(P[PA].state == STATE_SOCO_FORTE_PERTO && P[PA].animFrame<12){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 2; }
+				if(P[PA].state == STATE_SOCO_FORTE_PERTO && P[PA].animFrame>12)
 				{ 
 					if(P[1].fBallActive==1 && P[2].fBallActive==1)
 					{
-						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);
-						}else{PLAYER_STATE(PR,503);} SparkType= 0; 
+						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);
+						}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} SparkType= 0; 
 					}else{
-						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);
-						}else{PLAYER_STATE(PR,508);} SparkType= 1;/*3*/ 
+						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);
+						}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FORTE);} SparkType= 1;/*3*/ 
 					} 
 					FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,3); 
 				} 
-				if(P[PA].state==154){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,506);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 10; }
-				if(P[PA].state==155){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,507);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 11; }
-				if(P[PA].state==156){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,503);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType= 12; }
+				if(P[PA].state == STATE_CHUTE_FRACO_PERTO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 10; }
+				if(P[PA].state == STATE_CHUTE_MEDIO_PERTO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 11; }
+				if(P[PA].state == STATE_CHUTE_FORTE_PERTO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType= 12; }
 				
 				//golpes abaixado
-				if(P[PA].state==201){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,506);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType=  1; }
-				if(P[PA].state==202){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,507);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType=  2; }
-				if(P[PA].state==203)
+				if(P[PA].state == STATE_SOCO_FRACO_ABAIXADO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType=  1; }
+				if(P[PA].state == STATE_SOCO_MEDIO_ABAIXADO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType=  2; }
+				if(P[PA].state == STATE_SOCO_FORTE_ABAIXADO)
 				{ 
 					if(P[1].fBallActive==1 && P[2].fBallActive==1)
 					{
-						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);
-						}else{PLAYER_STATE(PR,503);} SparkType= 0; 
+						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);
+						}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} SparkType= 0; 
 					}else{
-						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);
-						}else{PLAYER_STATE(PR,508);} SparkType=  2;/*3*/ 
+						if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);
+						}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FORTE);} SparkType=  2;/*3*/ 
 					} 
 					FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); 
 				} 
-				if(P[PA].state==204){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,506);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 10; }
-				if(P[PA].state==205){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,507);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 11; }
-				if(P[PA].state==206){ PLAYER_STATE(PR,550); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType= 12; }
+				if(P[PA].state == STATE_CHUTE_FRACO_ABAIXADO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 10; }
+				if(P[PA].state == STATE_CHUTE_MEDIO_ABAIXADO){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 11; }
+				if(P[PA].state == STATE_CHUTE_FORTE_ABAIXADO){ PLAYER_STATE(PR, STATE_CAINDO); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType= 12; }
 				
 				//golpes aereos
-				if(P[PA].state==301 || P[PA].state==311 || P[PA].state==321){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,501);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
-				if(P[PA].state==302 || P[PA].state==312 || P[PA].state==322){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,502);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 2; }
-				if(P[PA].state==303 || P[PA].state==313 || P[PA].state==323){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,503);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType= 3; }
-				if(P[PA].state==304 || P[PA].state==314 || P[PA].state==324){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,501);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType=10; }
-				if(P[PA].state==305 || P[PA].state==315 || P[PA].state==325){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,502);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType=11; }
-				if(P[PA].state==306 || P[PA].state==316 || P[PA].state==326){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,503);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType=12; }
+				if(P[PA].state == STATE_SOCO_FRACO_AEREO_NEUTRO || P[PA].state == STATE_SOCO_FRACO_AEREO_TRAS || P[PA].state == STATE_SOCO_FRACO_AEREO_FRENTE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
+				if(P[PA].state == STATE_SOCO_MEDIO_AEREO_NEUTRO || P[PA].state == STATE_SOCO_MEDIO_AEREO_TRAS || P[PA].state == STATE_SOCO_MEDIO_AEREO_FRENTE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType= 2; }
+				if(P[PA].state == STATE_SOCO_FORTE_AEREO_NEUTRO || P[PA].state == STATE_SOCO_FORTE_AEREO_TRAS || P[PA].state == STATE_SOCO_FORTE_AEREO_FRENTE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType= 3; }
+				if(P[PA].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[PA].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[PA].state == STATE_CHUTE_FRACO_AEREO_FRENTE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FRACO);} FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType=10; }
+				if(P[PA].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[PA].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[PA].state == STATE_CHUTE_MEDIO_AEREO_FRENTE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_MEDIO);} FUNCAO_UPDATE_LIFESP(PR,1,-20); FUNCAO_UPDATE_LIFESP(PR,2,6); SparkType=11; }
+				if(P[PA].state == STATE_CHUTE_FORTE_AEREO_NEUTRO || P[PA].state == STATE_CHUTE_FORTE_AEREO_TRAS || P[PA].state == STATE_CHUTE_FORTE_AEREO_FRENTE){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,11); SparkType=12; }
 				
 				//MAGIAS HITS /////////////////////////////
 				
 				//HAOHMARU ID:1
 				if(P[PA].id==1)
 				{
-					if(P[PA].state==700){ PLAYER_STATE(PR,550); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
-					if(P[PA].state==720){ PLAYER_STATE(PR,550); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
-					if(P[PA].state==730){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR,550);}else{PLAYER_STATE(PR,508);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType=12; }
+					if(P[PA].state == STATE_ESPECIAL_700){ PLAYER_STATE(PR, STATE_CAINDO); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
+					if(P[PA].state == STATE_ESPECIAL_720){ PLAYER_STATE(PR, STATE_CAINDO); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
+					if(P[PA].state == STATE_ESPECIAL_730){ if(P[PR].y!=gAlturaPiso){PLAYER_STATE(PR, STATE_CAINDO);}else{PLAYER_STATE(PR, STATE_HIT_TIPO2_FORTE);} FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType=12; }
 				}
 				//GILLIUS ID:2
 				if(P[PA].id==2)
 				{
-					if(P[PA].state==710){ PLAYER_STATE(PR,550); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
-					if(P[PA].state==720){ PLAYER_STATE(PR,550); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
-					if(P[PA].state==730){ PLAYER_STATE(PR,506); FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
+					if(P[PA].state == STATE_ESPECIAL_710){ PLAYER_STATE(PR, STATE_CAINDO); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
+					if(P[PA].state == STATE_ESPECIAL_720){ PLAYER_STATE(PR, STATE_CAINDO); FUNCAO_UPDATE_LIFESP(PR,1,-30); FUNCAO_UPDATE_LIFESP(PR,2,5); SparkType= 1; }
+					if(P[PA].state == STATE_ESPECIAL_730){ PLAYER_STATE(PR, STATE_HIT_TIPO2_FRACO); FUNCAO_UPDATE_LIFESP(PR,1,-10); FUNCAO_UPDATE_LIFESP(PR,2,3); SparkType= 1; }
 				}
 				
 				///////////////////////////////////////////
 				
 				//oponente zero energy = dead
-				if((P[PR].state>=501 && P[PR].state<=508) && P[PR].energiaBase==0)
+				if((P[PR].state >= STATE_HIT_TIPO1_FRACO && P[PR].state <= STATE_HIT_TIPO2_FORTE) && P[PR].energiaBase==0)
 				{ 
 					SPR_releaseSprite(GE[11].sprite);
-					PLAYER_STATE(PR,550); 
+					PLAYER_STATE(PR, STATE_CAINDO); 
 				}
 				
 				//Spark, efeito FX, do golpe acertando o oponente
@@ -396,12 +396,12 @@ void FUNCAO_FSM()
 		 P[PR].x+P[PR].dataBBox[0], P[PR].y+P[PR].dataBBox[1], P[PR].x+P[PR].dataBBox[2], P[PR].y+P[PR].dataBBox[3]
 		)==1 && (P[PA].fBallX!=0 && P[PA].fBallY!=0) )
 		{
-			if(P[PR].state==107 || P[PR].state==108 || P[PR].state==109 || P[PR].state==110 ||
-			   P[PR].state==207 || P[PR].state==208 || P[PR].state==209 || P[PR].state==210) 
+			if(P[PR].state == STATE_DEFESA_PE_INICIO || P[PR].state == STATE_DEFESA_PE_DEFENDENDO || P[PR].state == STATE_DEFESA_PE_FINAL || P[PR].state == STATE_DEFESA_PE_APLICADA ||
+			   P[PR].state == STATE_DEFESA_ABAIXADO_INICIO || P[PR].state == STATE_DEFESA_ABAIXADO_DEFENDENDO || P[PR].state == STATE_DEFESA_ABAIXADO_FINAL || P[PR].state == STATE_DEFESA_ABAIXADO_APLICADA) 
 			{
 				//DEFENDEU!
-				if(P[PR].state>=107 && P[PR].state<=109){ PLAYER_STATE(PR,110); P[PR].hitPause=20; }
-				if(P[PR].state>=207 && P[PR].state<=209){ PLAYER_STATE(PR,210); P[PR].hitPause=20; }
+				if(P[PR].state >= STATE_DEFESA_PE_INICIO && P[PR].state <= STATE_DEFESA_PE_FINAL){ PLAYER_STATE(PR, STATE_DEFESA_PE_APLICADA); P[PR].hitPause=20; }
+				if(P[PR].state >= STATE_DEFESA_ABAIXADO_INICIO && P[PR].state <= STATE_DEFESA_ABAIXADO_FINAL){ PLAYER_STATE(PR, STATE_DEFESA_ABAIXADO_APLICADA); P[PR].hitPause=20; }
 			}else{
 				//NAO DEFENDEU!
 				P[PR].hitPause=20;
@@ -409,23 +409,23 @@ void FUNCAO_FSM()
 				FUNCAO_UPDATE_LIFESP(PR,2, 11);
 				if(P[PR].energiaBase==0)
 				{
-					PLAYER_STATE(PR,550);
+					PLAYER_STATE(PR, STATE_CAINDO);
 				}else{
 					if(P[PR].y!=gAlturaPiso)
 					{ 
 						if(P[PA].id==1)
 						{
-							PLAYER_STATE(PR,516); //magia do haomaru faz o oponente subir
+							PLAYER_STATE(PR, STATE_USER_HIT); //magia do haomaru faz o oponente subir
 						}else{
-							PLAYER_STATE(PR,550); //cai apos cair sobre a magia
+							PLAYER_STATE(PR, STATE_CAINDO); //cai apos cair sobre a magia
 						}
 						
 					}else{
 						if(P[PA].id==1)
 						{
-							PLAYER_STATE(PR,516); //magia do haomaru faz o oponente subir
+							PLAYER_STATE(PR, STATE_USER_HIT); //magia do haomaru faz o oponente subir
 						}else{
-							PLAYER_STATE(PR,503); //recebe o hit da magia em pe
+							PLAYER_STATE(PR, STATE_HIT_TIPO1_FORTE); //recebe o hit da magia em pe
 						}
 					}
 				}
@@ -510,13 +510,13 @@ void FUNCAO_FSM()
 		//Condicoes para que se possa soltar as magias, e posterior Acionamento delas!
 		
 		if( 
-			(P[i].state >= 100 && P[i].state <= 156) || 
-			P[i].state == 410 || 
-			P[i].state == 420 || 
-			P[i].state == 471 || 
-			P[i].state == 472 || 
-			P[i].state == 602 || 
-			P[i].state == 606 
+			(P[i].state >= STATE_PARADO && P[i].state <= STATE_CHUTE_FORTE_PERTO) || 
+			P[i].state == STATE_ANDANDO_TRAS || 
+			P[i].state == STATE_ANDANDO_FRENTE || 
+			P[i].state == STATE_ROLAMENTO_TRAS || 
+			P[i].state == STATE_ROLAMENTO_FRENTE || 
+			P[i].state == STATE_LEVANTANDO_TRANSICAO || 
+			P[i].state == STATE_FINAL_PULO 
 		)
 		{
 			u8 magic_avaliable=1;
@@ -538,7 +538,7 @@ void FUNCAO_FSM()
 				{
 					if(Spark1_countDown>0){ SPR_releaseSprite(Spark[1]); Spark1_countDown=0; }
 					if(Spark2_countDown>0){ SPR_releaseSprite(Spark[2]); Spark2_countDown=0; }
-					PLAYER_STATE(i,700);
+					PLAYER_STATE(i, STATE_ESPECIAL_700);
 					magic_avaliable=0; 
 				}
 				
@@ -555,7 +555,7 @@ void FUNCAO_FSM()
 					( P[i].attackButton==1 ||  P[i].attackButton==2 || P[i].attackButton==3)
 				)
 				{
-					PLAYER_STATE(i,710);
+					PLAYER_STATE(i, STATE_ESPECIAL_710);
 					magic_avaliable=0;
 				}
 				
@@ -572,7 +572,7 @@ void FUNCAO_FSM()
 					( P[i].attackButton==4 ||  P[i].attackButton==5 || P[i].attackButton==6)
 				)
 				{
-					PLAYER_STATE(i,720);
+					PLAYER_STATE(i, STATE_ESPECIAL_720);
 					magic_avaliable=0;
 				}
 				
@@ -589,7 +589,7 @@ void FUNCAO_FSM()
 					( P[i].attackButton==1 ) //*Apenas com Soco Fraco!
 				)
 				{
-					PLAYER_STATE(i,730);
+					PLAYER_STATE(i, STATE_ESPECIAL_730);
 					magic_avaliable=0;
 				}
 				
@@ -610,7 +610,7 @@ void FUNCAO_FSM()
 					( P[i].attackButton==1 ||  P[i].attackButton==2 || P[i].attackButton==3 )
 				)
 				{
-					PLAYER_STATE(i,700);
+					PLAYER_STATE(i, STATE_ESPECIAL_700);
 					magic_avaliable=0;
 				}
 				
@@ -627,7 +627,7 @@ void FUNCAO_FSM()
 					( P[i].attackButton==1 ||  P[i].attackButton==2 || P[i].attackButton==3 ) 
 				)
 				{
-					PLAYER_STATE(i,710);
+					PLAYER_STATE(i, STATE_ESPECIAL_710);
 					magic_avaliable=0;
 				}
 				
@@ -644,7 +644,7 @@ void FUNCAO_FSM()
 					( P[i].attackButton==4 ||  P[i].attackButton==5 || P[i].attackButton==6)
 				)
 				{
-					PLAYER_STATE(i,720);
+					PLAYER_STATE(i, STATE_ESPECIAL_720);
 					magic_avaliable=0;
 				}
 				
@@ -659,7 +659,7 @@ void FUNCAO_FSM()
 		}
 		
 		//HAOHMARU MAGIA 711 (FIREBALL)
-		if(P[i].id==1 && P[i].state==710 && P[i].animFrame==14 && P[i].frameTimeAtual==1)
+		if(P[i].id==1 && P[i].state == STATE_ESPECIAL_710 && P[i].animFrame==14 && P[i].frameTimeAtual==1)
 		{
 			if(P[i].fBallActive==1){ if(P[i].fBall){ SPR_releaseSprite(P[i].fBall); P[i].fBall = NULL; } }
 			P[i].fBallActive=1;
@@ -673,7 +673,7 @@ void FUNCAO_FSM()
 		}
 		
 		//GILLIUS MAGIA 701 (FIREBALL)
-		if(P[i].id==2 && P[i].state==700 && P[i].animFrame==5 && P[i].frameTimeAtual==1)
+		if(P[i].id==2 && P[i].state == STATE_ESPECIAL_700 && P[i].animFrame==5 && P[i].frameTimeAtual==1)
 		{
 			if(P[i].fBallActive==1){ if(P[i].fBall){ SPR_releaseSprite(P[i].fBall); P[i].fBall = NULL; } }
 			P[i].fBallActive=1;
@@ -689,29 +689,29 @@ void FUNCAO_FSM()
 		//Rage Explosion! Rage timer!
 		if( 
 		P[i].rageTimerCountdown==RAGETIMER && P[i].energiaSP>=32 
-		&& (P[i].state==100 || P[i].state==200 || P[i].state==410 || P[i].state==420) 
+		&& (P[i].state == STATE_PARADO || P[i].state == STATE_ABAIXADO || P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE) 
 		&& gPodeMover==1
 		)
 		{
 			P[i].rageTimerCountdown--;
-			PLAYER_STATE(i,618);
+			PLAYER_STATE(i, STATE_RAGE_EXPLOSION);
 		}
 		if(P[i].energiaSP>=32 && P[i].rageTimerCountdown<RAGETIMER && P[i].energiaBase>0 && gFrames>350){ if(P[i].rageTimerCountdown>0){ P[i].rageTimerCountdown--; } }
-		if(P[i].rageTimerCountdown==0 && (P[i].state==100 || P[i].state==200)){ P[i].rageTimerCountdown=RAGETIMER; P[i].energiaSP=0; }
+		if(P[i].rageTimerCountdown==0 && (P[i].state == STATE_PARADO || P[i].state == STATE_ABAIXADO)){ P[i].rageTimerCountdown=RAGETIMER; P[i].energiaSP=0; }
 		
 		//Vitoria
 		if(
-		 (P[PA].state==100 || P[PA].state==200 || P[PA].state==410 || P[PA].state==420) 
-		 && (P[PA].state!=611 || P[PA].state!=612 || P[PA].state!=613 || P[PA].state!=614) 
+		 (P[PA].state == STATE_PARADO || P[PA].state == STATE_ABAIXADO || P[PA].state == STATE_ANDANDO_TRAS || P[PA].state == STATE_ANDANDO_FRENTE) 
+		 && (P[PA].state != STATE_WIN1 || P[PA].state != STATE_WIN2 || P[PA].state != STATE_WIN3 || P[PA].state != STATE_WIN4) 
 		 && (P[PR].energiaBase<=0)
 		)
 		{
 			//Carrega 1 entre 4 poses de vitoria
 			//Ajuste a probabilidade conforme preferir. gPing10 = 10% ; variacao de 0 a 9
-			if(gPing10>=1 && gPing10<=3){ PLAYER_STATE(PA,611); P[PA].wins++; }
-			if(gPing10>=4 && gPing10<=6){ PLAYER_STATE(PA,612); P[PA].wins++; }
-			if(gPing10>=7 && gPing10<=9){ PLAYER_STATE(PA,613); P[PA].wins++; }
-			if(gPing10==0              ){ PLAYER_STATE(PA,613); P[PA].wins++; } //Vc pode carregar uma pose diferente aqui, eu estou usando 3!
+			if(gPing10>=1 && gPing10<=3){ PLAYER_STATE(PA, STATE_WIN1); P[PA].wins++; }
+			if(gPing10>=4 && gPing10<=6){ PLAYER_STATE(PA, STATE_WIN2); P[PA].wins++; }
+			if(gPing10>=7 && gPing10<=9){ PLAYER_STATE(PA, STATE_WIN3); P[PA].wins++; }
+			if(gPing10==0              ){ PLAYER_STATE(PA, STATE_WIN3); P[PA].wins++; } //Vc pode carregar uma pose diferente aqui, eu estou usando 3!
 			
 			//Exibe o contador de Wins correspondente
 			if(PA==1) //P1
@@ -738,154 +738,154 @@ void FUNCAO_FSM_HITBOXES(u8 Player)
 	
 	if(P[Player].id==1) //haohmaru
 	{
-	if(P[Player].state==100 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==101 && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-50; }
-	if(P[Player].state==101 && P[Player].animFrame==8){ reset_HBox=1; }
-	if(P[Player].state==102 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]=125; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==102 && P[Player].animFrame==6){ reset_HBox=1; }
-	if(P[Player].state==103 && P[Player].animFrame==8){ P[Player].dataHBox[0]= 70; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=170; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==103 && P[Player].animFrame==9){ reset_HBox=1; }
-	if((P[Player].state==104 || P[Player].state==105) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-30; }
-	if((P[Player].state==104 || P[Player].state==105) && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==106 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 30; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-70; }
-	if(P[Player].state==106 && P[Player].animFrame==4){ reset_HBox=1; }
-	if(P[Player].state==151 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-60; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-50; }
-	if(P[Player].state==151 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==152 && P[Player].animFrame==5){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==152 && P[Player].animFrame==6){ reset_HBox=1; }
-	if(P[Player].state==153 && P[Player].animFrame==9){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==153 && P[Player].animFrame==10){ reset_HBox=1; }
-	if(P[Player].state==153 && P[Player].animFrame==18){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==153 && P[Player].animFrame==19){ reset_HBox=1; }
-	if(P[Player].state==154 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-50; }
-	if(P[Player].state==154 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==155 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-50; }
-	if(P[Player].state==155 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==156 && P[Player].animFrame==3){ P[Player].dataHBox[0]=  1; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]= 60; P[Player].dataHBox[3]=-70; }
-	if(P[Player].state==156 && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_PARADO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_SOCO_FRACO_LONGE && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-50; }
+	if(P[Player].state == STATE_SOCO_FRACO_LONGE && P[Player].animFrame==8){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_MEDIO_LONGE && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]=125; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_MEDIO_LONGE && P[Player].animFrame==6){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_LONGE && P[Player].animFrame==8){ P[Player].dataHBox[0]= 70; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=170; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_LONGE && P[Player].animFrame==9){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_FRACO_LONGE || P[Player].state == STATE_CHUTE_MEDIO_LONGE) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-30; }
+	if((P[Player].state == STATE_CHUTE_FRACO_LONGE || P[Player].state == STATE_CHUTE_MEDIO_LONGE) && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FORTE_LONGE && P[Player].animFrame==3){ P[Player].dataHBox[0]= 30; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-70; }
+	if(P[Player].state == STATE_CHUTE_FORTE_LONGE && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FRACO_PERTO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-60; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-50; }
+	if(P[Player].state == STATE_SOCO_FRACO_PERTO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==5){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==6){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==9){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==10){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==18){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==19){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FRACO_PERTO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-50; }
+	if(P[Player].state == STATE_CHUTE_FRACO_PERTO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_PERTO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-50; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_PERTO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FORTE_PERTO && P[Player].animFrame==3){ P[Player].dataHBox[0]=  1; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]= 60; P[Player].dataHBox[3]=-70; }
+	if(P[Player].state == STATE_CHUTE_FORTE_PERTO && P[Player].animFrame==4){ reset_HBox=1; }
 	
-	if(P[Player].state==200 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
-	if((P[Player].state==201 || P[Player].state==202) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]= 96; P[Player].dataHBox[3]=-10; }
-	if((P[Player].state==201 || P[Player].state==202) && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==203 && P[Player].animFrame== 8){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-140; P[Player].dataHBox[2]= 96; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==203 && P[Player].animFrame==11){ reset_HBox=1; }
-	if((P[Player].state==204 || P[Player].state==205) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-10; }
-	if((P[Player].state==204 || P[Player].state==205) && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==206 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-10; }
-	if(P[Player].state==206 && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_ABAIXADO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
+	if((P[Player].state == STATE_SOCO_FRACO_ABAIXADO || P[Player].state == STATE_SOCO_MEDIO_ABAIXADO) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]= 96; P[Player].dataHBox[3]=-10; }
+	if((P[Player].state == STATE_SOCO_FRACO_ABAIXADO || P[Player].state == STATE_SOCO_MEDIO_ABAIXADO) && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_ABAIXADO && P[Player].animFrame== 8){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-140; P[Player].dataHBox[2]= 96; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_ABAIXADO && P[Player].animFrame==11){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_FRACO_ABAIXADO || P[Player].state == STATE_CHUTE_MEDIO_ABAIXADO) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-10; }
+	if((P[Player].state == STATE_CHUTE_FRACO_ABAIXADO || P[Player].state == STATE_CHUTE_MEDIO_ABAIXADO) && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FORTE_ABAIXADO && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-10; }
+	if(P[Player].state == STATE_CHUTE_FORTE_ABAIXADO && P[Player].animFrame==4){ reset_HBox=1; }
 	
-	if((P[Player].state==301 || P[Player].state==311 || P[Player].state==321) && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-40; }
-	if((P[Player].state==301 || P[Player].state==311 || P[Player].state==321) && P[Player].animFrame==6){ reset_HBox=1; }
-	if((P[Player].state==302 || P[Player].state==312 || P[Player].state==322) && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-40; }
-	if((P[Player].state==302 || P[Player].state==312 || P[Player].state==322) && P[Player].animFrame==6){ reset_HBox=1; }
-	if((P[Player].state==303 || P[Player].state==313 || P[Player].state==323) && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-20; }
-	if((P[Player].state==303 || P[Player].state==313 || P[Player].state==323) && P[Player].animFrame==6){ reset_HBox=1; }
-	if((P[Player].state==304 || P[Player].state==314 || P[Player].state==324) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=80; P[Player].dataHBox[3]=-30; }
-	if((P[Player].state==304 || P[Player].state==314 || P[Player].state==324) && P[Player].animFrame==3){ reset_HBox=1; }
-	if((P[Player].state==305 || P[Player].state==315 || P[Player].state==325) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=80; P[Player].dataHBox[3]=-30; }
-	if((P[Player].state==305 || P[Player].state==315 || P[Player].state==325) && P[Player].animFrame==3){ reset_HBox=1; }
-	if((P[Player].state==306 || P[Player].state==316 || P[Player].state==326) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 20; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-30; }
-	if((P[Player].state==306 || P[Player].state==316 || P[Player].state==326) && P[Player].animFrame==4){ reset_HBox=1; }
+	if((P[Player].state == STATE_SOCO_FRACO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FRACO_AEREO_TRAS || P[Player].state == STATE_SOCO_FRACO_AEREO_FRENTE) && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-40; }
+	if((P[Player].state == STATE_SOCO_FRACO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FRACO_AEREO_TRAS || P[Player].state == STATE_SOCO_FRACO_AEREO_FRENTE) && P[Player].animFrame==6){ reset_HBox=1; }
+	if((P[Player].state == STATE_SOCO_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_MEDIO_AEREO_TRAS || P[Player].state == STATE_SOCO_MEDIO_AEREO_FRENTE) && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-40; }
+	if((P[Player].state == STATE_SOCO_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_MEDIO_AEREO_TRAS || P[Player].state == STATE_SOCO_MEDIO_AEREO_FRENTE) && P[Player].animFrame==6){ reset_HBox=1; }
+	if((P[Player].state == STATE_SOCO_FORTE_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FORTE_AEREO_TRAS || P[Player].state == STATE_SOCO_FORTE_AEREO_FRENTE) && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-20; }
+	if((P[Player].state == STATE_SOCO_FORTE_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FORTE_AEREO_TRAS || P[Player].state == STATE_SOCO_FORTE_AEREO_FRENTE) && P[Player].animFrame==6){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[Player].state == STATE_CHUTE_FRACO_AEREO_FRENTE) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=80; P[Player].dataHBox[3]=-30; }
+	if((P[Player].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[Player].state == STATE_CHUTE_FRACO_AEREO_FRENTE) && P[Player].animFrame==3){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[Player].state == STATE_CHUTE_MEDIO_AEREO_FRENTE) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=80; P[Player].dataHBox[3]=-30; }
+	if((P[Player].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[Player].state == STATE_CHUTE_MEDIO_AEREO_FRENTE) && P[Player].animFrame==3){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_FORTE_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FORTE_AEREO_TRAS || P[Player].state == STATE_CHUTE_FORTE_AEREO_FRENTE) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 20; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-30; }
+	if((P[Player].state == STATE_CHUTE_FORTE_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FORTE_AEREO_TRAS || P[Player].state == STATE_CHUTE_FORTE_AEREO_FRENTE) && P[Player].animFrame==4){ reset_HBox=1; }
 	
-	if(P[Player].state==470 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==470 && P[Player].animFrame==2){ reset_BBox=1; }
-	if(P[Player].state==470 && P[Player].animFrame==3){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_ESQUIVA_BAIXO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_ESQUIVA_BAIXO && P[Player].animFrame==2){ reset_BBox=1; }
+	if(P[Player].state == STATE_ESQUIVA_BAIXO && P[Player].animFrame==3){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
 	
-	if(P[Player].state==471 && P[Player].animFrame<=2){ reset_BBox=1; }
-	if(P[Player].state==472 && P[Player].animFrame<=2){ reset_BBox=1; }
+	if(P[Player].state == STATE_ROLAMENTO_TRAS && P[Player].animFrame<=2){ reset_BBox=1; }
+	if(P[Player].state == STATE_ROLAMENTO_FRENTE && P[Player].animFrame<=2){ reset_BBox=1; }
 	
-	if(P[Player].state==601 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==602 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_ABAIXANDO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_LEVANTANDO_TRANSICAO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
 	
-	if(P[Player].state==700 && P[Player].animFrame== 3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-30; }
-	if(P[Player].state==700 && P[Player].animFrame==17){ reset_HBox=1; }
+	if(P[Player].state == STATE_ESPECIAL_700 && P[Player].animFrame== 3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-30; }
+	if(P[Player].state == STATE_ESPECIAL_700 && P[Player].animFrame==17){ reset_HBox=1; }
 	
-	if(P[Player].state==720 && P[Player].animFrame== 8){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-1; }
-	if(P[Player].state==720 && P[Player].animFrame==12){ reset_HBox=1; }
+	if(P[Player].state == STATE_ESPECIAL_720 && P[Player].animFrame== 8){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-1; }
+	if(P[Player].state == STATE_ESPECIAL_720 && P[Player].animFrame==12){ reset_HBox=1; }
 	
-	if(P[Player].state==730 && P[Player].animFrame== 6){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-30; }
-	if(P[Player].state==730 && P[Player].animFrame== 7){ reset_HBox=1; }
+	if(P[Player].state == STATE_ESPECIAL_730 && P[Player].animFrame== 6){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-30; }
+	if(P[Player].state == STATE_ESPECIAL_730 && P[Player].animFrame== 7){ reset_HBox=1; }
 	}
 	
 	if(P[Player].id==2) //gillius
 	{
-	if(P[Player].state==100 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 30; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==101 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=85; P[Player].dataHBox[3]=-50; }
-	if(P[Player].state==101 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==102 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==102 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==103 && P[Player].animFrame==5){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==103 && P[Player].animFrame==9){ reset_HBox=1; }
-	if(P[Player].state==104 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=95; P[Player].dataHBox[3]=-20; }
-	if(P[Player].state==104 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==105 && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-110; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-60; }
-	if(P[Player].state==105 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==106 && P[Player].animFrame==4){ P[Player].dataHBox[0]= 20; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-70; }
-	if(P[Player].state==106 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==151 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-80; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-60; }
-	if(P[Player].state==151 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==151 && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-80; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-60; }
-	if(P[Player].state==151 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==152 && P[Player].animFrame==2){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 30; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==152 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==152 && P[Player].animFrame==3){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 50; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==152 && P[Player].animFrame==4){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 30; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==152 && P[Player].animFrame==4){ reset_HBox=1; }
-	if(P[Player].state==153 && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=85; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==153 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==153 && P[Player].animFrame==9){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==153 && P[Player].animFrame==11){ reset_HBox=1; }
-	if(P[Player].state==154 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-50; P[Player].dataHBox[2]=50; P[Player].dataHBox[3]=-20; }
-	if(P[Player].state==154 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==155 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=80; P[Player].dataHBox[3]=-50; }
-	if(P[Player].state==155 && P[Player].animFrame==4){ reset_HBox=1; }
-	if(P[Player].state==156 && P[Player].animFrame==4){ P[Player].dataHBox[0]=  1; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]= 60; P[Player].dataHBox[3]=-70; }
-	if(P[Player].state==156 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==200 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==201 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-30; }
-	if(P[Player].state==201 && P[Player].animFrame==4){ reset_HBox=1; }
-	if(P[Player].state==202 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-30; }
-	if(P[Player].state==202 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==203 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-40; }
-	if(P[Player].state==203 && P[Player].animFrame==5){ reset_HBox=1; }
-	if(P[Player].state==204 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-10; }
-	if(P[Player].state==204 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==205 && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-10; }
-	if(P[Player].state==205 && P[Player].animFrame==3){ reset_HBox=1; }
-	if(P[Player].state==206 && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-30; }
-	if(P[Player].state==206 && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_PARADO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 30; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_SOCO_FRACO_LONGE && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=85; P[Player].dataHBox[3]=-50; }
+	if(P[Player].state == STATE_SOCO_FRACO_LONGE && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_MEDIO_LONGE && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 65; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_MEDIO_LONGE && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_LONGE && P[Player].animFrame==5){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_LONGE && P[Player].animFrame==9){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FRACO_LONGE && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=95; P[Player].dataHBox[3]=-20; }
+	if(P[Player].state == STATE_CHUTE_FRACO_LONGE && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_LONGE && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-110; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-60; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_LONGE && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FORTE_LONGE && P[Player].animFrame==4){ P[Player].dataHBox[0]= 20; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-70; }
+	if(P[Player].state == STATE_CHUTE_FORTE_LONGE && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FRACO_PERTO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-80; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-60; }
+	if(P[Player].state == STATE_SOCO_FRACO_PERTO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FRACO_PERTO && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-80; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-60; }
+	if(P[Player].state == STATE_SOCO_FRACO_PERTO && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==2){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 30; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=90; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==3){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 50; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==4){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 30; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_SOCO_MEDIO_PERTO && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==4){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=85; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==9){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_PERTO && P[Player].animFrame==11){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FRACO_PERTO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-50; P[Player].dataHBox[2]=50; P[Player].dataHBox[3]=-20; }
+	if(P[Player].state == STATE_CHUTE_FRACO_PERTO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_PERTO && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=-70; P[Player].dataHBox[2]=80; P[Player].dataHBox[3]=-50; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_PERTO && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FORTE_PERTO && P[Player].animFrame==4){ P[Player].dataHBox[0]=  1; P[Player].dataHBox[1]=-120; P[Player].dataHBox[2]= 60; P[Player].dataHBox[3]=-70; }
+	if(P[Player].state == STATE_CHUTE_FORTE_PERTO && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_ABAIXADO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_SOCO_FRACO_ABAIXADO && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-30; }
+	if(P[Player].state == STATE_SOCO_FRACO_ABAIXADO && P[Player].animFrame==4){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_MEDIO_ABAIXADO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-30; }
+	if(P[Player].state == STATE_SOCO_MEDIO_ABAIXADO && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_SOCO_FORTE_ABAIXADO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 70; P[Player].dataHBox[2]=120; P[Player].dataHBox[3]=-40; }
+	if(P[Player].state == STATE_SOCO_FORTE_ABAIXADO && P[Player].animFrame==5){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FRACO_ABAIXADO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]= 90; P[Player].dataHBox[3]=-10; }
+	if(P[Player].state == STATE_CHUTE_FRACO_ABAIXADO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_ABAIXADO && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 30; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-10; }
+	if(P[Player].state == STATE_CHUTE_MEDIO_ABAIXADO && P[Player].animFrame==3){ reset_HBox=1; }
+	if(P[Player].state == STATE_CHUTE_FORTE_ABAIXADO && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=100; P[Player].dataHBox[3]=-30; }
+	if(P[Player].state == STATE_CHUTE_FORTE_ABAIXADO && P[Player].animFrame==4){ reset_HBox=1; }
 	
-	if((P[Player].state==301 || P[Player].state==311 || P[Player].state==321) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-1; }
-	if((P[Player].state==301 || P[Player].state==311 || P[Player].state==321) && P[Player].animFrame==4){ reset_HBox=1; }
-	if((P[Player].state==302 || P[Player].state==312 || P[Player].state==322) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-1; }
-	if((P[Player].state==302 || P[Player].state==312 || P[Player].state==322) && P[Player].animFrame==6){ reset_HBox=1; }
-	if((P[Player].state==303 || P[Player].state==313 || P[Player].state==323) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-1; }
-	if((P[Player].state==303 || P[Player].state==313 || P[Player].state==323) && P[Player].animFrame==6){ reset_HBox=1; }
-	if((P[Player].state==304 || P[Player].state==314 || P[Player].state==324) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=60; P[Player].dataHBox[3]=-10; }
-	if((P[Player].state==304 || P[Player].state==314 || P[Player].state==324) && P[Player].animFrame==3){ reset_HBox=1; }
-	if((P[Player].state==305 || P[Player].state==315 || P[Player].state==325) && P[Player].animFrame==3){ P[Player].dataHBox[0]=-20; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-10; }
-	if((P[Player].state==305 || P[Player].state==315 || P[Player].state==325) && P[Player].animFrame==4){ reset_HBox=1; }
-	if((P[Player].state==306 || P[Player].state==316 || P[Player].state==326) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-10; }
-	if((P[Player].state==306 || P[Player].state==316 || P[Player].state==326) && P[Player].animFrame==4){ reset_HBox=1; }
+	if((P[Player].state == STATE_SOCO_FRACO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FRACO_AEREO_TRAS || P[Player].state == STATE_SOCO_FRACO_AEREO_FRENTE) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-1; }
+	if((P[Player].state == STATE_SOCO_FRACO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FRACO_AEREO_TRAS || P[Player].state == STATE_SOCO_FRACO_AEREO_FRENTE) && P[Player].animFrame==4){ reset_HBox=1; }
+	if((P[Player].state == STATE_SOCO_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_MEDIO_AEREO_TRAS || P[Player].state == STATE_SOCO_MEDIO_AEREO_FRENTE) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-1; }
+	if((P[Player].state == STATE_SOCO_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_SOCO_MEDIO_AEREO_TRAS || P[Player].state == STATE_SOCO_MEDIO_AEREO_FRENTE) && P[Player].animFrame==6){ reset_HBox=1; }
+	if((P[Player].state == STATE_SOCO_FORTE_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FORTE_AEREO_TRAS || P[Player].state == STATE_SOCO_FORTE_AEREO_FRENTE) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]= 80; P[Player].dataHBox[3]=-1; }
+	if((P[Player].state == STATE_SOCO_FORTE_AEREO_NEUTRO || P[Player].state == STATE_SOCO_FORTE_AEREO_TRAS || P[Player].state == STATE_SOCO_FORTE_AEREO_FRENTE) && P[Player].animFrame==6){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[Player].state == STATE_CHUTE_FRACO_AEREO_FRENTE) && P[Player].animFrame==2){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=60; P[Player].dataHBox[3]=-10; }
+	if((P[Player].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[Player].state == STATE_CHUTE_FRACO_AEREO_FRENTE) && P[Player].animFrame==3){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[Player].state == STATE_CHUTE_MEDIO_AEREO_FRENTE) && P[Player].animFrame==3){ P[Player].dataHBox[0]=-20; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-10; }
+	if((P[Player].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[Player].state == STATE_CHUTE_MEDIO_AEREO_FRENTE) && P[Player].animFrame==4){ reset_HBox=1; }
+	if((P[Player].state == STATE_CHUTE_FORTE_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FORTE_AEREO_TRAS || P[Player].state == STATE_CHUTE_FORTE_AEREO_FRENTE) && P[Player].animFrame==3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-10; }
+	if((P[Player].state == STATE_CHUTE_FORTE_AEREO_NEUTRO || P[Player].state == STATE_CHUTE_FORTE_AEREO_TRAS || P[Player].state == STATE_CHUTE_FORTE_AEREO_FRENTE) && P[Player].animFrame==4){ reset_HBox=1; }
 	
-	if(P[Player].state==470 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==470 && P[Player].animFrame==2){ reset_BBox=1; }
-	if(P[Player].state==470 && P[Player].animFrame==3){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_ESQUIVA_BAIXO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_ESQUIVA_BAIXO && P[Player].animFrame==2){ reset_BBox=1; }
+	if(P[Player].state == STATE_ESQUIVA_BAIXO && P[Player].animFrame==3){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 90; P[Player].dataBBox[2]= 15; P[Player].dataBBox[3]=  0; }
 	
-	if(P[Player].state==471 && P[Player].animFrame<=2){ reset_BBox=1; }
-	if(P[Player].state==472 && P[Player].animFrame<=2){ reset_BBox=1; }
+	if(P[Player].state == STATE_ROLAMENTO_TRAS && P[Player].animFrame<=2){ reset_BBox=1; }
+	if(P[Player].state == STATE_ROLAMENTO_FRENTE && P[Player].animFrame<=2){ reset_BBox=1; }
 	
-	if(P[Player].state==601 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
-	if(P[Player].state==602 && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_ABAIXANDO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
+	if(P[Player].state == STATE_LEVANTANDO_TRANSICAO && P[Player].animFrame==1){ P[Player].dataBBox[0]=-20; P[Player].dataBBox[1]=- 70; P[Player].dataBBox[2]= 20; P[Player].dataBBox[3]=  0; }
 	
-	if(P[Player].state==710 && P[Player].animFrame== 3){ P[Player].dataHBox[0]= -40; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=40; P[Player].dataHBox[3]=-10; }
-	if(P[Player].state==710 && P[Player].animFrame==17){ reset_HBox=1; }
+	if(P[Player].state == STATE_ESPECIAL_710 && P[Player].animFrame== 3){ P[Player].dataHBox[0]= -40; P[Player].dataHBox[1]=-100; P[Player].dataHBox[2]=40; P[Player].dataHBox[3]=-10; }
+	if(P[Player].state == STATE_ESPECIAL_710 && P[Player].animFrame==17){ reset_HBox=1; }
 	
-	if(P[Player].state==720 && P[Player].animFrame== 3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-20; }
-	if(P[Player].state==720 && P[Player].animFrame== 7){ reset_HBox=1; }
+	if(P[Player].state == STATE_ESPECIAL_720 && P[Player].animFrame== 3){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=70; P[Player].dataHBox[3]=-20; }
+	if(P[Player].state == STATE_ESPECIAL_720 && P[Player].animFrame== 7){ reset_HBox=1; }
 	
-	if(P[Player].state==730 && P[Player].animFrame== 6){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-30; }
-	if(P[Player].state==730 && P[Player].animFrame== 7){ reset_HBox=1; }
+	if(P[Player].state == STATE_ESPECIAL_730 && P[Player].animFrame== 6){ P[Player].dataHBox[0]= 10; P[Player].dataHBox[1]=- 50; P[Player].dataHBox[2]=110; P[Player].dataHBox[3]=-30; }
+	if(P[Player].state == STATE_ESPECIAL_730 && P[Player].animFrame== 7){ reset_HBox=1; }
 	}
 	
 	
@@ -900,12 +900,12 @@ void FUNCAO_FSM_HITBOXES(u8 Player)
 	}
 	
 	//padroes
-	if(P[Player].state==100 && P[Player].animFrame==1){ reset_HBox=1; } //parado
-	if( (P[Player].state>=610 && P[Player].state<=618) /*&& P[Player].animFrame==1*/ ){ reset_BBox=1; } //win poses, time over; rage explosion
-	if( (P[Player].state==550) /*&& P[Player].animFrame==1*/ ){ reset_BBox=1; } //win poses, time over; rage explosion
+	if(P[Player].state == STATE_PARADO && P[Player].animFrame==1){ reset_HBox=1; } //parado
+	if( (P[Player].state >= STATE_INTRO && P[Player].state <= STATE_RAGE_EXPLOSION) /*&& P[Player].animFrame==1*/ ){ reset_BBox=1; } //win poses, time over; rage explosion
+	if( (P[Player].state == STATE_CAINDO) /*&& P[Player].animFrame==1*/ ){ reset_BBox=1; } //win poses, time over; rage explosion
 	
-	if(Player==1 && (P[2].state==110 || P[2].state==210)){ reset_HBox=1; }
-	if(Player==2 && (P[1].state==110 || P[1].state==210)){ reset_HBox=1; }
+	if(Player==1 && (P[2].state == STATE_DEFESA_PE_APLICADA || P[2].state == STATE_DEFESA_ABAIXADO_APLICADA)){ reset_HBox=1; }
+	if(Player==2 && (P[1].state == STATE_DEFESA_PE_APLICADA || P[1].state == STATE_DEFESA_ABAIXADO_APLICADA)){ reset_HBox=1; }
 	
 	//resets
 	if(reset_HBox==1){ P[Player].dataHBox[0]=0; P[Player].dataHBox[1]=0; P[Player].dataHBox[2]=0; P[Player].dataHBox[3]=0; } //Hit Boxes

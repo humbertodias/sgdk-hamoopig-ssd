@@ -224,11 +224,11 @@ void FUNCAO_INICIALIZACAO()
 	//Se Player1 e Player2 com o mesmo personagem, desliguei a intro, pois elas somadas, usam muitos tiles /*samsho2*/
 	if(P[1].id!=P[2].id)
 	{
-		PLAYER_STATE(1,610);
-		PLAYER_STATE(2,610);
+		PLAYER_STATE(1, STATE_INTRO);
+		PLAYER_STATE(2, STATE_INTRO);
 	}else{
-		PLAYER_STATE(1,100);
-		PLAYER_STATE(2,100);
+		PLAYER_STATE(1, STATE_PARADO);
+		PLAYER_STATE(2, STATE_PARADO);
 	}
 	
 	SPR_setHFlip(P[2].sprite, TRUE);
@@ -473,8 +473,8 @@ void FUNCAO_ROUND_RESTART()
 		P[2].x = (320/4)*3;
 		P[1].direcao = 1;
 		P[2].direcao = -1;
-		PLAYER_STATE(1,100);
-		PLAYER_STATE(2,100);
+		PLAYER_STATE(1, STATE_PARADO);
+		PLAYER_STATE(2, STATE_PARADO);
 		
 		//barras de energia cheias ao reiniciar o round
 			//SPR_releaseSprite(GE[3].sprite); GE[3].sprite = NULL;
