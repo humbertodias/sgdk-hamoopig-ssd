@@ -319,11 +319,11 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>    <span class="comment">//Se Player1 e Player2 com o mesmo personagem, desliguei a intro, pois elas somadas, usam muitos tiles /*samsho2*/</span></div>
 <div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].<span class="keywordtype">id</span>!=<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].<span class="keywordtype">id</span>)</div>
 <div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    {</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1,610);</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2,610);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1, STATE_INTRO);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2, STATE_INTRO);</div>
 <div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    }<span class="keywordflow">else</span>{</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1,100);</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2,100);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1, STATE_PARADO);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2, STATE_PARADO);</div>
 <div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    }</div>
 <div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    </div>
 <div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    SPR_setHFlip(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].sprite, TRUE);</div>
@@ -572,8 +572,8 @@ $(function(){ initResizable(false); });
 <div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>        <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].x = (320/4)*3;</div>
 <div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>        <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].direcao = 1;</div>
 <div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>        <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].direcao = -1;</div>
-<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1,100);</div>
-<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2,100);</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1, STATE_PARADO);</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2, STATE_PARADO);</div>
 <div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>        </div>
 <div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>        <span class="comment">//barras de energia cheias ao reiniciar o round</span></div>
 <div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span>            <span class="comment">//SPR_releaseSprite(GE[3].sprite); GE[3].sprite = NULL;</span></div>

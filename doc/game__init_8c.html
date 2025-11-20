@@ -367,11 +367,11 @@ Funções</h2></td></tr>
 <div class="line"><span class="lineno">  224</span>    <span class="comment">//Se Player1 e Player2 com o mesmo personagem, desliguei a intro, pois elas somadas, usam muitos tiles /*samsho2*/</span></div>
 <div class="line"><span class="lineno">  225</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].<span class="keywordtype">id</span>!=<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].<span class="keywordtype">id</span>)</div>
 <div class="line"><span class="lineno">  226</span>    {</div>
-<div class="line"><span class="lineno">  227</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1,610);</div>
-<div class="line"><span class="lineno">  228</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2,610);</div>
+<div class="line"><span class="lineno">  227</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1, STATE_INTRO);</div>
+<div class="line"><span class="lineno">  228</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2, STATE_INTRO);</div>
 <div class="line"><span class="lineno">  229</span>    }<span class="keywordflow">else</span>{</div>
-<div class="line"><span class="lineno">  230</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1,100);</div>
-<div class="line"><span class="lineno">  231</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2,100);</div>
+<div class="line"><span class="lineno">  230</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1, STATE_PARADO);</div>
+<div class="line"><span class="lineno">  231</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2, STATE_PARADO);</div>
 <div class="line"><span class="lineno">  232</span>    }</div>
 <div class="line"><span class="lineno">  233</span>    </div>
 <div class="line"><span class="lineno">  234</span>    SPR_setHFlip(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].sprite, TRUE);</div>
@@ -732,8 +732,8 @@ Esse é o diagrama das funções que utilizam essa função:</div>
 <div class="line"><span class="lineno">  473</span>        <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].x = (320/4)*3;</div>
 <div class="line"><span class="lineno">  474</span>        <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].direcao = 1;</div>
 <div class="line"><span class="lineno">  475</span>        <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].direcao = -1;</div>
-<div class="line"><span class="lineno">  476</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1,100);</div>
-<div class="line"><span class="lineno">  477</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2,100);</div>
+<div class="line"><span class="lineno">  476</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(1, STATE_PARADO);</div>
+<div class="line"><span class="lineno">  477</span>        <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(2, STATE_PARADO);</div>
 <div class="line"><span class="lineno">  478</span>        </div>
 <div class="line"><span class="lineno">  479</span>        <span class="comment">//barras de energia cheias ao reiniciar o round</span></div>
 <div class="line"><span class="lineno">  480</span>            <span class="comment">//SPR_releaseSprite(GE[3].sprite); GE[3].sprite = NULL;</span></div>
