@@ -2,7 +2,6 @@
 #define GAME_TYPES_H
 
 #include <genesis.h>
-#include "sprite.h"
 
 //--- DEFINICOES ---//
 #define WEAK   1
