@@ -107,6 +107,8 @@ typedef enum {
 	STATE_ESQUIVA_BAIXO = 470,          // Esquiva para Baixo / Esquiva para Trás
 	STATE_ROLAMENTO_TRAS = 471,         // Rolamento para Trás
 	STATE_ROLAMENTO_FRENTE = 472,       // Rolamento para Frente
+	STATE_DISPONIVEL_473 = 473,         // disponível
+	STATE_DISPONIVEL_475 = 475,         // disponível
 	STATE_CORRIDA_INICIO = 480,         // Inicio da corrida
 	STATE_CORRENDO = 481,               // Correndo
 	STATE_CORRIDA_FINAL = 482,          // Final da Corrida
@@ -133,6 +135,7 @@ typedef enum {
 	STATE_CAINDO = 550,                 // Caindo
 	STATE_QUICANDO_CHAO = 551,          // Quicando no chão
 	STATE_LEVANTANDO = 552,             // Levantando
+	STATE_HIT_DISPONIVEL_555 = 555,     // disponível
 	STATE_CAIDO_MORTO = 570,            // Caido, Morto
 	
 	// Transitions
@@ -144,6 +147,7 @@ typedef enum {
 	STATE_FINAL_PULO = 606,             // Final do Pulo / Aterrisando no chão
 	STATE_VIRANDO_PE = 607,             // Virando, em Pé
 	STATE_VIRANDO_ABAIXADO = 608,       // Virando Abaixado
+	STATE_NOCAUTE = 609,                // Nocaute
 	
 	// Victory and Defeat
 	STATE_INTRO = 610,                  // Intro
@@ -153,6 +157,7 @@ typedef enum {
 	STATE_WIN4 = 614,                   // Win4
 	STATE_PERDENDO_TIME_OVER = 615,     // Perdendo por Time Over
 	STATE_RAGE_EXPLOSION = 618,         // Rage Explosion (Samurai Shodown 2)
+	STATE_RAGE_DISPONIVEL_619 = 619,    // disponível
 	
 	// Special Moves (700-900)
 	STATE_ESPECIAL_700 = 700,           // Especial 1
@@ -162,6 +167,9 @@ typedef enum {
 	STATE_ESPECIAL_711 = 711,           // Especial 2 Fireball
 	STATE_ESPECIAL_720 = 720,           // Especial 3
 	STATE_ESPECIAL_730 = 730,           // Especial 4
+	STATE_ESPECIAL_740 = 740,           // Especial 5
+	STATE_ESPECIAL_750 = 750,           // Especial 6
+	STATE_ESPECIAL_751 = 751,           // Especial 6 continuation
 	STATE_ESPECIAL_790 = 790            // Last special slot
 } PlayerState;
 

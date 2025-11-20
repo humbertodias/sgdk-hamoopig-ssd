@@ -26,10 +26,10 @@ void PLAYER_STATE(u8 Player, u16 State)
 	// * Raiva
 	if(
 		gDebug==1 || 
-		(State>=700 && State<=790) || 
-		State==103 || State==106 || 
-		State==102 || State==105 || 
-		State==618
+		(State>=STATE_ESPECIAL_700 && State<=STATE_ESPECIAL_790) || 
+		State==STATE_SOCO_FORTE_LONGE || State==STATE_CHUTE_FORTE_LONGE || 
+		State==STATE_SOCO_MEDIO_LONGE || State==STATE_CHUTE_MEDIO_LONGE || 
+		State==STATE_RAGE_EXPLOSION
 	){
 		if (GE[11].sprite){
 		  SPR_releaseSprite(GE[11].sprite);
@@ -40,23 +40,23 @@ void PLAYER_STATE(u8 Player, u16 State)
 	/*samsho2*/
 	// Evita o bug de sobrecarga de sprites, desabilitando golpes (medio / forte) SIMULTANEOS do Gillius 
 	// Esta solucao é temporaria! :)
-	if( (P[1].id==2 && P[2].id==2) && ((P[1].state == STATE_SOCO_MEDIO_LONGE || P[1].state == STATE_SOCO_FORTE_LONGE) && Player==2) && (State==102 || State==103) ){ State=101; }
-	if( (P[1].id==2 && P[2].id==2) && ((P[2].state == STATE_SOCO_MEDIO_LONGE || P[2].state == STATE_SOCO_FORTE_LONGE) && Player==1) && (State==102 || State==103) ){ State=101; }
+	if( (P[1].id==2 && P[2].id==2) && ((P[1].state == STATE_SOCO_MEDIO_LONGE || P[1].state == STATE_SOCO_FORTE_LONGE) && Player==2) && (State==STATE_SOCO_MEDIO_LONGE || State==STATE_SOCO_FORTE_LONGE) ){ State=STATE_SOCO_FRACO_LONGE; }
+	if( (P[1].id==2 && P[2].id==2) && ((P[2].state == STATE_SOCO_MEDIO_LONGE || P[2].state == STATE_SOCO_FORTE_LONGE) && Player==1) && (State==STATE_SOCO_MEDIO_LONGE || State==STATE_SOCO_FORTE_LONGE) ){ State=STATE_SOCO_FRACO_LONGE; }
 	
 	//virando de lado (mudanca de estado)
-	if(Player==1 && P[1].direcao== 1 && P[2].x<P[1].x && State==100){ State=607; }
-	if(Player==1 && P[1].direcao==-1 && P[1].x<P[2].x && State==100){ State=607; }
-	if(Player==2 && P[2].direcao== 1 && P[1].x<P[2].x && State==100){ State=607; }
-	if(Player==2 && P[2].direcao==-1 && P[2].x<P[1].x && State==100){ State=607; }
-	if(Player==1 && P[1].direcao== 1 && P[2].x<P[1].x && State==200){ State=608; }
-	if(Player==1 && P[1].direcao==-1 && P[1].x<P[2].x && State==200){ State=608; }
-	if(Player==2 && P[2].direcao== 1 && P[1].x<P[2].x && State==200){ State=608; }
-	if(Player==2 && P[2].direcao==-1 && P[2].x<P[1].x && State==200){ State=608; }
+	if(Player==1 && P[1].direcao== 1 && P[2].x<P[1].x && State==STATE_PARADO){ State=STATE_VIRANDO_PE; }
+	if(Player==1 && P[1].direcao==-1 && P[1].x<P[2].x && State==STATE_PARADO){ State=STATE_VIRANDO_PE; }
+	if(Player==2 && P[2].direcao== 1 && P[1].x<P[2].x && State==STATE_PARADO){ State=STATE_VIRANDO_PE; }
+	if(Player==2 && P[2].direcao==-1 && P[2].x<P[1].x && State==STATE_PARADO){ State=STATE_VIRANDO_PE; }
+	if(Player==1 && P[1].direcao== 1 && P[2].x<P[1].x && State==STATE_ABAIXADO){ State=STATE_VIRANDO_ABAIXADO; }
+	if(Player==1 && P[1].direcao==-1 && P[1].x<P[2].x && State==STATE_ABAIXADO){ State=STATE_VIRANDO_ABAIXADO; }
+	if(Player==2 && P[2].direcao== 1 && P[1].x<P[2].x && State==STATE_ABAIXADO){ State=STATE_VIRANDO_ABAIXADO; }
+	if(Player==2 && P[2].direcao==-1 && P[2].x<P[1].x && State==STATE_ABAIXADO){ State=STATE_VIRANDO_ABAIXADO; }
 	
 	//--- DEBUG_CHARACTER_TEST ---// #ID:0
 	if(P[Player].id==0)
 	{
-		if(State==100 || State==610){
+		if(State==STATE_PARADO || State==STATE_INTRO){
 			P[Player].y = gAlturaPiso;
 			P[Player].w = 8;
 			P[Player].h = 8;
@@ -83,8 +83,8 @@ void PLAYER_STATE(u8 Player, u16 State)
 	//Depth
 	u16 depth = Player;
 	if(P[Player].state >= STATE_ABAIXANDO && P[Player].state <= STATE_INICIO_PULO_FRENTE)                         {depth = Player+ 0;} //Derrota
-	if(P[Player].state==609)                                                 {depth = Player+ 0;} //Nocaute
-	if(P[Player].state == STATE_RAGE_EXPLOSION || P[Player].state==619)                         {depth = Player+ 0;} //Raiva
+	if(P[Player].state==STATE_NOCAUTE)                                                 {depth = Player+ 0;} //Nocaute
+	if(P[Player].state == STATE_RAGE_EXPLOSION || P[Player].state==STATE_RAGE_DISPONIVEL_619)                         {depth = Player+ 0;} //Raiva
 	if(P[Player].state>=400 && P[Player].state<=599)                         {depth = Player+12;} //Dano
 	if(P[Player].state == STATE_VIRANDO_PE || P[Player].state == STATE_VIRANDO_ABAIXADO)                         {depth = Player+10;} //Virando de lado
 	if(P[Player].state == STATE_PARADO || P[Player].state == STATE_ABAIXADO)                         {depth = Player+10;} //Parado
@@ -116,22 +116,22 @@ void FUNCAO_PLAY_SND(u8 Player, u16 State)
 		if(P[1].id==1) //Haohmaru
 		{
 			if(
-				State==101 || State==104 || 
-				State==151 || State==154 || 
-				State==201 || State==202 || State==204 || 
-				State==301 || State==302 || State==311 || State==312 || State==321 || State==322
+				State==STATE_SOCO_FRACO_LONGE || State==STATE_CHUTE_FRACO_LONGE || 
+				State==STATE_SOCO_FRACO_PERTO || State==STATE_CHUTE_FRACO_PERTO || 
+				State==STATE_SOCO_FRACO_ABAIXADO || State==STATE_SOCO_MEDIO_ABAIXADO || State==STATE_CHUTE_FRACO_ABAIXADO || 
+				State==STATE_SOCO_FRACO_AEREO_NEUTRO || State==STATE_SOCO_MEDIO_AEREO_NEUTRO || State==STATE_SOCO_FRACO_AEREO_TRAS || State==STATE_SOCO_MEDIO_AEREO_TRAS || State==STATE_SOCO_FRACO_AEREO_FRENTE || State==STATE_SOCO_MEDIO_AEREO_FRENTE
 			)
 			{
 				if(gPing2==0){ XGM_setPCM(P1_SFX, snd_haohmaru_101a, sizeof(snd_haohmaru_101a)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 				if(gPing2==1){ XGM_setPCM(P1_SFX, snd_haohmaru_101b, sizeof(snd_haohmaru_101b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 			}
 			if(
-				State==102 || State==103 || State==105 || State==106 || 
-				State==152 || State==153 || State==155 || State==156 || 
-				State==203 || State==205 || State==206 || 
-				State==303 || State==304 || State==305 || State==306 || 
-				State==313 || State==314 || State==315 || State==316 || 
-				State==323 || State==324 || State==325 || State==326
+				State==STATE_SOCO_MEDIO_LONGE || State==STATE_SOCO_FORTE_LONGE || State==STATE_CHUTE_MEDIO_LONGE || State==STATE_CHUTE_FORTE_LONGE || 
+				State==STATE_SOCO_MEDIO_PERTO || State==STATE_SOCO_FORTE_PERTO || State==STATE_CHUTE_MEDIO_PERTO || State==STATE_CHUTE_FORTE_PERTO || 
+				State==STATE_SOCO_FORTE_ABAIXADO || State==STATE_CHUTE_MEDIO_ABAIXADO || State==STATE_CHUTE_FORTE_ABAIXADO || 
+				State==STATE_SOCO_FORTE_AEREO_NEUTRO || State==STATE_CHUTE_FRACO_AEREO_NEUTRO || State==STATE_CHUTE_MEDIO_AEREO_NEUTRO || State==STATE_CHUTE_FORTE_AEREO_NEUTRO || 
+				State==STATE_SOCO_FORTE_AEREO_TRAS || State==STATE_CHUTE_FRACO_AEREO_TRAS || State==STATE_CHUTE_MEDIO_AEREO_TRAS || State==STATE_CHUTE_FORTE_AEREO_TRAS || 
+				State==STATE_SOCO_FORTE_AEREO_FRENTE || State==STATE_CHUTE_FRACO_AEREO_FRENTE || State==STATE_CHUTE_MEDIO_AEREO_FRENTE || State==STATE_CHUTE_FORTE_AEREO_FRENTE
 			)
 			{
 				if(gPing4==0){ XGM_setPCM(P1_SFX, snd_haohmaru_101a, sizeof(snd_haohmaru_101a)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
@@ -139,38 +139,38 @@ void FUNCAO_PLAY_SND(u8 Player, u16 State)
 				if(gPing4==2){ XGM_setPCM(P1_SFX, snd_haohmaru_102a, sizeof(snd_haohmaru_102a)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 				if(gPing4==3){ XGM_setPCM(P1_SFX, snd_haohmaru_102b, sizeof(snd_haohmaru_102b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 			}
-			if(State==110 || State==210){ XGM_setPCM(P1_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==300 || State==310 || State==320){ XGM_setPCM(P1_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==501 || State==506 || State==511){ XGM_setPCM(P1_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==502 || State==507 || State==512){ XGM_setPCM(P1_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==503 || State==508 || State==513 || State==555){ XGM_setPCM(P1_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==551){ XGM_setPCM(P1_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==606){ XGM_setPCM(P1_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==618){ XGM_setPCM(P1_SFX, snd_haohmaru_618, sizeof(snd_haohmaru_618)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==700){ XGM_setPCM(P1_SFX, snd_haohmaru_700, sizeof(snd_haohmaru_700)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==710){ XGM_setPCM(P1_SFX, snd_haohmaru_710, sizeof(snd_haohmaru_710)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==720){ XGM_setPCM(P1_SFX, snd_haohmaru_720, sizeof(snd_haohmaru_720)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==730){ XGM_setPCM(P1_SFX, snd_haohmaru_102b, sizeof(snd_haohmaru_102b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_DEFESA_PE_APLICADA || State==STATE_DEFESA_ABAIXADO_APLICADA){ XGM_setPCM(P1_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_PULO_NEUTRO || State==STATE_PULO_TRAS || State==STATE_PULO_FRENTE){ XGM_setPCM(P1_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_HIT_TIPO1_FORTE || State==STATE_HIT_TIPO2_FRACO || State==STATE_HIT_TIPO3_FRACO){ XGM_setPCM(P1_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_HIT_TIPO1_MEDIO || State==STATE_HIT_TIPO2_MEDIO || State==STATE_HIT_TIPO3_MEDIO){ XGM_setPCM(P1_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_HIT_TIPO1_FORTE || State==STATE_HIT_TIPO2_FORTE || State==STATE_HIT_TIPO3_FORTE || State==STATE_HIT_DISPONIVEL_555){ XGM_setPCM(P1_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_QUICANDO_CHAO){ XGM_setPCM(P1_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_FINAL_PULO){ XGM_setPCM(P1_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_RAGE_EXPLOSION){ XGM_setPCM(P1_SFX, snd_haohmaru_618, sizeof(snd_haohmaru_618)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_700){ XGM_setPCM(P1_SFX, snd_haohmaru_700, sizeof(snd_haohmaru_700)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_710){ XGM_setPCM(P1_SFX, snd_haohmaru_710, sizeof(snd_haohmaru_710)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_720){ XGM_setPCM(P1_SFX, snd_haohmaru_720, sizeof(snd_haohmaru_720)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_730){ XGM_setPCM(P1_SFX, snd_haohmaru_102b, sizeof(snd_haohmaru_102b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 		}
 		if(P[1].id==2) //Gillius
 		{
 			if(
-				State==101 || State==104 || 
-				State==151 || State==154 || 
-				State==201 || State==202 || State==204 || 
-				State==301 || State==302 || State==311 || State==312 || State==321 || State==322
+				State==STATE_SOCO_FRACO_LONGE || State==STATE_CHUTE_FRACO_LONGE || 
+				State==STATE_SOCO_FRACO_PERTO || State==STATE_CHUTE_FRACO_PERTO || 
+				State==STATE_SOCO_FRACO_ABAIXADO || State==STATE_SOCO_MEDIO_ABAIXADO || State==STATE_CHUTE_FRACO_ABAIXADO || 
+				State==STATE_SOCO_FRACO_AEREO_NEUTRO || State==STATE_SOCO_MEDIO_AEREO_NEUTRO || State==STATE_SOCO_FRACO_AEREO_TRAS || State==STATE_SOCO_MEDIO_AEREO_TRAS || State==STATE_SOCO_FRACO_AEREO_FRENTE || State==STATE_SOCO_MEDIO_AEREO_FRENTE
 			)
 			{
 				if(gPing2==0){ XGM_setPCM(P1_SFX, snd_gillius_101a, sizeof(snd_gillius_101a)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 				if(gPing2==1){ XGM_setPCM(P1_SFX, snd_gillius_101b, sizeof(snd_gillius_101b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 			}
 			if(
-				State==102 || State==103 || State==105 || State==106 || 
-				State==152 || State==153 || State==155 || State==156 || 
-				State==203 || State==205 || State==206 || 
-				State==303 || State==304 || State==305 || State==306 || 
-				State==313 || State==314 || State==315 || State==316 || 
-				State==323 || State==324 || State==325 || State==326
+				State==STATE_SOCO_MEDIO_LONGE || State==STATE_SOCO_FORTE_LONGE || State==STATE_CHUTE_MEDIO_LONGE || State==STATE_CHUTE_FORTE_LONGE || 
+				State==STATE_SOCO_MEDIO_PERTO || State==STATE_SOCO_FORTE_PERTO || State==STATE_CHUTE_MEDIO_PERTO || State==STATE_CHUTE_FORTE_PERTO || 
+				State==STATE_SOCO_FORTE_ABAIXADO || State==STATE_CHUTE_MEDIO_ABAIXADO || State==STATE_CHUTE_FORTE_ABAIXADO || 
+				State==STATE_SOCO_FORTE_AEREO_NEUTRO || State==STATE_CHUTE_FRACO_AEREO_NEUTRO || State==STATE_CHUTE_MEDIO_AEREO_NEUTRO || State==STATE_CHUTE_FORTE_AEREO_NEUTRO || 
+				State==STATE_SOCO_FORTE_AEREO_TRAS || State==STATE_CHUTE_FRACO_AEREO_TRAS || State==STATE_CHUTE_MEDIO_AEREO_TRAS || State==STATE_CHUTE_FORTE_AEREO_TRAS || 
+				State==STATE_SOCO_FORTE_AEREO_FRENTE || State==STATE_CHUTE_FRACO_AEREO_FRENTE || State==STATE_CHUTE_MEDIO_AEREO_FRENTE || State==STATE_CHUTE_FORTE_AEREO_FRENTE
 			)
 			{
 				if(gPing4==0){ XGM_setPCM(P1_SFX, snd_gillius_101a, sizeof(snd_gillius_101a)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
@@ -178,19 +178,19 @@ void FUNCAO_PLAY_SND(u8 Player, u16 State)
 				if(gPing4==2){ XGM_setPCM(P1_SFX, snd_gillius_102a, sizeof(snd_gillius_102a)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 				if(gPing4==3){ XGM_setPCM(P1_SFX, snd_gillius_102b, sizeof(snd_gillius_102b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 			}
-			if(State==110 || State==210){ XGM_setPCM(P1_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==300 || State==310 || State==320){ XGM_setPCM(P1_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==501 || State==506 || State==511){ XGM_setPCM(P1_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==502 || State==507 || State==512){ XGM_setPCM(P1_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==503 || State==508 || State==513 || State==555){ XGM_setPCM(P1_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==551){ XGM_setPCM(P1_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==606){ XGM_setPCM(P1_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==618){ XGM_setPCM(P1_SFX, snd_gillius_102b, sizeof(snd_gillius_102b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==700){ XGM_setPCM(P1_SFX, snd_gillius_700, sizeof(snd_gillius_700)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==710){ XGM_setPCM(P1_SFX, snd_gillius_710, sizeof(snd_gillius_710)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==720){ XGM_setPCM(P1_SFX, snd_gillius_720, sizeof(snd_gillius_720)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==730){ XGM_setPCM(P1_SFX, snd_gillius_730, sizeof(snd_gillius_730)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
-			if(State==750){ XGM_setPCM(P1_SFX, snd_gillius_750, sizeof(snd_gillius_750)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_DEFESA_PE_APLICADA || State==STATE_DEFESA_ABAIXADO_APLICADA){ XGM_setPCM(P1_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_PULO_NEUTRO || State==STATE_PULO_TRAS || State==STATE_PULO_FRENTE){ XGM_setPCM(P1_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_HIT_TIPO1_FRACO || State==STATE_HIT_TIPO2_FRACO || State==STATE_HIT_TIPO3_FRACO){ XGM_setPCM(P1_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_HIT_TIPO1_MEDIO || State==STATE_HIT_TIPO2_MEDIO || State==STATE_HIT_TIPO3_MEDIO){ XGM_setPCM(P1_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_HIT_TIPO1_FORTE || State==STATE_HIT_TIPO2_FORTE || State==STATE_HIT_TIPO3_FORTE || State==STATE_HIT_DISPONIVEL_555){ XGM_setPCM(P1_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_QUICANDO_CHAO){ XGM_setPCM(P1_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_FINAL_PULO){ XGM_setPCM(P1_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_RAGE_EXPLOSION){ XGM_setPCM(P1_SFX, snd_gillius_102b, sizeof(snd_gillius_102b)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_700){ XGM_setPCM(P1_SFX, snd_gillius_700, sizeof(snd_gillius_700)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_710){ XGM_setPCM(P1_SFX, snd_gillius_710, sizeof(snd_gillius_710)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_720){ XGM_setPCM(P1_SFX, snd_gillius_720, sizeof(snd_gillius_720)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_730){ XGM_setPCM(P1_SFX, snd_gillius_730, sizeof(snd_gillius_730)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
+			if(State==STATE_ESPECIAL_750){ XGM_setPCM(P1_SFX, snd_gillius_750, sizeof(snd_gillius_750)); XGM_startPlayPCM(P1_SFX, 1, SOUND_PCM_CH3); }
 		}
 	}
 	
@@ -199,22 +199,22 @@ void FUNCAO_PLAY_SND(u8 Player, u16 State)
 		if(P[2].id==1) //Haohmaru
 		{		
 			if(
-				State==101 || State==104 || 
-				State==151 || State==154 || 
-				State==201 || State==202 || State==204 || 
-				State==301 || State==302 || State==311 || State==312 || State==321 || State==322
+				State==STATE_SOCO_FRACO_LONGE || State==STATE_CHUTE_FRACO_LONGE || 
+				State==STATE_SOCO_FRACO_PERTO || State==STATE_CHUTE_FRACO_PERTO || 
+				State==STATE_SOCO_FRACO_ABAIXADO || State==STATE_SOCO_MEDIO_ABAIXADO || State==STATE_CHUTE_FRACO_ABAIXADO || 
+				State==STATE_SOCO_FRACO_AEREO_NEUTRO || State==STATE_SOCO_MEDIO_AEREO_NEUTRO || State==STATE_SOCO_FRACO_AEREO_TRAS || State==STATE_SOCO_MEDIO_AEREO_TRAS || State==STATE_SOCO_FRACO_AEREO_FRENTE || State==STATE_SOCO_MEDIO_AEREO_FRENTE
 			)
 			{
 				if(gPing2==0){ XGM_setPCM(P2_SFX, snd_haohmaru_101a, sizeof(snd_haohmaru_101a)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 				if(gPing2==1){ XGM_setPCM(P2_SFX, snd_haohmaru_101b, sizeof(snd_haohmaru_101b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 			}
 			if(
-				State==102 || State==103 || State==105 || State==106 || 
-				State==152 || State==153 || State==155 || State==156 || 
-				State==203 || State==205 || State==206 || 
-				State==303 || State==304 || State==305 || State==306 || 
-				State==313 || State==314 || State==315 || State==316 || 
-				State==323 || State==324 || State==325 || State==326
+				State==STATE_SOCO_MEDIO_LONGE || State==STATE_SOCO_FORTE_LONGE || State==STATE_CHUTE_MEDIO_LONGE || State==STATE_CHUTE_FORTE_LONGE || 
+				State==STATE_SOCO_MEDIO_PERTO || State==STATE_SOCO_FORTE_PERTO || State==STATE_CHUTE_MEDIO_PERTO || State==STATE_CHUTE_FORTE_PERTO || 
+				State==STATE_SOCO_FORTE_ABAIXADO || State==STATE_CHUTE_MEDIO_ABAIXADO || State==STATE_CHUTE_FORTE_ABAIXADO || 
+				State==STATE_SOCO_FORTE_AEREO_NEUTRO || State==STATE_CHUTE_FRACO_AEREO_NEUTRO || State==STATE_CHUTE_MEDIO_AEREO_NEUTRO || State==STATE_CHUTE_FORTE_AEREO_NEUTRO || 
+				State==STATE_SOCO_FORTE_AEREO_TRAS || State==STATE_CHUTE_FRACO_AEREO_TRAS || State==STATE_CHUTE_MEDIO_AEREO_TRAS || State==STATE_CHUTE_FORTE_AEREO_TRAS || 
+				State==STATE_SOCO_FORTE_AEREO_FRENTE || State==STATE_CHUTE_FRACO_AEREO_FRENTE || State==STATE_CHUTE_MEDIO_AEREO_FRENTE || State==STATE_CHUTE_FORTE_AEREO_FRENTE
 			)
 			{
 				if(gPing4==0){ XGM_setPCM(P2_SFX, snd_haohmaru_101a, sizeof(snd_haohmaru_101a)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
@@ -222,38 +222,38 @@ void FUNCAO_PLAY_SND(u8 Player, u16 State)
 				if(gPing4==2){ XGM_setPCM(P2_SFX, snd_haohmaru_102a, sizeof(snd_haohmaru_102a)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 				if(gPing4==3){ XGM_setPCM(P2_SFX, snd_haohmaru_102b, sizeof(snd_haohmaru_102b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 			}
-			if(State==110 || State==210){ XGM_setPCM(P2_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==300 || State==310 || State==320){ XGM_setPCM(P2_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==501 || State==506 || State==511){ XGM_setPCM(P2_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==502 || State==507 || State==512){ XGM_setPCM(P2_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==503 || State==508 || State==513 || State==555){ XGM_setPCM(P2_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==551){ XGM_setPCM(P2_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==606){ XGM_setPCM(P2_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==618){ XGM_setPCM(P2_SFX, snd_haohmaru_618, sizeof(snd_haohmaru_618)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==700){ XGM_setPCM(P2_SFX, snd_haohmaru_700, sizeof(snd_haohmaru_700)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==710){ XGM_setPCM(P2_SFX, snd_haohmaru_710, sizeof(snd_haohmaru_710)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==720){ XGM_setPCM(P2_SFX, snd_haohmaru_720, sizeof(snd_haohmaru_720)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==730){ XGM_setPCM(P2_SFX, snd_haohmaru_102b, sizeof(snd_haohmaru_102b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_DEFESA_PE_APLICADA || State==STATE_DEFESA_ABAIXADO_APLICADA){ XGM_setPCM(P2_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_PULO_NEUTRO || State==STATE_PULO_TRAS || State==STATE_PULO_FRENTE){ XGM_setPCM(P2_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_HIT_TIPO1_FRACO || State==STATE_HIT_TIPO2_FRACO || State==STATE_HIT_TIPO3_FRACO){ XGM_setPCM(P2_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_HIT_TIPO1_MEDIO || State==STATE_HIT_TIPO2_MEDIO || State==STATE_HIT_TIPO3_MEDIO){ XGM_setPCM(P2_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_HIT_TIPO1_FORTE || State==STATE_HIT_TIPO2_FORTE || State==STATE_HIT_TIPO3_FORTE || State==STATE_HIT_DISPONIVEL_555){ XGM_setPCM(P2_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_QUICANDO_CHAO){ XGM_setPCM(P2_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_FINAL_PULO){ XGM_setPCM(P2_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_RAGE_EXPLOSION){ XGM_setPCM(P2_SFX, snd_haohmaru_618, sizeof(snd_haohmaru_618)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_700){ XGM_setPCM(P2_SFX, snd_haohmaru_700, sizeof(snd_haohmaru_700)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_710){ XGM_setPCM(P2_SFX, snd_haohmaru_710, sizeof(snd_haohmaru_710)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_720){ XGM_setPCM(P2_SFX, snd_haohmaru_720, sizeof(snd_haohmaru_720)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_730){ XGM_setPCM(P2_SFX, snd_haohmaru_102b, sizeof(snd_haohmaru_102b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 		}
 		if(P[2].id==2) //Gillius
 		{		
 			if(
-				State==101 || State==104 || 
-				State==151 || State==154 || 
-				State==201 || State==202 || State==204 || 
-				State==301 || State==302 || State==311 || State==312 || State==321 || State==322
+				State==STATE_SOCO_FRACO_LONGE || State==STATE_CHUTE_FRACO_LONGE || 
+				State==STATE_SOCO_FRACO_PERTO || State==STATE_CHUTE_FRACO_PERTO || 
+				State==STATE_SOCO_FRACO_ABAIXADO || State==STATE_SOCO_MEDIO_ABAIXADO || State==STATE_CHUTE_FRACO_ABAIXADO || 
+				State==STATE_SOCO_FRACO_AEREO_NEUTRO || State==STATE_SOCO_MEDIO_AEREO_NEUTRO || State==STATE_SOCO_FRACO_AEREO_TRAS || State==STATE_SOCO_MEDIO_AEREO_TRAS || State==STATE_SOCO_FRACO_AEREO_FRENTE || State==STATE_SOCO_MEDIO_AEREO_FRENTE
 			)
 			{
 				if(gPing2==0){ XGM_setPCM(P2_SFX, snd_gillius_101a, sizeof(snd_gillius_101a)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 				if(gPing2==1){ XGM_setPCM(P2_SFX, snd_gillius_101b, sizeof(snd_gillius_101b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 			}
 			if(
-				State==102 || State==103 || State==105 || State==106 || 
-				State==152 || State==153 || State==155 || State==156 || 
-				State==203 || State==205 || State==206 || 
-				State==303 || State==304 || State==305 || State==306 || 
-				State==313 || State==314 || State==315 || State==316 || 
-				State==323 || State==324 || State==325 || State==326
+				State==STATE_SOCO_MEDIO_LONGE || State==STATE_SOCO_FORTE_LONGE || State==STATE_CHUTE_MEDIO_LONGE || State==STATE_CHUTE_FORTE_LONGE || 
+				State==STATE_SOCO_MEDIO_PERTO || State==STATE_SOCO_FORTE_PERTO || State==STATE_CHUTE_MEDIO_PERTO || State==STATE_CHUTE_FORTE_PERTO || 
+				State==STATE_SOCO_FORTE_ABAIXADO || State==STATE_CHUTE_MEDIO_ABAIXADO || State==STATE_CHUTE_FORTE_ABAIXADO || 
+				State==STATE_SOCO_FORTE_AEREO_NEUTRO || State==STATE_CHUTE_FRACO_AEREO_NEUTRO || State==STATE_CHUTE_MEDIO_AEREO_NEUTRO || State==STATE_CHUTE_FORTE_AEREO_NEUTRO || 
+				State==STATE_SOCO_FORTE_AEREO_TRAS || State==STATE_CHUTE_FRACO_AEREO_TRAS || State==STATE_CHUTE_MEDIO_AEREO_TRAS || State==STATE_CHUTE_FORTE_AEREO_TRAS || 
+				State==STATE_SOCO_FORTE_AEREO_FRENTE || State==STATE_CHUTE_FRACO_AEREO_FRENTE || State==STATE_CHUTE_MEDIO_AEREO_FRENTE || State==STATE_CHUTE_FORTE_AEREO_FRENTE
 			)
 			{
 				if(gPing4==0){ XGM_setPCM(P2_SFX, snd_gillius_101a, sizeof(snd_gillius_101a)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
@@ -261,19 +261,19 @@ void FUNCAO_PLAY_SND(u8 Player, u16 State)
 				if(gPing4==2){ XGM_setPCM(P2_SFX, snd_gillius_102a, sizeof(snd_gillius_102a)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 				if(gPing4==3){ XGM_setPCM(P2_SFX, snd_gillius_102b, sizeof(snd_gillius_102b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 			}
-			if(State==110 || State==210){ XGM_setPCM(P2_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==300 || State==310 || State==320){ XGM_setPCM(P2_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==501 || State==506 || State==511){ XGM_setPCM(P2_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==502 || State==507 || State==512){ XGM_setPCM(P2_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==503 || State==508 || State==513 || State==555){ XGM_setPCM(P2_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==551){ XGM_setPCM(P2_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==606){ XGM_setPCM(P2_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==618){ XGM_setPCM(P2_SFX, snd_gillius_102b, sizeof(snd_gillius_102b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==700){ XGM_setPCM(P2_SFX, snd_gillius_700, sizeof(snd_gillius_700)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==710){ XGM_setPCM(P2_SFX, snd_gillius_710, sizeof(snd_gillius_710)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==720){ XGM_setPCM(P2_SFX, snd_gillius_720, sizeof(snd_gillius_720)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==730){ XGM_setPCM(P2_SFX, snd_gillius_730, sizeof(snd_gillius_730)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
-			if(State==750){ XGM_setPCM(P2_SFX, snd_gillius_750, sizeof(snd_gillius_750)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_DEFESA_PE_APLICADA || State==STATE_DEFESA_ABAIXADO_APLICADA){ XGM_setPCM(P2_SFX, snd_110, sizeof(snd_110)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_PULO_NEUTRO || State==STATE_PULO_TRAS || State==STATE_PULO_FRENTE){ XGM_setPCM(P2_SFX, snd_300, sizeof(snd_300)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_HIT_TIPO1_FRACO || State==STATE_HIT_TIPO2_FRACO || State==STATE_HIT_TIPO3_FRACO){ XGM_setPCM(P2_SFX, snd_hit_1, sizeof(snd_hit_1)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_HIT_TIPO1_MEDIO || State==STATE_HIT_TIPO2_MEDIO || State==STATE_HIT_TIPO3_MEDIO){ XGM_setPCM(P2_SFX, snd_hit_2, sizeof(snd_hit_2)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_HIT_TIPO1_FORTE || State==STATE_HIT_TIPO2_FORTE || State==STATE_HIT_TIPO3_FORTE || State==STATE_HIT_DISPONIVEL_555){ XGM_setPCM(P2_SFX, snd_hit_3, sizeof(snd_hit_3)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_QUICANDO_CHAO){ XGM_setPCM(P2_SFX, snd_551, sizeof(snd_551)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_FINAL_PULO){ XGM_setPCM(P2_SFX, snd_606, sizeof(snd_606)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_RAGE_EXPLOSION){ XGM_setPCM(P2_SFX, snd_gillius_102b, sizeof(snd_gillius_102b)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_700){ XGM_setPCM(P2_SFX, snd_gillius_700, sizeof(snd_gillius_700)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_710){ XGM_setPCM(P2_SFX, snd_gillius_710, sizeof(snd_gillius_710)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_720){ XGM_setPCM(P2_SFX, snd_gillius_720, sizeof(snd_gillius_720)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_730){ XGM_setPCM(P2_SFX, snd_gillius_730, sizeof(snd_gillius_730)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
+			if(State==STATE_ESPECIAL_750){ XGM_setPCM(P2_SFX, snd_gillius_750, sizeof(snd_gillius_750)); XGM_startPlayPCM(P2_SFX, 1, SOUND_PCM_CH4); }
 		}
 	}
 	
