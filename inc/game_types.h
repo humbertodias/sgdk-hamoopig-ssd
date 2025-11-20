@@ -22,6 +22,18 @@
 #define P1_SFX     65
 #define P2_SFX     66
 
+//--- ENUMS ---//
+// Game room/screen states
+typedef enum {
+	ROOM_HAMOOPIG = 1,       // Tela HAMOOPIG
+	ROOM_PRESENTATION = 2,   // Tela de apresentacao
+	ROOM_CHAR_SELECT = 3,    // Character selection
+	ROOM_STAGE_SELECT = 4,   // Stage selection
+	ROOM_DESCOMPRESSION = 9, // Descompressao
+	ROOM_IN_GAME = 10,       // In game
+	ROOM_AFTER_MATCH = 11    // After match
+} GameRoom;
+
 //--- ESTRUTURAS ---//
 struct PlayerDEF {
 	Sprite* sprite;      //Sprite do Player 
