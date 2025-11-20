@@ -1,4 +1,20 @@
 var searchData=
 [
-  ['player_5fstate_0',['PLAYER_STATE',['../main_8c.html#afc38b16c5646448129cadbef7e651a46',1,'main.c']]]
+  ['funcao_5fanimacao_0',['FUNCAO_ANIMACAO',['../animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108',1,'animation.c']]],
+  ['funcao_5fbarras_5fde_5fenergia_1',['FUNCAO_BARRAS_DE_ENERGIA',['../hud_8c.html#a80b5307c825fb9571b9b1c276c1def22',1,'hud.c']]],
+  ['funcao_5fcamera_5fbganim_2',['FUNCAO_CAMERA_BGANIM',['../camera_8c.html#a3acb2bd9fa8e8352718ec9f3ccb202a1',1,'camera.c']]],
+  ['funcao_5fcolisao_3',['FUNCAO_COLISAO',['../collision_8c.html#aa569d8c118b30dead088facccf096bd5',1,'collision.c']]],
+  ['funcao_5fdebug_4',['FUNCAO_DEBUG',['../debug_8c.html#ace6f1e5a61cf4170ed85769e77c46e1a',1,'debug.c']]],
+  ['funcao_5ffsm_5',['FUNCAO_FSM',['../fsm_8c.html#ac584739335e499bbb9a17ddcd1bc9098',1,'fsm.c']]],
+  ['funcao_5ffsm_5fhitboxes_6',['FUNCAO_FSM_HITBOXES',['../fsm_8c.html#a8dc07c5c2dae97d1b82661d7cb207a39',1,'fsm.c']]],
+  ['funcao_5finicializacao_7',['FUNCAO_INICIALIZACAO',['../game__init_8c.html#aed24219971f7ba81ad8f567b2129a68d',1,'game_init.c']]],
+  ['funcao_5finput_5fsystem_8',['FUNCAO_INPUT_SYSTEM',['../input_8c.html#ac1d603801cb579f245807265a48ee7f0',1,'input.c']]],
+  ['funcao_5fphysics_9',['FUNCAO_PHYSICS',['../physics_8c.html#ab370a65503b623bf8eeeb52e12699175',1,'physics.c']]],
+  ['funcao_5fplay_5fsnd_10',['FUNCAO_PLAY_SND',['../player_8c.html#a941dc6b35efb4001faffc2a17e34f4f5',1,'player.c']]],
+  ['funcao_5frelogio_11',['FUNCAO_RELOGIO',['../hud_8c.html#afbab9a78913dda4258fdf813b1e5b02d',1,'hud.c']]],
+  ['funcao_5fround_5finit_12',['FUNCAO_ROUND_INIT',['../game__init_8c.html#a6450a3496019d3dbd629a6a01b4c8ad0',1,'game_init.c']]],
+  ['funcao_5fround_5frestart_13',['FUNCAO_ROUND_RESTART',['../game__init_8c.html#a7f26d724205f687db0cbd77631257773',1,'game_init.c']]],
+  ['funcao_5fsamshofx_14',['FUNCAO_SAMSHOFX',['../hud_8c.html#a533fa9150345bbf29587f74e6790d9a1',1,'hud.c']]],
+  ['funcao_5fspr_5fposition_15',['FUNCAO_SPR_POSITION',['../animation_8c.html#a278eb368166f3a301f3a07ef48036d39',1,'animation.c']]],
+  ['funcao_5fupdate_5flifesp_16',['FUNCAO_UPDATE_LIFESP',['../utils_8c.html#ad3d721a8bfd1f35204f5d83b1a7ecc2f',1,'utils.c']]]
 ];

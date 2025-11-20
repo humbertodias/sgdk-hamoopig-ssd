@@ -1,0 +1,7 @@
+<map id="presentation_room_handler" name="presentation_room_handler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,32,199,62"/>
+<area shape="rect" id="Node000002" href="$utils_8c.html#abc91f67f185063e878e79cebf91d246e" title=" " alt="" coords="288,5,380,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,33,272,24,273,30,200,38"/>
+<area shape="rect" id="Node000003" href="$input_8c.html#ac1d603801cb579f245807265a48ee7f0" title=" " alt="" coords="247,59,421,88"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,55,232,59,231,64,199,61"/>
+</map>

@@ -1,9 +1,0 @@
-<map id="PLAYER_STATE" name="PLAYER_STATE">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,59,114,88"/>
-<area shape="rect" id="Node000002" href="$main_8c.html#a44e0381c805a7e4567470a55d26a8a79" title=" " alt="" coords="186,5,309,35"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,56,177,37,179,42,115,61"/>
-<area shape="rect" id="Node000003" href="$main_8c.html#a941dc6b35efb4001faffc2a17e34f4f5" title=" " alt="" coords="175,59,320,88"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,71,160,71,160,76,114,76"/>
-<area shape="rect" id="Node000004" href="$main_8c.html#a278eb368166f3a301f3a07ef48036d39" title=" " alt="" coords="162,112,333,142"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="115,86,179,105,177,110,113,91"/>
-</map>

@@ -1,0 +1,29 @@
+<map id="CLEAR_VDP" name="CLEAR_VDP">
+<area shape="rect" id="Node000001" title=" " alt="" coords="808,175,900,204"/>
+<area shape="rect" id="Node000002" href="$after__match__room_8c.html#a3e073447536330f760ce1a784a3831da" title=" " alt="" coords="329,5,518,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="835,163,803,119,782,97,758,80,700,53,638,36,576,26,519,22,519,16,576,21,639,31,702,48,761,75,786,93,807,115,839,160"/>
+<area shape="rect" id="Node000004" href="$char__select__room_8c.html#ac03e61c89068ac7aa7532a3cee15863c" title=" " alt="" coords="332,64,515,94"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="827,166,796,139,759,117,698,98,634,86,572,79,516,78,516,72,572,74,635,80,699,92,761,112,799,135,830,162"/>
+<area shape="rect" id="Node000005" href="$descompression__room_8c.html#a254404fd62d0ac4781085b719b02440e" title=" " alt="" coords="113,104,273,153"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="792,173,759,165,626,148,493,137,273,130,274,125,494,132,627,142,760,160,793,168"/>
+<area shape="rect" id="Node000006" href="$game__init_8c.html#a7f26d724205f687db0cbd77631257773" title=" " alt="" coords="570,175,756,204"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="792,192,757,192,757,187,792,187"/>
+<area shape="rect" id="Node000009" href="$hamoopig__room_8c.html#a54498815824abc35468f033ce452d05a" title=" " alt="" coords="105,229,281,259"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="793,211,760,219,630,235,500,245,282,249,281,243,500,239,630,230,759,214,792,206"/>
+<area shape="rect" id="Node000010" href="$presentation__room_8c.html#ac68961bcab3cc31f3d92b323678e2623" title=" " alt="" coords="566,279,760,308"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="826,216,796,240,761,263,719,280,717,276,758,258,793,236,823,212"/>
+<area shape="rect" id="Node000011" href="$stage__select__room_8c.html#a109de1375679958dfdb270d38c22cb5f" title=" " alt="" coords="568,332,758,362"/>
+<area shape="poly" id="edge15_Node000001_Node000011" title=" " alt="" coords="842,220,810,272,788,299,761,322,740,334,738,329,758,318,784,296,806,269,837,217"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a37e785bcbebaf8366b7914fed4e07ce3" title=" " alt="" coords="5,176,57,206"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="314,12,262,13,208,20,155,35,106,60,79,86,59,118,46,150,38,177,33,175,41,148,55,115,75,82,103,55,153,30,207,15,262,8,314,6"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="323,64,271,61,215,64,158,74,106,94,83,112,65,134,41,177,36,174,60,131,79,108,103,90,157,69,214,59,271,56,323,59"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="115,161,58,184,56,179,113,156"/>
+<area shape="rect" id="Node000007" href="$animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108" title=" " alt="" coords="349,175,499,204"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="555,192,499,192,499,187,555,187"/>
+<area shape="rect" id="Node000008" href="$in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c" title=" " alt="" coords="110,176,276,206"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="333,193,277,193,277,188,333,187"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="94,194,57,194,57,188,94,188"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="124,227,104,220,56,203,58,198,106,215,126,222"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="566,314,466,324,348,326,285,321,223,312,162,296,103,273,82,260,64,242,39,208,43,204,68,239,86,255,106,268,163,291,224,306,286,316,348,321,466,319,565,309"/>
+<area shape="poly" id="edge16_Node000011_Node000003" title=" " alt="" coords="587,368,485,385,424,390,359,391,293,387,226,376,163,356,103,326,75,300,54,267,41,234,33,207,38,205,46,232,59,265,79,297,106,322,165,351,228,371,293,382,359,386,423,385,484,380,586,363"/>
+</map>

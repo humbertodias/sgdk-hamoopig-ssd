@@ -1,0 +1,11 @@
+<map id="FUNCAO_INICIALIZACAO" name="FUNCAO_INICIALIZACAO">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,59,182,88"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#afc38b16c5646448129cadbef7e651a46" title=" " alt="" coords="230,59,338,88"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,71,214,71,214,76,182,76"/>
+<area shape="rect" id="Node000003" href="$player_8c.html#a941dc6b35efb4001faffc2a17e34f4f5" title=" " alt="" coords="402,5,546,35"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="338,56,403,37,405,42,339,61"/>
+<area shape="rect" id="Node000004" href="$gillius_8c.html#a124f3b671c4cd013fb241dabebd5cb8b" title=" " alt="" coords="401,59,547,88"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="338,71,385,71,385,76,338,76"/>
+<area shape="rect" id="Node000005" href="$haohmaru_8c.html#a43c42cf401ec3bd4ca139232111b7593" title=" " alt="" coords="386,112,562,142"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="339,86,405,105,403,110,338,91"/>
+</map>

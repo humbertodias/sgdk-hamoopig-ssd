@@ -1,0 +1,22 @@
+<map id="FUNCAO_ANIMACAO" name="FUNCAO_ANIMACAO">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,85,156,115"/>
+<area shape="rect" id="Node000002" href="$fsm_8c.html#a8dc07c5c2dae97d1b82661d7cb207a39" title=" " alt="" coords="209,5,385,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,82,203,44,223,37,225,42,205,49,115,87"/>
+<area shape="rect" id="Node000003" href="$game__init_8c.html#a7f26d724205f687db0cbd77631257773" title=" " alt="" coords="204,59,390,88"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="156,88,188,84,188,90,156,94"/>
+<area shape="rect" id="Node000006" href="$player_8c.html#afc38b16c5646448129cadbef7e651a46" title=" " alt="" coords="465,112,573,142"/>
+<area shape="poly" id="edge10_Node000001_Node000006" title=" " alt="" coords="156,102,449,120,448,125,156,107"/>
+<area shape="rect" id="Node000010" href="$animation_8c.html#a278eb368166f3a301f3a07ef48036d39" title=" " alt="" coords="211,163,383,192"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="125,113,240,154,238,159,124,118"/>
+<area shape="rect" id="Node000004" href="$utils_8c.html#abc91f67f185063e878e79cebf91d246e" title=" " alt="" coords="473,5,565,35"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="361,55,457,32,458,37,362,61"/>
+<area shape="rect" id="Node000005" href="$game__init_8c.html#a6450a3496019d3dbd629a6a01b4c8ad0" title=" " alt="" coords="438,59,599,88"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="390,71,422,71,422,76,390,76"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="362,86,450,108,449,113,361,92"/>
+<area shape="rect" id="Node000007" href="$player_8c.html#a941dc6b35efb4001faffc2a17e34f4f5" title=" " alt="" coords="663,59,808,88"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="573,111,657,90,658,95,574,116"/>
+<area shape="rect" id="Node000008" href="$gillius_8c.html#a124f3b671c4cd013fb241dabebd5cb8b" title=" " alt="" coords="662,112,809,142"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="573,124,647,124,647,130,573,130"/>
+<area shape="rect" id="Node000009" href="$haohmaru_8c.html#a43c42cf401ec3bd4ca139232111b7593" title=" " alt="" coords="647,165,824,195"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="574,138,658,159,657,164,573,143"/>
+</map>

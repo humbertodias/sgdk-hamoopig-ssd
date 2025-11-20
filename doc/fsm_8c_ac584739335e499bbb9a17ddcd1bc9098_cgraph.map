@@ -1,0 +1,15 @@
+<map id="FUNCAO_FSM" name="FUNCAO_FSM">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,59,112,88"/>
+<area shape="rect" id="Node000002" href="$collision_8c.html#aa569d8c118b30dead088facccf096bd5" title=" " alt="" coords="180,5,316,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,56,177,37,179,42,113,61"/>
+<area shape="rect" id="Node000003" href="$utils_8c.html#ad3d721a8bfd1f35204f5d83b1a7ecc2f" title=" " alt="" coords="160,59,336,88"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,71,144,71,144,76,112,76"/>
+<area shape="rect" id="Node000004" href="$player_8c.html#afc38b16c5646448129cadbef7e651a46" title=" " alt="" coords="194,112,302,142"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="113,86,179,105,178,110,112,91"/>
+<area shape="rect" id="Node000005" href="$player_8c.html#a941dc6b35efb4001faffc2a17e34f4f5" title=" " alt="" coords="400,59,544,88"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="302,111,391,90,393,95,303,117"/>
+<area shape="rect" id="Node000006" href="$gillius_8c.html#a124f3b671c4cd013fb241dabebd5cb8b" title=" " alt="" coords="399,112,545,142"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="302,124,383,124,383,130,302,130"/>
+<area shape="rect" id="Node000007" href="$haohmaru_8c.html#a43c42cf401ec3bd4ca139232111b7593" title=" " alt="" coords="384,165,560,195"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="303,137,393,159,391,164,302,142"/>
+</map>

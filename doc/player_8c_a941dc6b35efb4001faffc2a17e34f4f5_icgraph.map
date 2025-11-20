@@ -1,0 +1,23 @@
+<map id="FUNCAO_PLAY_SND" name="FUNCAO_PLAY_SND">
+<area shape="rect" id="Node000001" title=" " alt="" coords="908,85,1052,114"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#afc38b16c5646448129cadbef7e651a46" title=" " alt="" coords="752,85,860,114"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="893,102,860,102,860,97,893,97"/>
+<area shape="rect" id="Node000003" href="$animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108" title=" " alt="" coords="319,31,469,61"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="779,76,745,46,703,23,669,15,634,10,564,11,498,20,444,33,442,28,497,15,563,5,635,5,670,9,705,18,748,42,783,72"/>
+<area shape="rect" id="Node000006" href="$fsm_8c.html#ac584739335e499bbb9a17ddcd1bc9098" title=" " alt="" coords="341,85,447,114"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="736,102,448,102,448,97,736,97"/>
+<area shape="rect" id="Node000007" href="$game__init_8c.html#aed24219971f7ba81ad8f567b2129a68d" title=" " alt="" coords="522,137,699,166"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="737,121,670,139,669,134,736,115"/>
+<area shape="rect" id="Node000008" href="$physics_8c.html#ab370a65503b623bf8eeeb52e12699175" title=" " alt="" coords="328,189,461,218"/>
+<area shape="poly" id="edge9_Node000002_Node000008" title=" " alt="" coords="782,128,747,157,705,181,642,199,577,209,515,212,461,212,461,206,515,207,576,204,641,194,703,176,744,152,778,124"/>
+<area shape="rect" id="Node000009" href="$game__init_8c.html#a7f26d724205f687db0cbd77631257773" title=" " alt="" coords="517,33,704,62"/>
+<area shape="poly" id="edge11_Node000002_Node000009" title=" " alt="" coords="736,84,669,66,670,61,737,79"/>
+<area shape="rect" id="Node000004" href="$in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c" title=" " alt="" coords="105,111,271,141"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="336,69,320,75,226,113,224,108,318,70,334,64"/>
+<area shape="rect" id="Node000005" href="$main_8c.html#a37e785bcbebaf8366b7914fed4e07ce3" title=" " alt="" coords="5,111,57,141"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="89,129,57,129,57,124,89,124"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="326,111,272,118,271,113,325,106"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="507,148,271,134,272,129,507,143"/>
+<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="337,185,229,144,231,139,339,180"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="501,50,469,49,469,44,501,44"/>
+</map>

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['i_0',['i',['../main_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c',1,'main.c']]],
-  ['id_1',['id',['../structPlayerDEF.html#af9142f03f5ef84df8556a9f7be3955cd',1,'PlayerDEF']]],
-  ['impulsopadrao_2',['impulsoPadrao',['../main_8c.html#afc61e9f9efd2d1b9dedfdeac67ed81ed',1,'main.c']]],
-  ['impulsoy_3',['impulsoY',['../structPlayerDEF.html#a326f373ad1498a55e4351144d634e851',1,'PlayerDEF']]],
-  ['inputarray_4',['inputArray',['../structPlayerDEF.html#acd24c1e1047a80e1fe16281b8b10f8a8',1,'PlayerDEF']]]
+  ['p_0',['P',['../game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03',1,'game_globals.c']]],
+  ['petalapx_1',['PetalaPX',['../game__globals_8c.html#ab4ada9d518fc12de9fcd560507a436ee',1,'game_globals.c']]],
+  ['petalapy_2',['PetalaPY',['../game__globals_8c.html#a544a50f6936369cc163e4c6632658e92',1,'game_globals.c']]]
 ];

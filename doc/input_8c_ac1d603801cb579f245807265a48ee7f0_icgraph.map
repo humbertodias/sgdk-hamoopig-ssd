@@ -1,0 +1,22 @@
+<map id="FUNCAO_INPUT_SYSTEM" name="FUNCAO_INPUT_SYSTEM">
+<area shape="rect" id="Node000001" title=" " alt="" coords="346,139,520,168"/>
+<area shape="rect" id="Node000002" href="$after__match__room_8c.html#a3e073447536330f760ce1a784a3831da" title=" " alt="" coords="107,5,296,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="404,130,356,88,297,49,270,38,272,33,299,44,360,84,408,126"/>
+<area shape="rect" id="Node000004" href="$char__select__room_8c.html#ac03e61c89068ac7aa7532a3cee15863c" title=" " alt="" coords="110,59,293,88"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="381,135,297,103,261,91,262,86,299,98,383,130"/>
+<area shape="rect" id="Node000005" href="$hamoopig__room_8c.html#a54498815824abc35468f033ce452d05a" title=" " alt="" coords="113,112,290,142"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="330,144,290,140,290,134,331,139"/>
+<area shape="rect" id="Node000006" href="$in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c" title=" " alt="" coords="118,165,285,195"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="331,168,285,173,285,168,330,163"/>
+<area shape="rect" id="Node000007" href="$presentation__room_8c.html#ac68961bcab3cc31f3d92b323678e2623" title=" " alt="" coords="105,219,298,248"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="383,177,299,209,262,221,261,216,297,204,381,172"/>
+<area shape="rect" id="Node000008" href="$stage__select__room_8c.html#a109de1375679958dfdb270d38c22cb5f" title=" " alt="" coords="106,272,297,302"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="408,181,360,223,299,263,272,274,270,269,297,258,356,219,404,177"/>
+<area shape="rect" id="Node000003" href="$main_8c.html#a37e785bcbebaf8366b7914fed4e07ce3" title=" " alt="" coords="5,139,57,168"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,45,106,49,84,70,65,94,41,140,36,137,61,91,80,66,103,45,110,40"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="120,96,106,103,76,121,51,141,47,136,73,116,103,98,118,91"/>
+<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="98,146,58,152,57,147,97,140"/>
+<area shape="poly" id="edge8_Node000006_Node000003" title=" " alt="" coords="102,167,57,160,58,155,103,162"/>
+<area shape="poly" id="edge10_Node000007_Node000003" title=" " alt="" coords="118,216,103,209,73,191,47,171,51,166,76,186,106,204,120,211"/>
+<area shape="poly" id="edge12_Node000008_Node000003" title=" " alt="" coords="110,267,103,262,80,241,61,216,36,170,41,167,65,213,84,237,106,258,113,262"/>
+</map>

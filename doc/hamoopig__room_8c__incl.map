@@ -1,0 +1,17 @@
+<map id="src/rooms/hamoopig_room.c" name="src/rooms/hamoopig_room.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="260,5,410,54"/>
+<area shape="rect" id="Node000002" href="$hamoopig__room_8h.html" title=" " alt="" coords="14,102,149,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,57,139,99,137,94,263,52"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="172,102,242,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="301,57,242,95,239,91,298,52"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="266,102,319,132"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="325,56,309,89,304,87,321,53"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="343,102,415,132"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="349,53,367,87,362,89,345,56"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="438,102,538,132"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="379,52,451,92,448,97,376,57"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="563,102,656,132"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="411,52,550,94,549,100,409,57"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,180,158,209"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,132,84,164,79,164,79,132"/>
+</map>

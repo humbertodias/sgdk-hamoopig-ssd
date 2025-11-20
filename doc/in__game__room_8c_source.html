@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SSD: Código-Fonte de src/rooms/in_game_room.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SSD
+   </div>
+   <div id="projectbrief">Documentação gerada automaticamente com Doxygen</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_061d5f4231849b919a8e39e71db1f1a1.html">rooms</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">in_game_room.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="in__game__room_8c.html">Ir para a documentação desse arquivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="in__game__room_8h.html">in_game_room.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;../inc/input.h&quot;</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;../inc/fsm.h&quot;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;../inc/physics.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;../inc/animation.h&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;../inc/camera.h&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;../inc/hud.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;../inc/debug.h&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;../inc/game_init.h&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="foldopen" id="foldopen00011" data-start="{" data-end="}">
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c">   11</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c">in_game_room_handler</a>()</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a940f635da7254d2a02a607dab0139dfd">gFrames</a> == 1){ <a class="code hl_function" href="game__init_8c.html#aed24219971f7ba81ad8f567b2129a68d">FUNCAO_INICIALIZACAO</a>(); } <span class="comment">//Inicializacao</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a940f635da7254d2a02a607dab0139dfd">gFrames</a>&lt;=355){ </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                <a class="code hl_function" href="game__init_8c.html#a6450a3496019d3dbd629a6a01b4c8ad0">FUNCAO_ROUND_INIT</a>(); <span class="comment">//Rotina de Letreiramento de inicio dos rounds</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>            }<span class="keywordflow">else</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>                <a class="code hl_function" href="hud_8c.html#afbab9a78913dda4258fdf813b1e5b02d">FUNCAO_RELOGIO</a>(); <span class="comment">//HUD relogio</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>                <a class="code hl_function" href="hud_8c.html#a80b5307c825fb9571b9b1c276c1def22">FUNCAO_BARRAS_DE_ENERGIA</a>(); <span class="comment">//HUD barras</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            }    </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="comment">//libera os graficos dos sparks</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a76344b2f4af48520028f8101710fb71b">Spark1_countDown</a>&gt;0){ <a class="code hl_variable" href="game__globals_8c.html#a76344b2f4af48520028f8101710fb71b">Spark1_countDown</a>--; <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a76344b2f4af48520028f8101710fb71b">Spark1_countDown</a>==1){ SPR_releaseSprite(<a class="code hl_variable" href="game__globals_8c.html#a9c2ce63ce7873e45fb22cbb3593fd09e">Spark</a>[1]); <a class="code hl_variable" href="game__globals_8c.html#a9c2ce63ce7873e45fb22cbb3593fd09e">Spark</a>[1] = NULL; } }</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a4f940c68b9a7f9b72b6ef6ffea91abfc">Spark2_countDown</a>&gt;0){ <a class="code hl_variable" href="game__globals_8c.html#a4f940c68b9a7f9b72b6ef6ffea91abfc">Spark2_countDown</a>--; <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a4f940c68b9a7f9b72b6ef6ffea91abfc">Spark2_countDown</a>==1){ SPR_releaseSprite(<a class="code hl_variable" href="game__globals_8c.html#a9c2ce63ce7873e45fb22cbb3593fd09e">Spark</a>[2]); <a class="code hl_variable" href="game__globals_8c.html#a9c2ce63ce7873e45fb22cbb3593fd09e">Spark</a>[2] = NULL; } }</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <a class="code hl_function" href="input_8c.html#ac1d603801cb579f245807265a48ee7f0">FUNCAO_INPUT_SYSTEM</a>(); <span class="comment">//Verifica os joysticks </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <a class="code hl_function" href="animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108">FUNCAO_ANIMACAO</a>(); <span class="comment">//Atualiza animacao</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <a class="code hl_function" href="fsm_8c.html#ac584739335e499bbb9a17ddcd1bc9098">FUNCAO_FSM</a>(); <span class="comment">//FSM = Finite State Machine (Maquina de Estados)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <a class="code hl_function" href="physics_8c.html#ab370a65503b623bf8eeeb52e12699175">FUNCAO_PHYSICS</a>(); <span class="comment">//Funcoes de Fisica</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <a class="code hl_function" href="camera_8c.html#a3acb2bd9fa8e8352718ec9f3ccb202a1">FUNCAO_CAMERA_BGANIM</a>();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <a class="code hl_function" href="hud_8c.html#a533fa9150345bbf29587f74e6790d9a1">FUNCAO_SAMSHOFX</a>(); <span class="comment">//Efeitos do jogo SS2</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#adf0e781962f90028e6615f640d464f90">gDebug</a> == 1){ <a class="code hl_function" href="debug_8c.html#ace6f1e5a61cf4170ed85769e77c46e1a">FUNCAO_DEBUG</a>(); } <span class="comment">//Debug</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>}</div>
+</div>
+<div class="ttc" id="aanimation_8c_html_a608b49c2dae42bd2a19ac18d433f8108"><div class="ttname"><a href="animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108">FUNCAO_ANIMACAO</a></div><div class="ttdeci">void FUNCAO_ANIMACAO()</div><div class="ttdef"><b>Definição</b> <a href="animation_8c_source.html#l00004">animation.c:4</a></div></div>
+<div class="ttc" id="acamera_8c_html_a3acb2bd9fa8e8352718ec9f3ccb202a1"><div class="ttname"><a href="camera_8c.html#a3acb2bd9fa8e8352718ec9f3ccb202a1">FUNCAO_CAMERA_BGANIM</a></div><div class="ttdeci">void FUNCAO_CAMERA_BGANIM()</div><div class="ttdef"><b>Definição</b> <a href="camera_8c_source.html#l00005">camera.c:5</a></div></div>
+<div class="ttc" id="adebug_8c_html_ace6f1e5a61cf4170ed85769e77c46e1a"><div class="ttname"><a href="debug_8c.html#ace6f1e5a61cf4170ed85769e77c46e1a">FUNCAO_DEBUG</a></div><div class="ttdeci">void FUNCAO_DEBUG()</div><div class="ttdef"><b>Definição</b> <a href="debug_8c_source.html#l00005">debug.c:5</a></div></div>
+<div class="ttc" id="afsm_8c_html_ac584739335e499bbb9a17ddcd1bc9098"><div class="ttname"><a href="fsm_8c.html#ac584739335e499bbb9a17ddcd1bc9098">FUNCAO_FSM</a></div><div class="ttdeci">void FUNCAO_FSM()</div><div class="ttdef"><b>Definição</b> <a href="fsm_8c_source.html#l00009">fsm.c:9</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_a4f940c68b9a7f9b72b6ef6ffea91abfc"><div class="ttname"><a href="game__globals_8c.html#a4f940c68b9a7f9b72b6ef6ffea91abfc">Spark2_countDown</a></div><div class="ttdeci">u8 Spark2_countDown</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00038">game_globals.c:38</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_a76344b2f4af48520028f8101710fb71b"><div class="ttname"><a href="game__globals_8c.html#a76344b2f4af48520028f8101710fb71b">Spark1_countDown</a></div><div class="ttdeci">u8 Spark1_countDown</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00037">game_globals.c:37</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_a940f635da7254d2a02a607dab0139dfd"><div class="ttname"><a href="game__globals_8c.html#a940f635da7254d2a02a607dab0139dfd">gFrames</a></div><div class="ttdeci">u32 gFrames</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00005">game_globals.c:5</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_a9c2ce63ce7873e45fb22cbb3593fd09e"><div class="ttname"><a href="game__globals_8c.html#a9c2ce63ce7873e45fb22cbb3593fd09e">Spark</a></div><div class="ttdeci">Sprite * Spark[3]</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00065">game_globals.c:65</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_adf0e781962f90028e6615f640d464f90"><div class="ttname"><a href="game__globals_8c.html#adf0e781962f90028e6615f640d464f90">gDebug</a></div><div class="ttdeci">bool gDebug</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00018">game_globals.c:18</a></div></div>
+<div class="ttc" id="agame__init_8c_html_a6450a3496019d3dbd629a6a01b4c8ad0"><div class="ttname"><a href="game__init_8c.html#a6450a3496019d3dbd629a6a01b4c8ad0">FUNCAO_ROUND_INIT</a></div><div class="ttdeci">void FUNCAO_ROUND_INIT()</div><div class="ttdef"><b>Definição</b> <a href="game__init_8c_source.html#l00303">game_init.c:303</a></div></div>
+<div class="ttc" id="agame__init_8c_html_aed24219971f7ba81ad8f567b2129a68d"><div class="ttname"><a href="game__init_8c.html#aed24219971f7ba81ad8f567b2129a68d">FUNCAO_INICIALIZACAO</a></div><div class="ttdeci">void FUNCAO_INICIALIZACAO()</div><div class="ttdef"><b>Definição</b> <a href="game__init_8c_source.html#l00008">game_init.c:8</a></div></div>
+<div class="ttc" id="ahud_8c_html_a533fa9150345bbf29587f74e6790d9a1"><div class="ttname"><a href="hud_8c.html#a533fa9150345bbf29587f74e6790d9a1">FUNCAO_SAMSHOFX</a></div><div class="ttdeci">void FUNCAO_SAMSHOFX()</div><div class="ttdef"><b>Definição</b> <a href="hud_8c_source.html#l00129">hud.c:129</a></div></div>
+<div class="ttc" id="ahud_8c_html_a80b5307c825fb9571b9b1c276c1def22"><div class="ttname"><a href="hud_8c.html#a80b5307c825fb9571b9b1c276c1def22">FUNCAO_BARRAS_DE_ENERGIA</a></div><div class="ttdeci">void FUNCAO_BARRAS_DE_ENERGIA()</div><div class="ttdef"><b>Definição</b> <a href="hud_8c_source.html#l00057">hud.c:57</a></div></div>
+<div class="ttc" id="ahud_8c_html_afbab9a78913dda4258fdf813b1e5b02d"><div class="ttname"><a href="hud_8c.html#afbab9a78913dda4258fdf813b1e5b02d">FUNCAO_RELOGIO</a></div><div class="ttdeci">void FUNCAO_RELOGIO()</div><div class="ttdef"><b>Definição</b> <a href="hud_8c_source.html#l00005">hud.c:5</a></div></div>
+<div class="ttc" id="ain__game__room_8c_html_ae79df1e70a0f0b7acfbefc72357ca83c"><div class="ttname"><a href="in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c">in_game_room_handler</a></div><div class="ttdeci">void in_game_room_handler()</div><div class="ttdef"><b>Definição</b> <a href="#l00011">in_game_room.c:11</a></div></div>
+<div class="ttc" id="ain__game__room_8h_html"><div class="ttname"><a href="in__game__room_8h.html">in_game_room.h</a></div></div>
+<div class="ttc" id="ainput_8c_html_ac1d603801cb579f245807265a48ee7f0"><div class="ttname"><a href="input_8c.html#ac1d603801cb579f245807265a48ee7f0">FUNCAO_INPUT_SYSTEM</a></div><div class="ttdeci">void FUNCAO_INPUT_SYSTEM()</div><div class="ttdef"><b>Definição</b> <a href="input_8c_source.html#l00005">input.c:5</a></div></div>
+<div class="ttc" id="aphysics_8c_html_ab370a65503b623bf8eeeb52e12699175"><div class="ttname"><a href="physics_8c.html#ab370a65503b623bf8eeeb52e12699175">FUNCAO_PHYSICS</a></div><div class="ttdeci">void FUNCAO_PHYSICS()</div><div class="ttdef"><b>Definição</b> <a href="physics_8c_source.html#l00006">physics.c:6</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>

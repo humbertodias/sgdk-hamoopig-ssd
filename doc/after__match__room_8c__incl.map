@@ -1,0 +1,17 @@
+<map id="src/rooms/after_match_room.c" name="src/rooms/after_match_room.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="260,5,423,54"/>
+<area shape="rect" id="Node000002" href="$after__match__room_8h.html" title=" " alt="" coords="8,102,155,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,57,140,99,139,94,268,52"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="179,102,248,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="307,57,249,95,246,91,304,52"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="272,102,326,132"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="332,56,315,89,310,87,327,53"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="350,102,421,132"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="356,53,373,87,369,89,351,56"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="445,102,545,132"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="385,52,458,92,455,97,383,57"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="570,102,663,132"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="419,52,557,94,555,100,418,57"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,180,158,209"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,132,84,164,79,164,79,132"/>
+</map>

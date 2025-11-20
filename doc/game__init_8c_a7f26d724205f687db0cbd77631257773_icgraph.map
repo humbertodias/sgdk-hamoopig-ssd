@@ -1,0 +1,9 @@
+<map id="FUNCAO_ROUND_RESTART" name="FUNCAO_ROUND_RESTART">
+<area shape="rect" id="Node000001" title=" " alt="" coords="517,5,704,35"/>
+<area shape="rect" id="Node000002" href="$animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108" title=" " alt="" coords="319,5,469,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="501,23,469,23,469,18,501,18"/>
+<area shape="rect" id="Node000003" href="$in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c" title=" " alt="" coords="105,5,271,35"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="304,23,271,23,271,18,304,18"/>
+<area shape="rect" id="Node000004" href="$main_8c.html#a37e785bcbebaf8366b7914fed4e07ce3" title=" " alt="" coords="5,5,57,35"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="89,23,57,23,57,18,89,18"/>
+</map>

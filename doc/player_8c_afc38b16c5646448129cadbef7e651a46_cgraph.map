@@ -1,0 +1,9 @@
+<map id="PLAYER_STATE" name="PLAYER_STATE">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,59,114,88"/>
+<area shape="rect" id="Node000002" href="$player_8c.html#a941dc6b35efb4001faffc2a17e34f4f5" title=" " alt="" coords="178,5,322,35"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,56,179,37,181,42,115,61"/>
+<area shape="rect" id="Node000003" href="$gillius_8c.html#a124f3b671c4cd013fb241dabebd5cb8b" title=" " alt="" coords="177,59,323,88"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,71,161,71,161,76,114,76"/>
+<area shape="rect" id="Node000004" href="$haohmaru_8c.html#a43c42cf401ec3bd4ca139232111b7593" title=" " alt="" coords="162,112,338,142"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="115,86,181,105,179,110,113,91"/>
+</map>

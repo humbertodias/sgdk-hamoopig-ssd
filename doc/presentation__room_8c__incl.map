@@ -1,0 +1,15 @@
+<map id="src/rooms/presentation_room.c" name="src/rooms/presentation_room.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="218,5,385,54"/>
+<area shape="rect" id="Node000002" href="$presentation__room_8h.html" title=" " alt="" coords="6,102,157,132"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,57,133,98,131,93,239,52"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="182,102,251,132"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="280,56,243,93,239,89,276,53"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="275,102,328,132"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="304,55,304,86,299,86,299,55"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="353,102,453,132"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="331,52,376,90,373,94,328,57"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="478,102,571,132"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="364,52,474,93,472,98,363,57"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,180,158,209"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="84,132,84,164,79,164,79,132"/>
+</map>

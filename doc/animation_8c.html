@@ -1,0 +1,319 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.11.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SSD: Referência do Arquivo src/animation.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">SSD
+   </div>
+   <div id="projectbrief">Documentação gerada automaticamente com Doxygen</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.11.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Busca',false);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){ initResizable(false); });
+/* @license-end */
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrado</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Funções</a>  </div>
+  <div class="headertitle"><div class="title">Referência do Arquivo animation.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;animation.h&quot;</code><br />
+<code>#include &quot;game_globals.h&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Gráfico de dependência de inclusões para animation.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="animation_8c__incl.png" border="0" usemap="#asrc_2animation_8c" alt=""/></div>
+<map name="asrc_2animation_8c" id="asrc_2animation_8c">
+<area shape="rect" title=" " alt="" coords="59,5,174,35"/>
+<area shape="rect" title=" " alt="" coords="5,83,100,113"/>
+<area shape="poly" title=" " alt="" coords="106,37,76,73,72,69,102,34"/>
+<area shape="rect" title=" " alt="" coords="123,83,241,113"/>
+<area shape="poly" title=" " alt="" coords="131,34,162,69,158,73,127,37"/>
+</map>
+</div>
+</div>
+<p><a href="animation_8c_source.html">Ir para o código-fonte desse arquivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Funções</h2></td></tr>
+<tr class="memitem:a608b49c2dae42bd2a19ac18d433f8108" id="r_a608b49c2dae42bd2a19ac18d433f8108"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a608b49c2dae42bd2a19ac18d433f8108">FUNCAO_ANIMACAO</a> ()</td></tr>
+<tr class="separator:a608b49c2dae42bd2a19ac18d433f8108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a278eb368166f3a301f3a07ef48036d39" id="r_a278eb368166f3a301f3a07ef48036d39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a278eb368166f3a301f3a07ef48036d39">FUNCAO_SPR_POSITION</a> ()</td></tr>
+<tr class="separator:a278eb368166f3a301f3a07ef48036d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Funções</h2>
+<a id="a608b49c2dae42bd2a19ac18d433f8108" name="a608b49c2dae42bd2a19ac18d433f8108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a608b49c2dae42bd2a19ac18d433f8108">&#9670;&#160;</a></span>FUNCAO_ANIMACAO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUNCAO_ANIMACAO </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="animation_8c_source.html#l00004">4</a> do arquivo <a class="el" href="animation_8c_source.html">animation.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    5</span>{</div>
+<div class="line"><span class="lineno">    6</span>    <span class="comment">//CONTROLE DE ANIMACAO E END ANIMATION</span></div>
+<div class="line"><span class="lineno">    7</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].hitPause==0 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].hitPause==0)</div>
+<div class="line"><span class="lineno">    8</span>    { </div>
+<div class="line"><span class="lineno">    9</span>        <a class="code hl_variable" href="game__globals_8c.html#ab6aaeb8394cea6ecbe228b9504e02a0e">gASG_system</a> = 0; <span class="comment">//A.S.G.S. Anti Sprite Glitch System; (Evita a troca simultanea de sprites dos players)</span></div>
+<div class="line"><span class="lineno">   10</span>        </div>
+<div class="line"><span class="lineno">   11</span>        <span class="keywordflow">for</span>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>=1; <a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>&lt;=2; <a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>++)</div>
+<div class="line"><span class="lineno">   12</span>        {</div>
+<div class="line"><span class="lineno">   13</span>            <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual++; </div>
+<div class="line"><span class="lineno">   14</span>            <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual&gt;<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeTotal &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ab6aaeb8394cea6ecbe228b9504e02a0e">gASG_system</a>==0) <span class="comment">//hora de trocar o frame!</span></div>
+<div class="line"><span class="lineno">   15</span>            {</div>
+<div class="line"><span class="lineno">   16</span>                <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].animFrame++;</div>
+<div class="line"><span class="lineno">   17</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].animFrame&gt;<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].animFrameTotal) <span class="comment">//hora de trocar ou recarregar a animacao!</span></div>
+<div class="line"><span class="lineno">   18</span>                {</div>
+<div class="line"><span class="lineno">   19</span>                    <a class="code hl_variable" href="game__globals_8c.html#ab6aaeb8394cea6ecbe228b9504e02a0e">gASG_system</a> = 1;</div>
+<div class="line"><span class="lineno">   20</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==100){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   21</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==200){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); }</div>
+<div class="line"><span class="lineno">   22</span>                    </div>
+<div class="line"><span class="lineno">   23</span>                    <span class="comment">// estes aqui previnem bug, caso o tempo de animacao dos Aereos seja definido errado</span></div>
+<div class="line"><span class="lineno">   24</span>                    <span class="comment">// e o player nao tenha tempo de chegar ao solo...</span></div>
+<div class="line"><span class="lineno">   25</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==300 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==310 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==320){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   26</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==301 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==302 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==303){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   27</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==304 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==305 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==306){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   28</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==311 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==312 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==313){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   29</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==314 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==315 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==316){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   30</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==321 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==322 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==323){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   31</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==324 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==325 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==326){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   32</span>                    </div>
+<div class="line"><span class="lineno">   33</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==410){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,410); }</div>
+<div class="line"><span class="lineno">   34</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==420){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,420); }</div>
+<div class="line"><span class="lineno">   35</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==470 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==471 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==472){ <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].key_JOY_DOWN_status&gt;0){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); }<span class="keywordflow">else</span>{ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } }</div>
+<div class="line"><span class="lineno">   36</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==601){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); }</div>
+<div class="line"><span class="lineno">   37</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==602){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   38</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==603){ <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].y-=1; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].puloTimer=1; <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,310); }</div>
+<div class="line"><span class="lineno">   39</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==604){ <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].y-=1; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].puloTimer=1; <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,300); }</div>
+<div class="line"><span class="lineno">   40</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==605){ <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].y-=1; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].puloTimer=1; <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,320); }</div>
+<div class="line"><span class="lineno">   41</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==607){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//virando em pe</span></div>
+<div class="line"><span class="lineno">   42</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==608){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); } <span class="comment">//virando abaixado</span></div>
+<div class="line"><span class="lineno">   43</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&gt;=101 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&lt;=106){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   44</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==107){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,108); }</div>
+<div class="line"><span class="lineno">   45</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==108){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,108); }</div>
+<div class="line"><span class="lineno">   46</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==109){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   47</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==110){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,109); }</div>
+<div class="line"><span class="lineno">   48</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&gt;=151 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&lt;=156){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); }</div>
+<div class="line"><span class="lineno">   49</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&gt;=201 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&lt;=206){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); }</div>
+<div class="line"><span class="lineno">   50</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==207){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,208); }</div>
+<div class="line"><span class="lineno">   51</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==208){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,208); }</div>
+<div class="line"><span class="lineno">   52</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==209){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); }</div>
+<div class="line"><span class="lineno">   53</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==210){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,209); }</div>
+<div class="line"><span class="lineno">   54</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&gt;=501 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&lt;=550){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//end hurts</span></div>
+<div class="line"><span class="lineno">   55</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==552){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//end queda</span></div>
+<div class="line"><span class="lineno">   56</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==570){ <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].energiaBase&gt;0){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,552); }<span class="keywordflow">else</span>{ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,570); } } <span class="comment">//end pulos</span></div>
+<div class="line"><span class="lineno">   57</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==606){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//end pulos</span></div>
+<div class="line"><span class="lineno">   58</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==610){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//end Intro</span></div>
+<div class="line"><span class="lineno">   59</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==611 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==612 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==613 || <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==614){ <a class="code hl_function" href="game__init_8c.html#a7f26d724205f687db0cbd77631257773">FUNCAO_ROUND_RESTART</a>(); } <span class="comment">//end WIN Pose</span></div>
+<div class="line"><span class="lineno">   60</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==615){ <a class="code hl_function" href="game__init_8c.html#a7f26d724205f687db0cbd77631257773">FUNCAO_ROUND_RESTART</a>(); } <span class="comment">//end time lose</span></div>
+<div class="line"><span class="lineno">   61</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==618){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//end Rage Explosion</span></div>
+<div class="line"><span class="lineno">   62</span>                    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&gt;=700 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state&lt;=790){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,100); } <span class="comment">//end magias</span></div>
+<div class="line"><span class="lineno">   63</span>                }</div>
+<div class="line"><span class="lineno">   64</span>                <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual=1;</div>
+<div class="line"><span class="lineno">   65</span>                <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeTotal = <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].dataAnim[<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].animFrame];</div>
+<div class="line"><span class="lineno">   66</span>                SPR_setAnimAndFrame(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].sprite, 0, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].animFrame-1);</div>
+<div class="line"><span class="lineno">   67</span>                <a class="code hl_function" href="fsm_8c.html#a8dc07c5c2dae97d1b82661d7cb207a39">FUNCAO_FSM_HITBOXES</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>); <span class="comment">//Atualiza as Hurt / Hitboxes</span></div>
+<div class="line"><span class="lineno">   68</span>            }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual&gt;<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeTotal &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ab6aaeb8394cea6ecbe228b9504e02a0e">gASG_system</a>==1){ <span class="comment">//A.S.G.S. </span></div>
+<div class="line"><span class="lineno">   69</span>                <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual&gt;1){ <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual--; }</div>
+<div class="line"><span class="lineno">   70</span>            }</div>
+<div class="line"><span class="lineno">   71</span>            <span class="comment">//*NOTA: No caso do SS2, a animacao abaixando é encurtada (para se abaixar mais rapido) caso se mantenha pressionado para baixo apos o pulo //end pulos </span></div>
+<div class="line"><span class="lineno">   72</span>            <span class="comment">/*samsho2*/</span> <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].state==606 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].animFrame==2 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].frameTimeAtual&gt;=3 &amp;&amp; <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>].key_JOY_DOWN_status&gt;=1){ <a class="code hl_function" href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a>(<a class="code hl_variable" href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a>,200); } </div>
+<div class="line"><span class="lineno">   73</span>        }</div>
+<div class="line"><span class="lineno">   74</span>    }</div>
+<div class="line"><span class="lineno">   75</span>    <a class="code hl_function" href="#a278eb368166f3a301f3a07ef48036d39">FUNCAO_SPR_POSITION</a>(); <span class="comment">//Define a posicao do Sprite</span></div>
+<div class="line"><span class="lineno">   76</span>    </div>
+<div class="line"><span class="lineno">   77</span>}</div>
+<div class="ttc" id="aanimation_8c_html_a278eb368166f3a301f3a07ef48036d39"><div class="ttname"><a href="#a278eb368166f3a301f3a07ef48036d39">FUNCAO_SPR_POSITION</a></div><div class="ttdeci">void FUNCAO_SPR_POSITION()</div><div class="ttdef"><b>Definição</b> <a href="animation_8c_source.html#l00079">animation.c:79</a></div></div>
+<div class="ttc" id="afsm_8c_html_a8dc07c5c2dae97d1b82661d7cb207a39"><div class="ttname"><a href="fsm_8c.html#a8dc07c5c2dae97d1b82661d7cb207a39">FUNCAO_FSM_HITBOXES</a></div><div class="ttdeci">void FUNCAO_FSM_HITBOXES(u8 Player)</div><div class="ttdef"><b>Definição</b> <a href="fsm_8c_source.html#l00734">fsm.c:734</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_ab6aaeb8394cea6ecbe228b9504e02a0e"><div class="ttname"><a href="game__globals_8c.html#ab6aaeb8394cea6ecbe228b9504e02a0e">gASG_system</a></div><div class="ttdeci">bool gASG_system</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00021">game_globals.c:21</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_abf0a803c9f19fa09bc230ae54a46bb4c"><div class="ttname"><a href="game__globals_8c.html#abf0a803c9f19fa09bc230ae54a46bb4c">i</a></div><div class="ttdeci">u8 i</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00004">game_globals.c:4</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_ac38651c6feb8ae2d678984cfb697ba03"><div class="ttname"><a href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a></div><div class="ttdeci">struct PlayerDEF P[3]</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00097">game_globals.c:97</a></div></div>
+<div class="ttc" id="agame__init_8c_html_a7f26d724205f687db0cbd77631257773"><div class="ttname"><a href="game__init_8c.html#a7f26d724205f687db0cbd77631257773">FUNCAO_ROUND_RESTART</a></div><div class="ttdeci">void FUNCAO_ROUND_RESTART()</div><div class="ttdef"><b>Definição</b> <a href="game__init_8c_source.html#l00441">game_init.c:441</a></div></div>
+<div class="ttc" id="aplayer_8c_html_afc38b16c5646448129cadbef7e651a46"><div class="ttname"><a href="player_8c.html#afc38b16c5646448129cadbef7e651a46">PLAYER_STATE</a></div><div class="ttdeci">void PLAYER_STATE(u8 Player, u16 State)</div><div class="ttdef"><b>Definição</b> <a href="player_8c_source.html#l00008">player.c:8</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Este é o diagrama das funções utilizadas por essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="animation_8c_a608b49c2dae42bd2a19ac18d433f8108_cgraph.png" border="0" usemap="#aanimation_8c_a608b49c2dae42bd2a19ac18d433f8108_cgraph" alt=""/></div>
+<map name="aanimation_8c_a608b49c2dae42bd2a19ac18d433f8108_cgraph" id="aanimation_8c_a608b49c2dae42bd2a19ac18d433f8108_cgraph">
+<area shape="rect" title=" " alt="" coords="5,85,156,115"/>
+<area shape="rect" href="fsm_8c.html#a8dc07c5c2dae97d1b82661d7cb207a39" title=" " alt="" coords="209,5,385,35"/>
+<area shape="poly" title=" " alt="" coords="113,82,203,44,223,37,225,42,205,49,115,87"/>
+<area shape="rect" href="game__init_8c.html#a7f26d724205f687db0cbd77631257773" title=" " alt="" coords="204,59,390,88"/>
+<area shape="poly" title=" " alt="" coords="156,88,188,84,188,90,156,94"/>
+<area shape="rect" href="player_8c.html#afc38b16c5646448129cadbef7e651a46" title=" " alt="" coords="465,112,573,142"/>
+<area shape="poly" title=" " alt="" coords="156,102,449,120,448,125,156,107"/>
+<area shape="rect" href="animation_8c.html#a278eb368166f3a301f3a07ef48036d39" title=" " alt="" coords="211,163,383,192"/>
+<area shape="poly" title=" " alt="" coords="125,113,240,154,238,159,124,118"/>
+<area shape="rect" href="utils_8c.html#abc91f67f185063e878e79cebf91d246e" title=" " alt="" coords="473,5,565,35"/>
+<area shape="poly" title=" " alt="" coords="361,55,457,32,458,37,362,61"/>
+<area shape="rect" href="game__init_8c.html#a6450a3496019d3dbd629a6a01b4c8ad0" title=" " alt="" coords="438,59,599,88"/>
+<area shape="poly" title=" " alt="" coords="390,71,422,71,422,76,390,76"/>
+<area shape="poly" title=" " alt="" coords="362,86,450,108,449,113,361,92"/>
+<area shape="rect" href="player_8c.html#a941dc6b35efb4001faffc2a17e34f4f5" title=" " alt="" coords="663,59,808,88"/>
+<area shape="poly" title=" " alt="" coords="573,111,657,90,658,95,574,116"/>
+<area shape="rect" href="gillius_8c.html#a124f3b671c4cd013fb241dabebd5cb8b" title=" " alt="" coords="662,112,809,142"/>
+<area shape="poly" title=" " alt="" coords="573,124,647,124,647,130,573,130"/>
+<area shape="rect" href="haohmaru_8c.html#a43c42cf401ec3bd4ca139232111b7593" title=" " alt="" coords="647,165,824,195"/>
+<area shape="poly" title=" " alt="" coords="574,138,658,159,657,164,573,143"/>
+</map>
+</div>
+<div class="dynheader">
+Esse é o diagrama das funções que utilizam essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="animation_8c_a608b49c2dae42bd2a19ac18d433f8108_icgraph.png" border="0" usemap="#aanimation_8c_a608b49c2dae42bd2a19ac18d433f8108_icgraph" alt=""/></div>
+<map name="aanimation_8c_a608b49c2dae42bd2a19ac18d433f8108_icgraph" id="aanimation_8c_a608b49c2dae42bd2a19ac18d433f8108_icgraph">
+<area shape="rect" title=" " alt="" coords="319,5,469,35"/>
+<area shape="rect" href="in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c" title=" " alt="" coords="105,5,271,35"/>
+<area shape="poly" title=" " alt="" coords="304,23,271,23,271,18,304,18"/>
+<area shape="rect" href="main_8c.html#a37e785bcbebaf8366b7914fed4e07ce3" title=" " alt="" coords="5,5,57,35"/>
+<area shape="poly" title=" " alt="" coords="89,23,57,23,57,18,89,18"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a278eb368166f3a301f3a07ef48036d39" name="a278eb368166f3a301f3a07ef48036d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a278eb368166f3a301f3a07ef48036d39">&#9670;&#160;</a></span>FUNCAO_SPR_POSITION()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void FUNCAO_SPR_POSITION </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definição na linha <a class="el" href="animation_8c_source.html#l00079">79</a> do arquivo <a class="el" href="animation_8c_source.html">animation.c</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>{</div>
+<div class="line"><span class="lineno">   81</span>    <span class="comment">//ajusta posicao do sprite</span></div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].direcao== 1){ SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].sprite, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].x-(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].w-<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].axisX), <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].y-<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].axisY); }</div>
+<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].direcao==-1){ SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].sprite, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].x- <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].axisX        , <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].y-<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].axisY); }</div>
+<div class="line"><span class="lineno">   84</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].direcao== 1){ SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].sprite, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].x-(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].w-<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].axisX), <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].y-<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].axisY); }</div>
+<div class="line"><span class="lineno">   85</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].direcao==-1){ SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].sprite, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].x- <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].axisX        , <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].y-<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].axisY); }</div>
+<div class="line"><span class="lineno">   86</span>    </div>
+<div class="line"><span class="lineno">   87</span>    <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#a0bf764990503277f5494417228d5933d">gSombraStyle</a>==2)</div>
+<div class="line"><span class="lineno">   88</span>    {</div>
+<div class="line"><span class="lineno">   89</span>        SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].sombra, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].x-32, <a class="code hl_variable" href="game__globals_8c.html#a5247eaf92fd554713f0a10c89608d6de">gAlturaPiso</a>-5); <span class="comment">// *NOTA: A sombra do SS2 tem 80px, entao desloquei -40px no eixo X</span></div>
+<div class="line"><span class="lineno">   90</span>        SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].sombra, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].x-32, <a class="code hl_variable" href="game__globals_8c.html#a5247eaf92fd554713f0a10c89608d6de">gAlturaPiso</a>-5); <span class="comment">// para que ela ficasse perfeitamente alinhada aos players /*samsho2*/</span></div>
+<div class="line"><span class="lineno">   91</span>    }<span class="keywordflow">else</span>{</div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#aff9c3763bada784549405d5e877b6d5c">gPing2</a>==0){ SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].sombra, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].x-32, <a class="code hl_variable" href="game__globals_8c.html#a5247eaf92fd554713f0a10c89608d6de">gAlturaPiso</a>-5); }</div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">if</span>(<a class="code hl_variable" href="game__globals_8c.html#aff9c3763bada784549405d5e877b6d5c">gPing2</a>==1){ SPR_setPosition(<a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[1].sombra, <a class="code hl_variable" href="game__globals_8c.html#ac38651c6feb8ae2d678984cfb697ba03">P</a>[2].x-32, <a class="code hl_variable" href="game__globals_8c.html#a5247eaf92fd554713f0a10c89608d6de">gAlturaPiso</a>-5); }</div>
+<div class="line"><span class="lineno">   94</span>    }</div>
+<div class="line"><span class="lineno">   95</span>}</div>
+<div class="ttc" id="agame__globals_8c_html_a0bf764990503277f5494417228d5933d"><div class="ttname"><a href="game__globals_8c.html#a0bf764990503277f5494417228d5933d">gSombraStyle</a></div><div class="ttdeci">u8 gSombraStyle</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00017">game_globals.c:17</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_a5247eaf92fd554713f0a10c89608d6de"><div class="ttname"><a href="game__globals_8c.html#a5247eaf92fd554713f0a10c89608d6de">gAlturaPiso</a></div><div class="ttdeci">u8 gAlturaPiso</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00027">game_globals.c:27</a></div></div>
+<div class="ttc" id="agame__globals_8c_html_aff9c3763bada784549405d5e877b6d5c"><div class="ttname"><a href="game__globals_8c.html#aff9c3763bada784549405d5e877b6d5c">gPing2</a></div><div class="ttdeci">u8 gPing2</div><div class="ttdef"><b>Definição</b> <a href="game__globals_8c_source.html#l00022">game_globals.c:22</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+Esse é o diagrama das funções que utilizam essa função:</div>
+<div class="dyncontent">
+<div class="center"><img src="animation_8c_a278eb368166f3a301f3a07ef48036d39_icgraph.png" border="0" usemap="#aanimation_8c_a278eb368166f3a301f3a07ef48036d39_icgraph" alt=""/></div>
+<map name="aanimation_8c_a278eb368166f3a301f3a07ef48036d39_icgraph" id="aanimation_8c_a278eb368166f3a301f3a07ef48036d39_icgraph">
+<area shape="rect" title=" " alt="" coords="517,5,689,35"/>
+<area shape="rect" href="animation_8c.html#a608b49c2dae42bd2a19ac18d433f8108" title=" " alt="" coords="319,5,469,35"/>
+<area shape="poly" title=" " alt="" coords="502,23,470,23,470,18,502,18"/>
+<area shape="rect" href="in__game__room_8c.html#ae79df1e70a0f0b7acfbefc72357ca83c" title=" " alt="" coords="105,5,271,35"/>
+<area shape="poly" title=" " alt="" coords="304,23,271,23,271,18,304,18"/>
+<area shape="rect" href="main_8c.html#a37e785bcbebaf8366b7914fed4e07ce3" title=" " alt="" coords="5,5,57,35"/>
+<area shape="poly" title=" " alt="" coords="89,23,57,23,57,18,89,18"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.11.0
+</small></address>
+</div><!-- doc-content -->
+</body>
+</html>
