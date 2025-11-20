@@ -1,8 +1,8 @@
 #include "descompression_room.h"
 #include "sprite.h"
 #include "gfx.h"
-#include "game_init.h"
-#include "utils.h"
+#include "../inc/game_init.h"
+#include "../inc/utils.h"
 
 void descompression_room_handler()
 {

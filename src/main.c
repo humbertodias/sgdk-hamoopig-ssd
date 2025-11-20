@@ -24,13 +24,13 @@
 #include "hud.h"
 #include "game_init.h"
 #include "debug.h"
-#include "hamoopig_room.h"
-#include "presentation_room.h"
-#include "char_select_room.h"
-#include "stage_select_room.h"
-#include "descompression_room.h"
-#include "in_game_room.h"
-#include "after_match_room.h"
+#include "rooms/hamoopig_room.h"
+#include "rooms/presentation_room.h"
+#include "rooms/char_select_room.h"
+#include "rooms/stage_select_room.h"
+#include "rooms/descompression_room.h"
+#include "rooms/in_game_room.h"
+#include "rooms/after_match_room.h"
 
 int main(u16 hard) /************** MAIN **************/
 {

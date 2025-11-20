@@ -1,12 +1,12 @@
 #include "in_game_room.h"
-#include "input.h"
-#include "fsm.h"
-#include "physics.h"
-#include "animation.h"
-#include "camera.h"
-#include "hud.h"
-#include "debug.h"
-#include "game_init.h"
+#include "../inc/input.h"
+#include "../inc/fsm.h"
+#include "../inc/physics.h"
+#include "../inc/animation.h"
+#include "../inc/camera.h"
+#include "../inc/hud.h"
+#include "../inc/debug.h"
+#include "../inc/game_init.h"
 
 void in_game_room_handler()
 {

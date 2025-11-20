@@ -1,7 +1,7 @@
 #ifndef PRESENTATION_ROOM_H
 #define PRESENTATION_ROOM_H
 
-#include "game_globals.h"
+#include "../inc/game_globals.h"
 
 void presentation_room_handler();
 

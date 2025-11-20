@@ -1,7 +1,7 @@
 #ifndef AFTER_MATCH_ROOM_H
 #define AFTER_MATCH_ROOM_H
 
-#include "game_globals.h"
+#include "../inc/game_globals.h"
 
 void after_match_room_handler();
 

@@ -2,8 +2,8 @@
 #include "sprite.h"
 #include "gfx.h"
 #include "sound.h"
-#include "input.h"
-#include "utils.h"
+#include "../inc/input.h"
+#include "../inc/utils.h"
 
 void after_match_room_handler()
 {

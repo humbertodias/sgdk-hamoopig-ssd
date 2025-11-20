@@ -1,7 +1,7 @@
 #ifndef STAGE_SELECT_ROOM_H
 #define STAGE_SELECT_ROOM_H
 
-#include "game_globals.h"
+#include "../inc/game_globals.h"
 
 void stage_select_room_handler();
 
