@@ -40,8 +40,8 @@ void PLAYER_STATE(u8 Player, u16 State)
 	/*samsho2*/
 	// Evita o bug de sobrecarga de sprites, desabilitando golpes (medio / forte) SIMULTANEOS do Gillius 
 	// Esta solucao é temporaria! :)
-	if( (P[1].id==2 && P[2].id==2) && ((P[1].state==102 || P[1].state==103) && Player==2) && (State==102 || State==103) ){ State=101; }
-	if( (P[1].id==2 && P[2].id==2) && ((P[2].state==102 || P[2].state==103) && Player==1) && (State==102 || State==103) ){ State=101; }
+	if( (P[1].id==2 && P[2].id==2) && ((P[1].state == STATE_SOCO_MEDIO_LONGE || P[1].state == STATE_SOCO_FORTE_LONGE) && Player==2) && (State==102 || State==103) ){ State=101; }
+	if( (P[1].id==2 && P[2].id==2) && ((P[2].state == STATE_SOCO_MEDIO_LONGE || P[2].state == STATE_SOCO_FORTE_LONGE) && Player==1) && (State==102 || State==103) ){ State=101; }
 	
 	//virando de lado (mudanca de estado)
 	if(Player==1 && P[1].direcao== 1 && P[2].x<P[1].x && State==100){ State=607; }
@@ -82,21 +82,21 @@ void PLAYER_STATE(u8 Player, u16 State)
 	
 	//Depth
 	u16 depth = Player;
-	if(P[Player].state>=601 && P[Player].state<=605)                         {depth = Player+ 0;} //Derrota
+	if(P[Player].state >= STATE_ABAIXANDO && P[Player].state <= STATE_INICIO_PULO_FRENTE)                         {depth = Player+ 0;} //Derrota
 	if(P[Player].state==609)                                                 {depth = Player+ 0;} //Nocaute
-	if(P[Player].state==618 || P[Player].state==619)                         {depth = Player+ 0;} //Raiva
+	if(P[Player].state == STATE_RAGE_EXPLOSION || P[Player].state==619)                         {depth = Player+ 0;} //Raiva
 	if(P[Player].state>=400 && P[Player].state<=599)                         {depth = Player+12;} //Dano
-	if(P[Player].state==607 || P[Player].state==608)                         {depth = Player+10;} //Virando de lado
-	if(P[Player].state==100 || P[Player].state==200)                         {depth = Player+10;} //Parado
-	if(P[Player].state==410 || P[Player].state==420)                         {depth = Player+10;} //Andando
-	if(P[Player].state>=107 && P[Player].state<=110)                         {depth = Player+10;} //Defesa em Pe
-	if(P[Player].state>=207 && P[Player].state<=210)                         {depth = Player+10;} //Defesa Abaixado
-	if(P[Player].state>=101 && P[Player].state<=156)                         {depth = Player+ 8;} //Golpes em Pe
-	if(P[Player].state>=200 && P[Player].state<=206)                         {depth = Player+ 6;} //Golpes Abaixados
-	if(P[Player].state==300 || P[Player].state==310 || P[Player].state==320) {depth = Player+ 4;} //Pulos
-	if(P[Player].state>=301 && P[Player].state<=326)                         {depth = Player+ 2;} //Golpes Aereos
-	if(P[Player].state>=611 && P[Player].state<=614)                         {depth = Player+ 2;} //Vitoria
-	if(P[Player].state>=700 && P[Player].state<=790)                         {depth = Player+ 2;} //Magias
+	if(P[Player].state == STATE_VIRANDO_PE || P[Player].state == STATE_VIRANDO_ABAIXADO)                         {depth = Player+10;} //Virando de lado
+	if(P[Player].state == STATE_PARADO || P[Player].state == STATE_ABAIXADO)                         {depth = Player+10;} //Parado
+	if(P[Player].state == STATE_ANDANDO_TRAS || P[Player].state == STATE_ANDANDO_FRENTE)                         {depth = Player+10;} //Andando
+	if(P[Player].state >= STATE_DEFESA_PE_INICIO && P[Player].state <= STATE_DEFESA_PE_APLICADA)                         {depth = Player+10;} //Defesa em Pe
+	if(P[Player].state >= STATE_DEFESA_ABAIXADO_INICIO && P[Player].state <= STATE_DEFESA_ABAIXADO_APLICADA)                         {depth = Player+10;} //Defesa Abaixado
+	if(P[Player].state >= STATE_SOCO_FRACO_LONGE && P[Player].state <= STATE_CHUTE_FORTE_PERTO)                         {depth = Player+ 8;} //Golpes em Pe
+	if(P[Player].state >= STATE_ABAIXADO && P[Player].state <= STATE_CHUTE_FORTE_ABAIXADO)                         {depth = Player+ 6;} //Golpes Abaixados
+	if(P[Player].state == STATE_PULO_NEUTRO || P[Player].state == STATE_PULO_TRAS || P[Player].state == STATE_PULO_FRENTE) {depth = Player+ 4;} //Pulos
+	if(P[Player].state >= STATE_SOCO_FRACO_AEREO_NEUTRO && P[Player].state <= STATE_CHUTE_FORTE_AEREO_FRENTE)                         {depth = Player+ 2;} //Golpes Aereos
+	if(P[Player].state >= STATE_WIN1 && P[Player].state <= STATE_WIN4)                         {depth = Player+ 2;} //Vitoria
+	if(P[Player].state >= STATE_ESPECIAL_700 && P[Player].state <= STATE_ESPECIAL_790)                         {depth = Player+ 2;} //Magias
 	//define o Depth, SE e SOMENTE SE o sprite estiver carregado. 
 	//O comando 'SPR_setDepth' pode ser potencialmente perigoso e TRAVAR o jogo se o SPRITE nao estiver completamente carregado na VRAM
 	if(P[Player].sprite){ SPR_setDepth(P[Player].sprite, depth); }

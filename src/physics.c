@@ -12,14 +12,14 @@ void FUNCAO_PHYSICS() //FISICA!
 		if(P[i].id==1) //HAOHMARU
 		{
 			//Slide (DOWN + HIGH KICK)
-			if(P[i].state==206 && P[i].animFrame<=3 && (P[1].hitPause==0 && P[2].hitPause==0) ) 
+			if(P[i].state == STATE_CHUTE_FORTE_ABAIXADO && P[i].animFrame<=3 && (P[1].hitPause==0 && P[2].hitPause==0) ) 
 			{
 				P[i].hSpeed=1;
 				P[i].x+=P[i].hSpeed*P[i].direcao;
 			}
 			
 			//impulso do 'shoryuken'
-			if(P[i].state==700) 
+			if(P[i].state == STATE_ESPECIAL_700) 
 			{
 				if(P[i].animFrame==16 && P[i].frameTimeAtual==1 && P[i].y==gAlturaPiso)
 				{
@@ -48,18 +48,18 @@ void FUNCAO_PHYSICS() //FISICA!
 				}
 				
 				//'700' > Altura Piso
-				if(P[i].state==700 && P[i].y>gAlturaPiso)
+				if(P[i].state == STATE_ESPECIAL_700 && P[i].y>gAlturaPiso)
 				{
 					P[i].y=gAlturaPiso;
 					P[i].gravidadeY = 0;
 					P[i].impulsoY = 0;
 					P[i].cicloInteracoesGravidade=CIGD;
-					PLAYER_STATE(i,100);
+					PLAYER_STATE(i, STATE_PARADO);
 				}
 			}
 			
 			//velocidade da magia
-			if(P[i].state==710 && P[i].animFrame==12)
+			if(P[i].state == STATE_ESPECIAL_710 && P[i].animFrame==12)
 			{
 				if(P[i].attackPower==1){ P[i].fBallSpeedX = 2; }
 				if(P[i].attackPower==2){ P[i].fBallSpeedX = 3; }
@@ -71,7 +71,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		if(P[i].id==2) //GILLIUS
 		{
 			//velocidade da magia
-			if(P[i].state==700 && P[i].animFrame==5)
+			if(P[i].state == STATE_ESPECIAL_700 && P[i].animFrame==5)
 			{
 				if(P[i].attackPower==1){ P[i].fBallSpeedX = 1; }
 				if(P[i].attackPower==2){ P[i].fBallSpeedX = 2; }
@@ -79,7 +79,7 @@ void FUNCAO_PHYSICS() //FISICA!
 			}
 			
 			//fisica da magia 710
-			if(P[i].state==710) 
+			if(P[i].state == STATE_ESPECIAL_710) 
 			{
 				//'710' subindo
 				if( P[1].hitPause==0 && P[2].hitPause==0 )
@@ -108,18 +108,18 @@ void FUNCAO_PHYSICS() //FISICA!
 				}
 				
 				//'710' > Altura Piso
-				if(P[i].state==710 && P[i].y>gAlturaPiso+16)
+				if(P[i].state == STATE_ESPECIAL_710 && P[i].y>gAlturaPiso+16)
 				{
 					P[i].y=gAlturaPiso;
 					P[i].gravidadeY = 0;
 					P[i].impulsoY = 0;
 					P[i].cicloInteracoesGravidade=CIGD;
-					PLAYER_STATE(i,711);
+					PLAYER_STATE(i, STATE_ESPECIAL_711);
 				}
 			}
 			
 			//'720' Shoulder Ram
-			if(P[i].state==720 && (P[i].animFrame>=3 && P[i].animFrame<=7) && (P[1].hitPause==0 && P[2].hitPause==0) ) 
+			if(P[i].state == STATE_ESPECIAL_720 && (P[i].animFrame>=3 && P[i].animFrame<=7) && (P[1].hitPause==0 && P[2].hitPause==0) ) 
 			{
 				if(P[i].attackPower==1){ P[i].hSpeed=4; }
 				if(P[i].attackPower==2){ P[i].hSpeed=5; }
@@ -143,7 +143,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		//-----------------------------------------------------------------------------------------
 		
 		//Hits Movement, deslocamento dos Players para trás, durante os ataques
-		if(P[i].state>=500 && P[i].state<=550 && (P[1].hitPause==0 && P[2].hitPause==0) )
+		if(P[i].state>=500 && P[i].state <= STATE_CAINDO && (P[1].hitPause==0 && P[2].hitPause==0) )
 		{
 			u8 PA=0; //Player que Ataca
 			u8 PR=0; //Player que Recebe o Ataque
@@ -162,12 +162,12 @@ void FUNCAO_PHYSICS() //FISICA!
 			if(P[PR].x >= gLimiteCenarioD)
 			{
 				P[PA].hSpeed = 2;
-				if(gPing2 == 1 && (P[PR].state!=550) ){ P[PA].x += P[PA].hSpeed*(P[PA].direcao*-1); }
+				if(gPing2 == 1 && (P[PR].state != STATE_CAINDO) ){ P[PA].x += P[PA].hSpeed*(P[PA].direcao*-1); }
 			}
 			if(P[PR].x <= gLimiteCenarioE)
 			{
 				P[PA].hSpeed = 2;
-				if(gPing2 == 1 && (P[PR].state!=550) ){ P[PA].x += P[PA].hSpeed*(P[PA].direcao*-1); }
+				if(gPing2 == 1 && (P[PR].state != STATE_CAINDO) ){ P[PA].x += P[PA].hSpeed*(P[PA].direcao*-1); }
 			}
 		}
 		
@@ -180,30 +180,30 @@ void FUNCAO_PHYSICS() //FISICA!
 		}
 		
 		//andar
-		if(P[i].state==410 || P[i].state==420)
+		if(P[i].state == STATE_ANDANDO_TRAS || P[i].state == STATE_ANDANDO_FRENTE)
 		{
 			P[i].hSpeed=2;
-			if(P[i].state==410){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}
-			if(P[i].state==420){P[i].x+=P[i].hSpeed*(P[i].direcao);}
+			if(P[i].state == STATE_ANDANDO_TRAS){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}
+			if(P[i].state == STATE_ANDANDO_FRENTE){P[i].x+=P[i].hSpeed*(P[i].direcao);}
 		}
 		
 		//esquiva frente e tras
-		if(P[i].state==471 || P[i].state==472)
+		if(P[i].state == STATE_ROLAMENTO_TRAS || P[i].state == STATE_ROLAMENTO_FRENTE)
 		{
-			if(P[i].animFrame>=1){ P[i].hSpeed=3; if(P[i].state==471){ P[i].hSpeed=4; } }
+			if(P[i].animFrame>=1){ P[i].hSpeed=3; if(P[i].state == STATE_ROLAMENTO_TRAS){ P[i].hSpeed=4; } }
 			if(P[i].animFrame>=3){ P[i].hSpeed=2; }
 			if(P[i].animFrame>=5){ P[i].hSpeed=1; }
 			if(P[i].animFrame>=6){ P[i].hSpeed=0; } //anula o deslocamento
-			if(P[i].state==471){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}
-			if(P[i].state==472){P[i].x+=P[i].hSpeed*(P[i].direcao);}
+			if(P[i].state == STATE_ROLAMENTO_TRAS){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}
+			if(P[i].state == STATE_ROLAMENTO_FRENTE){P[i].x+=P[i].hSpeed*(P[i].direcao);}
 		}
 		
 		//defesas
-		if( (P[i].state==110 || P[i].state==210) && (P[1].hitPause==0 && P[2].hitPause==0) )
+		if( (P[i].state == STATE_DEFESA_PE_APLICADA || P[i].state == STATE_DEFESA_ABAIXADO_APLICADA) && (P[1].hitPause==0 && P[2].hitPause==0) )
 		{
 			P[i].hSpeed=4;
-			if(P[i].state==110){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}//defesa em pe
-			if(P[i].state==210){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}//defesa abaixado
+			if(P[i].state == STATE_DEFESA_PE_APLICADA){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}//defesa em pe
+			if(P[i].state == STATE_DEFESA_ABAIXADO_APLICADA){P[i].x+=P[i].hSpeed*(P[i].direcao*-1);}//defesa abaixado
 		}
 		
 		//pulos
@@ -211,7 +211,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		{
 			if(P[i].puloTimer!=0){ P[i].puloTimer++; }
 		
-			if(P[i].state>=300 && P[i].state<=326)
+			if(P[i].state >= STATE_PULO_NEUTRO && P[i].state <= STATE_CHUTE_FORTE_AEREO_FRENTE)
 			{ 
 				P[i].hSpeed=3;
 				/*samsho2*/ //hard code :P
@@ -263,15 +263,15 @@ void FUNCAO_PHYSICS() //FISICA!
 				if(P[i].puloTimer==44){ P[i].y+=11; }
 				if(P[i].puloTimer==45){ P[i].y+= 1; }
 				
-				if(P[i].state>=320 && P[i].state<=326){ P[i].x+=P[i].hSpeed*(P[i].direcao); }
-				if(P[i].state>=310 && P[i].state<=316){ P[i].x+=P[i].hSpeed*(P[i].direcao*-1); }
+				if(P[i].state >= STATE_PULO_FRENTE && P[i].state <= STATE_CHUTE_FORTE_AEREO_FRENTE){ P[i].x+=P[i].hSpeed*(P[i].direcao); }
+				if(P[i].state >= STATE_PULO_TRAS && P[i].state <= STATE_CHUTE_FORTE_AEREO_TRAS){ P[i].x+=P[i].hSpeed*(P[i].direcao*-1); }
 			}
 		}
 		
 		//corrige posX //limites do cenario
 		if(P[i].x<gLimiteCenarioE)
 		{ 
-			if( P[i].state>=550 && P[i].state<=552 )
+			if( P[i].state >= STATE_CAINDO && P[i].state <= STATE_LEVANTANDO )
 			{ 
 				P[i].x=gLimiteCenarioE+1; 
 			}else{ 
@@ -280,7 +280,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		}
 		if(P[i].x>gLimiteCenarioD)
 		{ 
-			if( P[i].state>=550 && P[i].state<=552 )
+			if( P[i].state >= STATE_CAINDO && P[i].state <= STATE_LEVANTANDO )
 			{ 
 				P[i].x=gLimiteCenarioD-1; 
 			}else{
@@ -294,7 +294,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		{
 			P[i].cicloInteracoesGravidadeCont++;
 			
-			if(P[i].state==516)
+			if(P[i].state == STATE_USER_HIT)
 			{
 				if(P[i].cicloInteracoesGravidadeCont>=P[i].cicloInteracoesGravidade){
 					P[i].cicloInteracoesGravidadeCont=0;
@@ -307,12 +307,12 @@ void FUNCAO_PHYSICS() //FISICA!
 		}
 		
 		//'516' > Altura Piso
-		if(P[i].state==516 && P[i].y>gAlturaPiso)
+		if(P[i].state == STATE_USER_HIT && P[i].y>gAlturaPiso)
 		{
 			P[i].y=gAlturaPiso-1;
 			P[i].gravidadeY = gravidadePadrao;
 			P[i].impulsoY = -6;//-14
-			PLAYER_STATE(i,551);
+			PLAYER_STATE(i, STATE_QUICANDO_CHAO);
 		}
 		
 		//'550' CAINDO
@@ -320,7 +320,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		{
 			P[i].cicloInteracoesGravidadeCont++;
 			
-			if(P[i].state==550)
+			if(P[i].state == STATE_CAINDO)
 			{
 				if(P[i].cicloInteracoesGravidadeCont>=P[i].cicloInteracoesGravidade){
 					P[i].cicloInteracoesGravidadeCont=0;
@@ -333,15 +333,15 @@ void FUNCAO_PHYSICS() //FISICA!
 		}
 		
 		//'550' > Altura Piso
-		if(P[i].state==550 && P[i].y>gAlturaPiso)
+		if(P[i].state == STATE_CAINDO && P[i].y>gAlturaPiso)
 		{
 			P[i].y=gAlturaPiso-1;
 			P[i].gravidadeY = gravidadePadrao;
 			P[i].impulsoY = -6;//-14
-			PLAYER_STATE(i,551);
+			PLAYER_STATE(i, STATE_QUICANDO_CHAO);
 		}
 		
-		if(P[i].state==551){
+		if(P[i].state == STATE_QUICANDO_CHAO){
 			if(P[i].cicloInteracoesGravidadeCont>=P[i].cicloInteracoesGravidade){
 				P[i].cicloInteracoesGravidadeCont=0;
 				P[i].impulsoY = P[i].impulsoY+P[i].gravidadeY;
@@ -352,10 +352,10 @@ void FUNCAO_PHYSICS() //FISICA!
 		}
 		
 		//'551' > Altura Piso
-		if(P[i].state==551 && P[i].y>gAlturaPiso)
+		if(P[i].state == STATE_QUICANDO_CHAO && P[i].y>gAlturaPiso)
 		{
 			P[i].y=gAlturaPiso;
-			PLAYER_STATE(i,570);
+			PLAYER_STATE(i, STATE_CAIDO_MORTO);
 		}
 		
 		//-----------------------------------------------------------------------------------------
@@ -365,7 +365,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		{
 			//P[i].cicloInteracoesGravidadeCont++;
 			
-			if( (P[i].state==710 || P[i].state==720 || P[i].state==730 || P[i].state==740 || P[i].state==750) && P[i].y!=gAlturaPiso )
+			if( (P[i].state == STATE_ESPECIAL_710 || P[i].state == STATE_ESPECIAL_720 || P[i].state == STATE_ESPECIAL_730 || P[i].state==740 || P[i].state==750) && P[i].y!=gAlturaPiso )
 			{
 				if(P[i].cicloInteracoesGravidadeCont>=P[i].cicloInteracoesGravidade){
 					P[i].cicloInteracoesGravidadeCont=0;
@@ -379,7 +379,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		
 		//'MAGIAS' FISICA > Altura Piso
 		//HAOHMARU (magia 720)
-		if( (P[i].state==720) && P[i].y+2>gAlturaPiso)
+		if( (P[i].state == STATE_ESPECIAL_720) && P[i].y+2>gAlturaPiso)
 		{
 			P[i].y = gAlturaPiso;
 			P[i].frameTimeAtual = P[i].frameTimeTotal; //Passa para o proximo frame de animacao

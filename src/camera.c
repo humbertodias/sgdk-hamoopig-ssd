@@ -21,11 +21,11 @@ void FUNCAO_CAMERA_BGANIM()
 	bool walk1= FALSE, walk2 = FALSE;
 
 	// percebe se o player está parado ou andando, tem que checar os outros casos de parado
-	if(P[1].state != 100)
+	if(P[1].state != STATE_PARADO)
 	{
 		walk1 = TRUE;
 	}
-	if(P[2].state != 100)
+	if(P[2].state != STATE_PARADO)
 	{
 		walk2 = TRUE;
 	}

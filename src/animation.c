@@ -17,49 +17,49 @@ void FUNCAO_ANIMACAO()
 				if(P[i].animFrame>P[i].animFrameTotal) //hora de trocar ou recarregar a animacao!
 				{
 					gASG_system = 1;
-					if(P[i].state==100){ PLAYER_STATE(i,100); }
-					if(P[i].state==200){ PLAYER_STATE(i,200); }
+					if(P[i].state == STATE_PARADO){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_ABAIXADO){ PLAYER_STATE(i, STATE_ABAIXADO); }
 					
 					// estes aqui previnem bug, caso o tempo de animacao dos Aereos seja definido errado
 					// e o player nao tenha tempo de chegar ao solo...
-					if(P[i].state==300 || P[i].state==310 || P[i].state==320){ PLAYER_STATE(i,100); }
-					if(P[i].state==301 || P[i].state==302 || P[i].state==303){ PLAYER_STATE(i,100); }
-					if(P[i].state==304 || P[i].state==305 || P[i].state==306){ PLAYER_STATE(i,100); }
-					if(P[i].state==311 || P[i].state==312 || P[i].state==313){ PLAYER_STATE(i,100); }
-					if(P[i].state==314 || P[i].state==315 || P[i].state==316){ PLAYER_STATE(i,100); }
-					if(P[i].state==321 || P[i].state==322 || P[i].state==323){ PLAYER_STATE(i,100); }
-					if(P[i].state==324 || P[i].state==325 || P[i].state==326){ PLAYER_STATE(i,100); }
+					if(P[i].state == STATE_PULO_NEUTRO || P[i].state == STATE_PULO_TRAS || P[i].state == STATE_PULO_FRENTE){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_SOCO_FRACO_AEREO_NEUTRO || P[i].state == STATE_SOCO_MEDIO_AEREO_NEUTRO || P[i].state == STATE_SOCO_FORTE_AEREO_NEUTRO){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_CHUTE_FRACO_AEREO_NEUTRO || P[i].state == STATE_CHUTE_MEDIO_AEREO_NEUTRO || P[i].state == STATE_CHUTE_FORTE_AEREO_NEUTRO){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_SOCO_FRACO_AEREO_TRAS || P[i].state == STATE_SOCO_MEDIO_AEREO_TRAS || P[i].state == STATE_SOCO_FORTE_AEREO_TRAS){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_CHUTE_FRACO_AEREO_TRAS || P[i].state == STATE_CHUTE_MEDIO_AEREO_TRAS || P[i].state == STATE_CHUTE_FORTE_AEREO_TRAS){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_SOCO_FRACO_AEREO_FRENTE || P[i].state == STATE_SOCO_MEDIO_AEREO_FRENTE || P[i].state == STATE_SOCO_FORTE_AEREO_FRENTE){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_CHUTE_FRACO_AEREO_FRENTE || P[i].state == STATE_CHUTE_MEDIO_AEREO_FRENTE || P[i].state == STATE_CHUTE_FORTE_AEREO_FRENTE){ PLAYER_STATE(i, STATE_PARADO); }
 					
-					if(P[i].state==410){ PLAYER_STATE(i,410); }
-					if(P[i].state==420){ PLAYER_STATE(i,420); }
-					if(P[i].state==470 || P[i].state==471 || P[i].state==472){ if(P[i].key_JOY_DOWN_status>0){ PLAYER_STATE(i,200); }else{ PLAYER_STATE(i,100); } }
-					if(P[i].state==601){ PLAYER_STATE(i,200); }
-					if(P[i].state==602){ PLAYER_STATE(i,100); }
-					if(P[i].state==603){ P[i].y-=1; P[i].puloTimer=1; PLAYER_STATE(i,310); }
-					if(P[i].state==604){ P[i].y-=1; P[i].puloTimer=1; PLAYER_STATE(i,300); }
-					if(P[i].state==605){ P[i].y-=1; P[i].puloTimer=1; PLAYER_STATE(i,320); }
-					if(P[i].state==607){ PLAYER_STATE(i,100); } //virando em pe
-					if(P[i].state==608){ PLAYER_STATE(i,200); } //virando abaixado
-					if(P[i].state>=101 && P[i].state<=106){ PLAYER_STATE(i,100); }
-					if(P[i].state==107){ PLAYER_STATE(i,108); }
-					if(P[i].state==108){ PLAYER_STATE(i,108); }
-					if(P[i].state==109){ PLAYER_STATE(i,100); }
-					if(P[i].state==110){ PLAYER_STATE(i,109); }
-					if(P[i].state>=151 && P[i].state<=156){ PLAYER_STATE(i,100); }
-					if(P[i].state>=201 && P[i].state<=206){ PLAYER_STATE(i,200); }
-					if(P[i].state==207){ PLAYER_STATE(i,208); }
-					if(P[i].state==208){ PLAYER_STATE(i,208); }
-					if(P[i].state==209){ PLAYER_STATE(i,200); }
-					if(P[i].state==210){ PLAYER_STATE(i,209); }
-					if(P[i].state>=501 && P[i].state<=550){ PLAYER_STATE(i,100); } //end hurts
-					if(P[i].state==552){ PLAYER_STATE(i,100); } //end queda
-					if(P[i].state==570){ if(P[i].energiaBase>0){ PLAYER_STATE(i,552); }else{ PLAYER_STATE(i,570); } } //end pulos
-					if(P[i].state==606){ PLAYER_STATE(i,100); } //end pulos
-					if(P[i].state==610){ PLAYER_STATE(i,100); } //end Intro
-					if(P[i].state==611 || P[i].state==612 || P[i].state==613 || P[i].state==614){ FUNCAO_ROUND_RESTART(); } //end WIN Pose
-					if(P[i].state==615){ FUNCAO_ROUND_RESTART(); } //end time lose
-					if(P[i].state==618){ PLAYER_STATE(i,100); } //end Rage Explosion
-					if(P[i].state>=700 && P[i].state<=790){ PLAYER_STATE(i,100); } //end magias
+					if(P[i].state == STATE_ANDANDO_TRAS){ PLAYER_STATE(i, STATE_ANDANDO_TRAS); }
+					if(P[i].state == STATE_ANDANDO_FRENTE){ PLAYER_STATE(i, STATE_ANDANDO_FRENTE); }
+					if(P[i].state == STATE_ESQUIVA_BAIXO || P[i].state == STATE_ROLAMENTO_TRAS || P[i].state == STATE_ROLAMENTO_FRENTE){ if(P[i].key_JOY_DOWN_status>0){ PLAYER_STATE(i, STATE_ABAIXADO); }else{ PLAYER_STATE(i, STATE_PARADO); } }
+					if(P[i].state == STATE_ABAIXANDO){ PLAYER_STATE(i, STATE_ABAIXADO); }
+					if(P[i].state == STATE_LEVANTANDO_TRANSICAO){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_INICIO_PULO_TRAS){ P[i].y-=1; P[i].puloTimer=1; PLAYER_STATE(i, STATE_PULO_TRAS); }
+					if(P[i].state == STATE_INICIO_PULO_NEUTRO){ P[i].y-=1; P[i].puloTimer=1; PLAYER_STATE(i, STATE_PULO_NEUTRO); }
+					if(P[i].state == STATE_INICIO_PULO_FRENTE){ P[i].y-=1; P[i].puloTimer=1; PLAYER_STATE(i, STATE_PULO_FRENTE); }
+					if(P[i].state == STATE_VIRANDO_PE){ PLAYER_STATE(i, STATE_PARADO); } //virando em pe
+					if(P[i].state == STATE_VIRANDO_ABAIXADO){ PLAYER_STATE(i, STATE_ABAIXADO); } //virando abaixado
+					if(P[i].state >= STATE_SOCO_FRACO_LONGE && P[i].state <= STATE_CHUTE_FORTE_LONGE){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_DEFESA_PE_INICIO){ PLAYER_STATE(i, STATE_DEFESA_PE_DEFENDENDO); }
+					if(P[i].state == STATE_DEFESA_PE_DEFENDENDO){ PLAYER_STATE(i, STATE_DEFESA_PE_DEFENDENDO); }
+					if(P[i].state == STATE_DEFESA_PE_FINAL){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state == STATE_DEFESA_PE_APLICADA){ PLAYER_STATE(i, STATE_DEFESA_PE_FINAL); }
+					if(P[i].state >= STATE_SOCO_FRACO_PERTO && P[i].state <= STATE_CHUTE_FORTE_PERTO){ PLAYER_STATE(i, STATE_PARADO); }
+					if(P[i].state >= STATE_SOCO_FRACO_ABAIXADO && P[i].state <= STATE_CHUTE_FORTE_ABAIXADO){ PLAYER_STATE(i, STATE_ABAIXADO); }
+					if(P[i].state == STATE_DEFESA_ABAIXADO_INICIO){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_DEFENDENDO); }
+					if(P[i].state == STATE_DEFESA_ABAIXADO_DEFENDENDO){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_DEFENDENDO); }
+					if(P[i].state == STATE_DEFESA_ABAIXADO_FINAL){ PLAYER_STATE(i, STATE_ABAIXADO); }
+					if(P[i].state == STATE_DEFESA_ABAIXADO_APLICADA){ PLAYER_STATE(i, STATE_DEFESA_ABAIXADO_FINAL); }
+					if(P[i].state >= STATE_HIT_TIPO1_FRACO && P[i].state <= STATE_CAINDO){ PLAYER_STATE(i, STATE_PARADO); } //end hurts
+					if(P[i].state == STATE_LEVANTANDO){ PLAYER_STATE(i, STATE_PARADO); } //end queda
+					if(P[i].state == STATE_CAIDO_MORTO){ if(P[i].energiaBase>0){ PLAYER_STATE(i, STATE_LEVANTANDO); }else{ PLAYER_STATE(i, STATE_CAIDO_MORTO); } } //end pulos
+					if(P[i].state == STATE_FINAL_PULO){ PLAYER_STATE(i, STATE_PARADO); } //end pulos
+					if(P[i].state == STATE_INTRO){ PLAYER_STATE(i, STATE_PARADO); } //end Intro
+					if(P[i].state == STATE_WIN1 || P[i].state == STATE_WIN2 || P[i].state == STATE_WIN3 || P[i].state == STATE_WIN4){ FUNCAO_ROUND_RESTART(); } //end WIN Pose
+					if(P[i].state == STATE_PERDENDO_TIME_OVER){ FUNCAO_ROUND_RESTART(); } //end time lose
+					if(P[i].state == STATE_RAGE_EXPLOSION){ PLAYER_STATE(i, STATE_PARADO); } //end Rage Explosion
+					if(P[i].state >= STATE_ESPECIAL_700 && P[i].state <= STATE_ESPECIAL_790){ PLAYER_STATE(i, STATE_PARADO); } //end magias
 				}
 				P[i].frameTimeAtual=1;
 				P[i].frameTimeTotal = P[i].dataAnim[P[i].animFrame];
@@ -69,7 +69,7 @@ void FUNCAO_ANIMACAO()
 				if(P[i].frameTimeAtual>1){ P[i].frameTimeAtual--; }
 			}
 			//*NOTA: No caso do SS2, a animacao abaixando é encurtada (para se abaixar mais rapido) caso se mantenha pressionado para baixo apos o pulo //end pulos 
-			/*samsho2*/ if(P[i].state==606 && P[i].animFrame==2 && P[i].frameTimeAtual>=3 && P[i].key_JOY_DOWN_status>=1){ PLAYER_STATE(i,200); } 
+			/*samsho2*/ if(P[i].state == STATE_FINAL_PULO && P[i].animFrame==2 && P[i].frameTimeAtual>=3 && P[i].key_JOY_DOWN_status>=1){ PLAYER_STATE(i, STATE_ABAIXADO); } 
 		}
 	}
 	FUNCAO_SPR_POSITION(); //Define a posicao do Sprite
