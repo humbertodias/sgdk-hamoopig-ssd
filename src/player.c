@@ -7,7 +7,7 @@
 
 void PLAYER_STATE(u8 Player, u16 State)
 {
-	SPR_releaseSprite(P[Player].sprite);
+	if(P[Player].sprite){ SPR_releaseSprite(P[Player].sprite); P[Player].sprite = NULL; }
 	P[Player].animFrame      = 1;
 	P[Player].frameTimeAtual = 1;
 	P[Player].dataAnim[1]    = 1;

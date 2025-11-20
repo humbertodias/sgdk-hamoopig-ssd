@@ -392,8 +392,8 @@ void FUNCAO_PHYSICS() //FISICA!
 		{
 			P[i].fBallX += P[i].fBallSpeedX * P[i].fBallDirecao;
 			SPR_setPosition( P[i].fBall, P[i].fBallX, P[i].fBallY );
-			if(P[i].fBallX<gLimiteCenarioE-100){ SPR_releaseSprite(P[i].fBall); P[i].fBallActive=0; }
-			if(P[i].fBallX>gLimiteCenarioD+100){ SPR_releaseSprite(P[i].fBall); P[i].fBallActive=0; }
+			if(P[i].fBallX<gLimiteCenarioE-100){ if(P[i].fBall){ SPR_releaseSprite(P[i].fBall); P[i].fBall = NULL; } P[i].fBallActive=0; }
+			if(P[i].fBallX>gLimiteCenarioD+100){ if(P[i].fBall){ SPR_releaseSprite(P[i].fBall); P[i].fBall = NULL; } P[i].fBallActive=0; }
 		}
 		
 	}

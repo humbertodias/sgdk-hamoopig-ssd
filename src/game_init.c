@@ -315,7 +315,7 @@ void FUNCAO_ROUND_INIT()
 		//Himalaya Top of The Montain
 		if(gBG_Choice==3){ HUD_Lethers = SPR_addSpriteEx(&spr_BG_desc3, 72, 48, TILE_ATTR(PAL1, FALSE, FALSE, FALSE), SPR_FLAG_DISABLE_DELAYED_FRAME_UPDATE | SPR_FLAG_AUTO_VISIBILITY | SPR_FLAG_AUTO_VRAM_ALLOC | SPR_FLAG_AUTO_TILE_UPLOAD | SPR_FLAG_AUTO_VRAM_ALLOC); SPR_setDepth(HUD_Lethers, 1 ); }
 	 }
-	 if(gFrames== 63){ SPR_releaseSprite(HUD_Lethers); }
+	 if(gFrames== 63){ if(HUD_Lethers){ SPR_releaseSprite(HUD_Lethers); HUD_Lethers = NULL; } }
 	 
 	 //start SFX
 	 if(gFrames== 64 && gRound==1)
@@ -338,7 +338,7 @@ void FUNCAO_ROUND_INIT()
 	 if(gFrames==179){ SPR_setAnimAndFrame(HUD_Lethers, 0,12); }
 	 if(gFrames==181){ SPR_setAnimAndFrame(HUD_Lethers, 0,13); }
 	 if(gFrames==183){ SPR_setAnimAndFrame(HUD_Lethers, 0,14); }
-	 if(gFrames==185){ SPR_releaseSprite(HUD_Lethers); }
+	 if(gFrames==185){ if(HUD_Lethers){ SPR_releaseSprite(HUD_Lethers); HUD_Lethers = NULL; } }
 	 if(gFrames==193)
 	 { 
 		if(gRound==1){ HUD_Lethers = SPR_addSpriteEx(&spr_duel1, 112, 64, TILE_ATTR(PAL1, FALSE, FALSE, FALSE), SPR_FLAG_DISABLE_DELAYED_FRAME_UPDATE | SPR_FLAG_AUTO_VISIBILITY | SPR_FLAG_AUTO_VRAM_ALLOC | SPR_FLAG_AUTO_TILE_UPLOAD | SPR_FLAG_AUTO_VRAM_ALLOC); SPR_setDepth(HUD_Lethers, 1 ); }
@@ -361,13 +361,13 @@ void FUNCAO_ROUND_INIT()
 	 if(gFrames==245){ SPR_setAnimAndFrame(HUD_Lethers, 0,12); }
 	 if(gFrames==247){ SPR_setAnimAndFrame(HUD_Lethers, 0,13); }
 	 if(gFrames==249){ SPR_setAnimAndFrame(HUD_Lethers, 0,14); }
-	 if(gFrames==251){ SPR_releaseSprite(HUD_Lethers); }
+	 if(gFrames==251){ if(HUD_Lethers){ SPR_releaseSprite(HUD_Lethers); HUD_Lethers = NULL; } }
 	 if(gFrames==293){ HUD_Lethers = SPR_addSpriteEx(&spr_begin, 120, 64, TILE_ATTR(PAL1, FALSE, FALSE, FALSE), SPR_FLAG_DISABLE_DELAYED_FRAME_UPDATE | SPR_FLAG_AUTO_VISIBILITY | SPR_FLAG_AUTO_VRAM_ALLOC | SPR_FLAG_AUTO_TILE_UPLOAD | SPR_FLAG_AUTO_VRAM_ALLOC); SPR_setDepth(HUD_Lethers, 1 ); }
 	 if(gFrames==295){ SPR_setAnimAndFrame(HUD_Lethers, 0, 1); }
 	 if(gFrames==297){ SPR_setAnimAndFrame(HUD_Lethers, 0, 2); }
 	 if(gFrames==299){ SPR_setAnimAndFrame(HUD_Lethers, 0, 3); }
 	 if(gFrames==301){ SPR_setAnimAndFrame(HUD_Lethers, 0, 4); }
-	 if(gFrames==351){ SPR_releaseSprite(HUD_Lethers); }
+	 if(gFrames==351){ if(HUD_Lethers){ SPR_releaseSprite(HUD_Lethers); HUD_Lethers = NULL; } }
 	 
 	  if(gFrames== 302 && gRound==1)
 	 { 
@@ -461,8 +461,8 @@ void FUNCAO_ROUND_RESTART()
 		gClockTimer = 60;
 		gClockLTimer = 9;
 		gClockRTimer = 9;
-		SPR_releaseSprite(ClockL);
-		SPR_releaseSprite(ClockR);
+		if(ClockL){ SPR_releaseSprite(ClockL); ClockL = NULL; }
+		if(ClockR){ SPR_releaseSprite(ClockR); ClockR = NULL; }
 		ClockL = SPR_addSpriteEx(&spr_n9, 144, 32, TILE_ATTR(PAL1, FALSE, FALSE, FALSE), SPR_FLAG_DISABLE_DELAYED_FRAME_UPDATE | SPR_FLAG_AUTO_VISIBILITY | SPR_FLAG_AUTO_VRAM_ALLOC | SPR_FLAG_AUTO_TILE_UPLOAD | SPR_FLAG_AUTO_VRAM_ALLOC);
 		ClockR = SPR_addSpriteEx(&spr_n9, 160, 32, TILE_ATTR(PAL1, FALSE, FALSE, FALSE), SPR_FLAG_DISABLE_DELAYED_FRAME_UPDATE | SPR_FLAG_AUTO_VISIBILITY | SPR_FLAG_AUTO_VRAM_ALLOC | SPR_FLAG_AUTO_TILE_UPLOAD | SPR_FLAG_AUTO_VRAM_ALLOC); 
 		SPR_setVRAMTileIndex(ClockL,1703); //define uma posicao especifica para o GFX na VRAM

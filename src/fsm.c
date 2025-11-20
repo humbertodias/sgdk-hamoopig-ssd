@@ -236,8 +236,8 @@ void FUNCAO_FSM()
 				u8 AlturaDoHit = P[PA].y+P[PA].dataHBox[3];
 				P[PA].dataHBox[0]=0; P[PA].dataHBox[1]=0; P[PA].dataHBox[2]=0; P[PA].dataHBox[3]=0; //desativa a hitbox
 				
-				if(Spark1_countDown>0){ SPR_releaseSprite(Spark[1]); }
-				if(Spark2_countDown>0){ SPR_releaseSprite(Spark[2]); }
+				if(Spark1_countDown>0){ if(Spark[1]){ SPR_releaseSprite(Spark[1]); Spark[1] = NULL; } }
+				if(Spark2_countDown>0){ if(Spark[2]){ SPR_releaseSprite(Spark[2]); Spark[2] = NULL; } }
 				
 				if(
 					P[PA].state == STATE_CHUTE_FRACO_LONGE || P[PA].state == STATE_CHUTE_MEDIO_LONGE || P[PA].state == STATE_CHUTE_FORTE_LONGE ||
@@ -355,7 +355,7 @@ void FUNCAO_FSM()
 				//oponente zero energy = dead
 				if((P[PR].state >= STATE_HIT_TIPO1_FRACO && P[PR].state <= STATE_HIT_TIPO2_FORTE) && P[PR].energiaBase==0)
 				{ 
-					SPR_releaseSprite(GE[11].sprite);
+					if(GE[11].sprite){ SPR_releaseSprite(GE[11].sprite); GE[11].sprite = NULL; }
 					PLAYER_STATE(PR, STATE_CAINDO); 
 				}
 				
@@ -363,8 +363,8 @@ void FUNCAO_FSM()
 				if(SparkType!=0)
 				{
 					P[PR].hitPause=16; //hitpause Shake
-					if(Spark1_countDown>0){ SPR_releaseSprite(Spark[1]); }
-					if(Spark2_countDown>0){ SPR_releaseSprite(Spark[2]); }
+					if(Spark1_countDown>0){ if(Spark[1]){ SPR_releaseSprite(Spark[1]); Spark[1] = NULL; } }
+					if(Spark2_countDown>0){ if(Spark[2]){ SPR_releaseSprite(Spark[2]); Spark[2] = NULL; } }
 					if(PR==1){Spark1_countDown=12;}
 					if(PR==2){Spark2_countDown=12;}
 					
@@ -444,8 +444,8 @@ void FUNCAO_FSM()
 			}			
 			
 			//SPARK DE MAGIA SUMINDO
-			if(Spark1_countDown>0){ SPR_releaseSprite(Spark[1]); }
-			if(Spark2_countDown>0){ SPR_releaseSprite(Spark[2]); }
+			if(Spark1_countDown>0){ if(Spark[1]){ SPR_releaseSprite(Spark[1]); Spark[1] = NULL; } }
+			if(Spark2_countDown>0){ if(Spark[2]){ SPR_releaseSprite(Spark[2]); Spark[2] = NULL; } }
 			if(PA==1){Spark1_countDown=20;}
 			if(PA==2){Spark2_countDown=20;}
 			
@@ -536,8 +536,8 @@ void FUNCAO_FSM()
 					( P[i].attackButton==1 ||  P[i].attackButton==2 || P[i].attackButton==3)
 				)
 				{
-					if(Spark1_countDown>0){ SPR_releaseSprite(Spark[1]); Spark1_countDown=0; }
-					if(Spark2_countDown>0){ SPR_releaseSprite(Spark[2]); Spark2_countDown=0; }
+					if(Spark1_countDown>0){ if(Spark[1]){ SPR_releaseSprite(Spark[1]); Spark[1] = NULL; } Spark1_countDown=0; }
+					if(Spark2_countDown>0){ if(Spark[2]){ SPR_releaseSprite(Spark[2]); Spark[2] = NULL; } Spark2_countDown=0; }
 					PLAYER_STATE(i, STATE_ESPECIAL_700);
 					magic_avaliable=0; 
 				}
