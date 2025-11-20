@@ -365,7 +365,7 @@ void FUNCAO_PHYSICS() //FISICA!
 		{
 			//P[i].cicloInteracoesGravidadeCont++;
 			
-			if( (P[i].state == STATE_ESPECIAL_710 || P[i].state == STATE_ESPECIAL_720 || P[i].state == STATE_ESPECIAL_730 || P[i].state==740 || P[i].state==750) && P[i].y!=gAlturaPiso )
+			if( (P[i].state == STATE_ESPECIAL_710 || P[i].state == STATE_ESPECIAL_720 || P[i].state == STATE_ESPECIAL_730 || P[i].state==STATE_ESPECIAL_740 || P[i].state==STATE_ESPECIAL_750) && P[i].y!=gAlturaPiso )
 			{
 				if(P[i].cicloInteracoesGravidadeCont>=P[i].cicloInteracoesGravidade){
 					P[i].cicloInteracoesGravidadeCont=0;
