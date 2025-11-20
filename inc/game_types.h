@@ -34,6 +34,137 @@ typedef enum {
 	ROOM_AFTER_MATCH = 11    // After match
 } GameRoom;
 
+// Player states - HAMOOPIG Finite State Machine (FSM)
+typedef enum {
+	// Portraits
+	STATE_PORTRAIT_GRANDE = 0,          // Retrato Grande do Personagem
+	STATE_PORTRAIT_PEQUENO = 1,         // Retrato Pequeno do Personagem
+	
+	// Standing - Long Distance
+	STATE_PARADO = 100,                 // Personagem PARADO
+	STATE_SOCO_FRACO_LONGE = 101,       // Soco Fraco de Longe
+	STATE_SOCO_MEDIO_LONGE = 102,       // Soco Médio de Longe
+	STATE_SOCO_FORTE_LONGE = 103,       // Soco Forte de Longe
+	STATE_CHUTE_FRACO_LONGE = 104,      // Chute Fraco de Longe
+	STATE_CHUTE_MEDIO_LONGE = 105,      // Chute Médio de Longe
+	STATE_CHUTE_FORTE_LONGE = 106,      // Chute Forte de Longe
+	STATE_DEFESA_PE_INICIO = 107,       // Inicio da Defesa em Pé
+	STATE_DEFESA_PE_DEFENDENDO = 108,   // Defendendo em Pé
+	STATE_DEFESA_PE_FINAL = 109,        // Final da Defesa em Pé
+	STATE_DEFESA_PE_APLICADA = 110,     // Defesa em Pé, Aplicada
+	
+	// Standing - Close Distance
+	STATE_SOCO_FRACO_PERTO = 151,       // Soco Fraco de Perto
+	STATE_SOCO_MEDIO_PERTO = 152,       // Soco Médio de Perto
+	STATE_SOCO_FORTE_PERTO = 153,       // Soco Forte de Perto
+	STATE_CHUTE_FRACO_PERTO = 154,      // Chute Fraco de Perto
+	STATE_CHUTE_MEDIO_PERTO = 155,      // Chute Médio de Perto
+	STATE_CHUTE_FORTE_PERTO = 156,      // Chute Forte de Perto
+	
+	// Crouching
+	STATE_ABAIXADO = 200,               // Abaixado
+	STATE_SOCO_FRACO_ABAIXADO = 201,    // Soco Fraco Abaixado
+	STATE_SOCO_MEDIO_ABAIXADO = 202,    // Soco Médio Abaixado
+	STATE_SOCO_FORTE_ABAIXADO = 203,    // Soco Forte Abaixado
+	STATE_CHUTE_FRACO_ABAIXADO = 204,   // Chute Fraco Abaixado
+	STATE_CHUTE_MEDIO_ABAIXADO = 205,   // Chute Médio Abaixado
+	STATE_CHUTE_FORTE_ABAIXADO = 206,   // Chute Forte Abaixado
+	STATE_DEFESA_ABAIXADO_INICIO = 207, // Inicio da Defesa Abaixado
+	STATE_DEFESA_ABAIXADO_DEFENDENDO = 208, // Defendendo Abaixado
+	STATE_DEFESA_ABAIXADO_FINAL = 209,  // Final da Defesa Abaixado
+	STATE_DEFESA_ABAIXADO_APLICADA = 210, // Defesa Abaixada, Aplicada
+	
+	// Aerial - Neutral
+	STATE_PULO_NEUTRO = 300,            // Pulo Neutro
+	STATE_SOCO_FRACO_AEREO_NEUTRO = 301,  // Soco Fraco Aéreo Neutro
+	STATE_SOCO_MEDIO_AEREO_NEUTRO = 302,  // Soco Médio Aéreo Neutro
+	STATE_SOCO_FORTE_AEREO_NEUTRO = 303,  // Soco Forte Aéreo Neutro
+	STATE_CHUTE_FRACO_AEREO_NEUTRO = 304, // Chute Fraco Aéreo Neutro
+	STATE_CHUTE_MEDIO_AEREO_NEUTRO = 305, // Chute Médio Aéreo Neutro
+	STATE_CHUTE_FORTE_AEREO_NEUTRO = 306, // Chute Forte Aéreo Neutro
+	
+	// Aerial - Backward
+	STATE_PULO_TRAS = 310,              // Pulo para Trás
+	STATE_SOCO_FRACO_AEREO_TRAS = 311,  // Soco Fraco Aéreo para Trás
+	STATE_SOCO_MEDIO_AEREO_TRAS = 312,  // Soco Médio Aéreo para Trás
+	STATE_SOCO_FORTE_AEREO_TRAS = 313,  // Soco Forte Aéreo para Trás
+	STATE_CHUTE_FRACO_AEREO_TRAS = 314, // Chute Fraco Aéreo para Trás
+	STATE_CHUTE_MEDIO_AEREO_TRAS = 315, // Chute Médio Aéreo para Trás
+	STATE_CHUTE_FORTE_AEREO_TRAS = 316, // Chute Forte Aéreo para Trás
+	
+	// Aerial - Forward
+	STATE_PULO_FRENTE = 320,            // Pulo para Frente
+	STATE_SOCO_FRACO_AEREO_FRENTE = 321,  // Soco Fraco Aéreo para Frente
+	STATE_SOCO_MEDIO_AEREO_FRENTE = 322,  // Soco Médio Aéreo para Frente
+	STATE_SOCO_FORTE_AEREO_FRENTE = 323,  // Soco Forte Aéreo para Frente
+	STATE_CHUTE_FRACO_AEREO_FRENTE = 324, // Chute Fraco Aéreo para Frente
+	STATE_CHUTE_MEDIO_AEREO_FRENTE = 325, // Chute Médio Aéreo para Frente
+	STATE_CHUTE_FORTE_AEREO_FRENTE = 326, // Chute Forte Aéreo para Frente
+	
+	// Movement
+	STATE_ANDANDO_TRAS = 410,           // Andando para Trás
+	STATE_ANDANDO_FRENTE = 420,         // Andando para Frente
+	STATE_ESQUIVA_BAIXO = 470,          // Esquiva para Baixo / Esquiva para Trás
+	STATE_ROLAMENTO_TRAS = 471,         // Rolamento para Trás
+	STATE_ROLAMENTO_FRENTE = 472,       // Rolamento para Frente
+	STATE_CORRIDA_INICIO = 480,         // Inicio da corrida
+	STATE_CORRENDO = 481,               // Correndo
+	STATE_CORRIDA_FINAL = 482,          // Final da Corrida
+	
+	// Getting Hit
+	STATE_HIT_TIPO1_FRACO = 501,        // Hit Tipo 1, Fraco
+	STATE_HIT_TIPO1_MEDIO = 502,        // Hit Tipo 1, Medio
+	STATE_HIT_TIPO1_FORTE = 503,        // Hit Tipo 1, Forte
+	STATE_HIT_DISPONIVEL_504 = 504,     // disponível
+	STATE_HIT_DISPONIVEL_505 = 505,     // disponível
+	STATE_HIT_TIPO2_FRACO = 506,        // Hit Tipo 2, Fraco
+	STATE_HIT_TIPO2_MEDIO = 507,        // Hit Tipo 2, Medio
+	STATE_HIT_TIPO2_FORTE = 508,        // Hit Tipo 2, Forte
+	STATE_HIT_TIPO3_FRACO = 511,        // Hit Tipo 3, Fraco
+	STATE_HIT_TIPO3_MEDIO = 512,        // Hit Tipo 3, Medio
+	STATE_HIT_TIPO3_FORTE = 513,        // Hit Tipo 3, Forte
+	STATE_HIT_DISPONIVEL_514 = 514,     // disponível
+	STATE_HIT_DISPONIVEL_515 = 515,     // disponível
+	STATE_USER_HIT = 516,               // User Hit
+	STATE_HIT_DISPONIVEL_517 = 517,     // disponível
+	STATE_HIT_DISPONIVEL_518 = 518,     // disponível
+	STATE_HIT_DISPONIVEL_519 = 519,     // disponível
+	STATE_HIT_DISPONIVEL_520 = 520,     // disponível
+	STATE_CAINDO = 550,                 // Caindo
+	STATE_QUICANDO_CHAO = 551,          // Quicando no chão
+	STATE_LEVANTANDO = 552,             // Levantando
+	STATE_CAIDO_MORTO = 570,            // Caido, Morto
+	
+	// Transitions
+	STATE_ABAIXANDO = 601,              // Abaixando
+	STATE_LEVANTANDO_TRANSICAO = 602,   // Levantando
+	STATE_INICIO_PULO_TRAS = 603,       // Inicio Pulo para Trás
+	STATE_INICIO_PULO_NEUTRO = 604,     // Inicio Pulo Neutro
+	STATE_INICIO_PULO_FRENTE = 605,     // Inicio Pulo para Frente
+	STATE_FINAL_PULO = 606,             // Final do Pulo / Aterrisando no chão
+	STATE_VIRANDO_PE = 607,             // Virando, em Pé
+	STATE_VIRANDO_ABAIXADO = 608,       // Virando Abaixado
+	
+	// Victory and Defeat
+	STATE_INTRO = 610,                  // Intro
+	STATE_WIN1 = 611,                   // Win1
+	STATE_WIN2 = 612,                   // Win2
+	STATE_WIN3 = 613,                   // Win3
+	STATE_WIN4 = 614,                   // Win4
+	STATE_PERDENDO_TIME_OVER = 615,     // Perdendo por Time Over
+	STATE_RAGE_EXPLOSION = 618,         // Rage Explosion (Samurai Shodown 2)
+	
+	// Special Moves (700-900)
+	STATE_ESPECIAL_700 = 700,           // Especial 1
+	STATE_FIREBALL_701 = 701,           // Fireball 1
+	STATE_SPARK_FIREBALL = 702,         // Spark da Fireball 1
+	STATE_ESPECIAL_710 = 710,           // Especial 2
+	STATE_ESPECIAL_711 = 711,           // Especial 2 Fireball
+	STATE_ESPECIAL_720 = 720,           // Especial 3
+	STATE_ESPECIAL_730 = 730,           // Especial 4
+	STATE_ESPECIAL_790 = 790            // Last special slot
+} PlayerState;
+
 //--- ESTRUTURAS ---//
 struct PlayerDEF {
 	Sprite* sprite;      //Sprite do Player 
