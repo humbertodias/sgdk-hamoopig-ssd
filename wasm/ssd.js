@@ -179,7 +179,7 @@
     }
   
    }
-   loadPackage({"files": [{"filename": "/game_rom", "start": 0, "end": 3538944}], "remote_package_size": 3538944, "package_uuid": "5ddd20e4-f61c-4828-8e36-192a59ef5e22"});
+   loadPackage({"files": [{"filename": "/game_rom", "start": 0, "end": 3670016}], "remote_package_size": 3670016, "package_uuid": "88278f5b-043f-45d7-acf3-4efb8aaafc3e"});
   
   })();
   
